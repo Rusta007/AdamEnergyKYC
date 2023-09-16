@@ -4,6 +4,7 @@ label {
   display: block;
   padding: 10px 0px;
   font-size: 20px;
+  line-height: 28px;
 }
 .infoFlexContainer {
   display: flex;
@@ -16,7 +17,7 @@ label {
 }
 .Infocontainer {
   background-color: #fff;
-  /* width: 80%; */
+  width: 70%;
   margin: auto;
   border-radius: 10px;
   padding: 0px 0px 9px 0px;
@@ -37,7 +38,7 @@ h3 {
   padding: 14px 0px;
   border: none;
   border-radius: 5px;
-  width: 500px;
+  width: 630px;
 }
 
 .flexItem2 input {
@@ -45,7 +46,7 @@ h3 {
   padding: 14px 0px;
   border: none;
   border-radius: 5px;
-  width: 500px;
+  width: 630px;
 }
 td input {
   background-color: #f3f3f3;
@@ -66,28 +67,63 @@ td input {
   background-color: #f3f3f3;
   padding: 15px 0px;
   border: none;
-  border-radius: 5px px;
+  border-radius: 5px ;
   margin: 0px 27px;
 }
 
 h5 {
   font-size: 17px;
 }
-
+.url input {
+  background-color: #f3f3f3;
+  padding: 14px 0px;
+  border: none;
+  border-radius: 5px;
+  width: 300px;
+}
+.kycDocumentsContainer {
+  padding: 4px 19px;
+  /* width: 56%; */
+}
+.declarationContainer {
+  padding: 16px 0px;
+  line-height: 27px;
+}
+.declarationContainer h4 {
+  text-transform: uppercase;
+  padding: 3px 0px;
+}
+.submit-btn {
+  text-align: center;
+  padding: 29px 0px;
+}
+.submit-btn button {
+  padding: 9px 57px;
+  font-size: 22px;
+  background-color: #002142;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+}
 /* Tab View */
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1340px) {
   .flexItem1 input {
-    width: 300px;
+    width: 500px;
   }
   .flexItem2 input {
-    width: 300px;
+    width: 500px;
   }
   label {
     font-size: 16px;
   }
   td input {
-    width: 210px;
+    width: 160px;
   }
+  .proposedContainer input {
+    width: 92%;
+    margin: 0px 22px;
+ 
+}
 }
 
 /* Mobile View */
@@ -95,5 +131,17 @@ h5 {
 @media (min-width: 300px) and (max-width: 700px) {
   td input {
     width: 115px;
+  }
+  .Infocontainer{
+    width: 100%;
+  }
+  .flexItem1 input {
+    width: 357px;
+  }
+  .flexItem2 input {
+    width: 357px;
+  }
+  .proposedContainer{
+    width: 90%;
   }
 }
