@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo&display=swap");
+
+label {
+  display: block;
+  padding: 10px 0px;
+  font-size: 20px;
+}
+.infoFlexContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 22px 0px;
+  margin: auto;
+  padding: 12px 20px;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+.Infocontainer {
+  background-color: #fff;
+  /* width: 80%; */
+  margin: auto;
+  border-radius: 10px;
+  padding: 0px 0px 9px 0px;
+}
+.kycContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: "Archivo", sans-serif;
+}
+h3 {
+  padding: 20px 0px 0px 20px;
+  font-size: 28px;
+  text-transform: uppercase;
+}
+.flexItem1 input {
+  background-color: #f3f3f3;
+  padding: 14px 0px;
+  border: none;
+  border-radius: 5px;
+  width: 500px;
+}
+
+.flexItem2 input {
+  background-color: #f3f3f3;
+  padding: 14px 0px;
+  border: none;
+  border-radius: 5px;
+  width: 500px;
+}
+td input {
+  background-color: #f3f3f3;
+  padding: 14px 0px;
+  border: none;
+  border-radius: 5px;
+  width: 340px;
+}
+
+.flexItem1 div {
+  padding: 5px 0px;
+}
+.flexItem2 div {
+  padding: 5px 0px;
+}
+.proposedContainer input {
+  width: 96%;
+  background-color: #f3f3f3;
+  padding: 15px 0px;
+  border: none;
+  border-radius: 5px px;
+  margin: 0px 27px;
+}
+
+h5 {
+  font-size: 17px;
+}
+
+/* Tab View */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .flexItem1 input {
+    width: 300px;
+  }
+  .flexItem2 input {
+    width: 300px;
+  }
+  label {
+    font-size: 16px;
+  }
+  td input {
+    width: 210px;
+  }
+}
+
+/* Mobile View */
+
+@media (min-width: 300px) and (max-width: 700px) {
+  td input {
+    width: 115px;
+  }
+}
