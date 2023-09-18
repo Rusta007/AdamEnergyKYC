@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import KycHeader from "../Components/KycHeader";
 import "../Style/KYC.css";
 const KYC = () => {
-  const [values, setValues] = useState({
+  const initialFormData = {
     registeredCompanyName: "",
     companyRegisteredAddress: "",
     emailAddress: "",
@@ -11,32 +11,143 @@ const KYC = () => {
     ContactNumber: "",
     companyWebsite: "",
     NumberOfEmployees: "",
-  });
+  };
 
+  const [Formvalues, setFormValues] = useState(initialFormData);
+  const [formErrors, setFormErrors] = useState({});
 
+  const validateField = (fieldName, value) => {
+    let error = "";
 
-const Inputs = [
-  {
-    id: 1,
-    name:"registeredCompanyName",
-    type:"text",
-    placeholder:"Registered Company Name",
-    label:"Registered Company Name"
-  }
-]
+    switch (fieldName) {
+      case "registeredCompanyName":
+        if (value.trim() === "") {
+          error = "Registered Company Name is required";
+        } else if (value.length < 5) {
+          error = "Registered Company Name must be at least 5 characters long";
+        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+          error =
+            "registeredCompanyName can only contain letters, numbers, and underscores";
+        }
+        break;
+      case "emailAddress":
+        if (!/^\S+@\S+\.\S+$/.test(value)) {
+          error = "Invalid email address";
+        }
+        break;
 
+      case "corporateDomainName":
+        if (value.trim() === "") {
+          error = "corporate DomainName is required";
+        } else if (value.length < 5) {
+          error = "corporate Domain Name must be at least 5 characters long";
+        } else if (/^[ A-Za-z0-9_@./#&+-]*$/.test(value)) {
+          error =
+            "corporate Domain Name can only contain letters, numbers, and special charachters";
+        }
+        break;
+
+      case "companyRegisteredAddress":
+        if (value.trim() === "") {
+          error = "company Registered Address is required";
+        } else if (value.length < 5) {
+          error =
+            "company Registered Address Name must be at least 5 characters long";
+        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+          error = "corporate Domain Name can only contain letters";
+        }
+        break;
+      case "ParentCompany":
+        if (value.trim() === "") {
+          error = "Parent Company is required";
+        } else if (value.length < 5) {
+          error = "Parent Company Name must be at least 5 characters long";
+        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+          error =
+            "Parent Company can only contain letters, numbers, and underscores";
+        }
+        break;
+      case "ContactNumber":
+        if (value.trim() === "") {
+          error = "Contact Number is required";
+        } else if (value.length < 10) {
+          error = "Contact Number must be at least 5 characters long";
+        }
+        //  else if (/^\+?[1-9][0-9]{7,14}$/.test(value)) {
+        //   error = "Invalid";
+        // }
+        break;
+
+      case "companyWebsite":
+        if (value.trim() === "") {
+          error = "company Website is required";
+        } else if (value.length < 5) {
+          error = "company Website must be at least 5 characters long";
+        } else if (/^[ A-Za-z0-9_@./#&+-]*$/.test(value)) {
+          error =
+            "company Website can only contain letters, numbers, and special charachters";
+        }
+        break;
+      case "NumberOfEmployees":
+        if (value.trim() === "") {
+          error = "Number of employees is required";
+        } else if (value < 1) {
+          error = "Number of employee cannnot be less than 1";
+        }
+        break;
+      default:
+        break;
+    }
+
+    return error;
+  };
+
+  const handlChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...Formvalues, [name]: value });
+    setFormErrors({ ...formErrors, [name]: validateField(name, value) });
+  };
+
+  const handleFocus = (fieldName) => {
+    setFormErrors({ ...formErrors, [fieldName]: "" });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  };
-  const handlChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+
+    let hasErrors = false;
+    const newErrors = {};
+
+    for (const field in Formvalues) {
+      const value = Formvalues[field];
+      const error = validateField(field, value);
+      if (error) {
+        newErrors[field] = error;
+        hasErrors = true;
+      }
+    }
+
+    // Check for empty fields and add 'required' error
+    for (const field in Formvalues) {
+      if (Formvalues[field].trim() === "" && !newErrors[field]) {
+        newErrors[field] = "This field is required";
+        hasErrors = true;
+      }
+    }
+
+    setFormErrors(newErrors);
+
+    if (!hasErrors) {
+      console.log("Form data:", Formvalues);
+      // You can submit the form data or perform further actions here
+    } else {
+      console.log("Form contains errors or empty fields. Please correct them.");
+    }
   };
 
   return (
     <>
       <KycHeader />
-
       {/* KYC FORM */}
       <form onSubmit={handleSubmit}>
         <div className="kycContainer">
@@ -51,36 +162,60 @@ const Inputs = [
                   <input
                     type="text"
                     name="registeredCompanyName"
-                    value={values.registeredCompanyName}
+                    value={Formvalues.registeredCompanyName}
                     onChange={handlChange}
+                    onFocus={() => handleFocus("registeredCompanyName")}
                   />
+                  {formErrors.registeredCompanyName && (
+                    <div className="error">
+                      {formErrors.registeredCompanyName}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label>Company Registered Address</label>
                   <input
                     type="text"
                     name="companyRegisteredAddress"
-                    value={values.companyRegisteredAddress}
+                    value={Formvalues.companyRegisteredAddress}
                     onChange={handlChange}
+                    onFocus={() => handleFocus("companyRegisteredAddress")}
                   />
+
+                  {formErrors.companyRegisteredAddress && (
+                    <div className="error">
+                      {formErrors.companyRegisteredAddress}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label>Email Address</label>
                   <input
                     type="email"
                     name="emailAddress"
-                    value={values.emailAddress}
+                    value={Formvalues.emailAddress}
                     onChange={handlChange}
+                    onFocus={() => handleFocus("emailAddress")}
                   />
+                  {formErrors.emailAddress && (
+                    <div className="error">{formErrors.emailAddress}</div>
+                  )}
                 </div>
                 <div>
                   <label>Corporate Domain Name</label>
                   <input
-                    type="text"
+                    type="url"
                     name="corporateDomainName"
-                    value={values.corporateDomainName}
+                    value={Formvalues.corporateDomainName}
                     onChange={handlChange}
+                    onFocus={() => handleFocus("corporateDomainName")}
                   />
+
+                  {formErrors.corporateDomainName && (
+                    <div className="error">
+                      {formErrors.corporateDomainName}
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="flexItem2">
@@ -89,36 +224,53 @@ const Inputs = [
                   <input
                     type="text"
                     name="ParentCompany"
-                    value={values.ParentCompany}
+                    value={Formvalues.ParentCompany}
                     onChange={handlChange}
+                    onFocus={() => handleFocus("ParentCompany")}
                   />
+                  {formErrors.ParentCompany && (
+                    <div className="error">{formErrors.ParentCompany}</div>
+                  )}
                 </div>
                 <div>
                   <label>Contact Number</label>
                   <input
                     type="tel"
                     name="ContactNumber"
-                    value={values.ContactNumber}
+                    value={Formvalues.ContactNumber}
                     onChange={handlChange}
+                    onFocus={() => handleFocus("ContactNumber")}
                   />
+                  {formErrors.ContactNumber && (
+                    <div className="error">{formErrors.ContactNumber}</div>
+                  )}
                 </div>
                 <div>
                   <label>Company Website</label>
                   <input
-                    type="email"
+                    type="text"
                     name="companyWebsite"
-                    value={values.companyWebsite}
+                    value={Formvalues.companyWebsite}
                     onChange={handlChange}
+                    onFocus={() => handleFocus("companyWebsite")}
                   />
+
+                  {formErrors.companyWebsite && (
+                    <div className="error">{formErrors.companyWebsite}</div>
+                  )}
                 </div>
                 <div>
                   <label>Number of Employees</label>
                   <input
-                    type="text"
+                    type="number"
                     name="NumberOfEmployees"
-                    value={values.NumberOfEmployees}
+                    value={Formvalues.NumberOfEmployees}
                     onChange={handlChange}
+                    onFocus={() => handleFocus("NumberOfEmployees")}
                   />
+                  {formErrors.NumberOfEmployees && (
+                    <div className="error">{formErrors.NumberOfEmployees}</div>
+                  )}
                 </div>
               </div>
             </div>
@@ -132,11 +284,27 @@ const Inputs = [
               <div className="flexItem1">
                 <div>
                   <label>Business Structure</label>
-                  <input type="text" />
+                  <select>
+                    <option>Select</option>
+                    <option>Public Company</option>
+                    <option>Partnership</option>
+                    <option>Private Company</option>
+                    <option>Sole Propprietorship</option>
+                    <option>Others</option>
+                  </select>
                 </div>
                 <div>
                   <label>Nature of Business</label>
-                  <input type="text" />
+                  <select>
+                    <option>Select</option>
+
+                    <option>Refining</option>
+                    <option>Trading</option>
+                    <option> Shipping </option>
+                    <option>Distribution</option>
+                    <option>Storage</option>
+                    <option>Others</option>
+                  </select>
                 </div>
                 <div>
                   <label>Country of Incorporation </label>

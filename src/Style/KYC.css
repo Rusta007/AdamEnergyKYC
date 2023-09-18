@@ -105,8 +105,18 @@ h5 {
   border: none;
   border-radius: 10px;
 }
+.error{
+  color: red;
+}
+select{
+  background-color: #f3f3f3;
+  padding: 14px 0px;
+  border: none;
+  border-radius: 5px;
+  width: 630px;
+}
 /* Tab View */
-@media (min-width: 768px) and (max-width: 1340px) {
+@media (min-width: 768px) and (max-width: 1900px) {
   .flexItem1 input {
     width: 500px;
   }
@@ -128,7 +138,7 @@ h5 {
 
 /* Mobile View */
 
-@media (min-width: 300px) and (max-width: 700px) {
+@media (min-width: 300px) and (max-width: 750px) {
   td input {
     width: 115px;
   }
