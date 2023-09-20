@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import KycHeader from "../Components/KycHeader";
 import "../Style/KYC.css";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+
 const KYC = () => {
   const initialFormData = {
     registeredCompanyName: "",
@@ -11,6 +14,42 @@ const KYC = () => {
     ContactNumber: "",
     companyWebsite: "",
     NumberOfEmployees: "",
+    countryOfIncorporation: "",
+    companyRegistrationNumber: "",
+    TradeLicenseExpiryData: "",
+    DateOfIncorporation: "",
+    TradeLicenseNumber: "",
+    VAT: "",
+    BankName: "",
+    BankBranchAddress: "",
+    AccountName: "",
+    AccountNumber: "",
+    BankAccountMangersName: "",
+    CorrespondentBankName: "",
+    BankCountry: "",
+    SwiftCode: "",
+    AccountCurrency: "",
+    IBAN: "",
+    BankAccountManagersContactDetails: "",
+    CorrespondentBankSwiftCode: "",
+    PrimaryContactName: "",
+    PrimaryContactDesignation: "",
+    PrimaryContactPhone: "",
+    PrimaryContactEmail: "",
+    OperationDepartmentName: "",
+    OperationDepartmentDesignation: "",
+    OperationDepartMentPhone: "",
+    OperationDepartmentEmail: "",
+    CreditNAME: "",
+    CreditDesignation: "",
+    CreditPhone: "",
+    CreditEmail: "",
+    AccountDepartName: "",
+    AcoountDepartDesignation: "",
+    AccountDepartmentPhone: "",
+    AccountDepartmentEmail: "",
+    ProposedBusiness: "",
+    ContactPerson: "",
   };
 
   const [Formvalues, setFormValues] = useState(initialFormData);
@@ -73,6 +112,7 @@ const KYC = () => {
         } else if (value.length < 10) {
           error = "Contact Number must be at least 5 characters long";
         }
+
         //  else if (/^\+?[1-9][0-9]{7,14}$/.test(value)) {
         //   error = "Invalid";
         // }
@@ -93,6 +133,322 @@ const KYC = () => {
           error = "Number of employees is required";
         } else if (value < 1) {
           error = "Number of employee cannnot be less than 1";
+        }
+        break;
+
+      case "countryOfIncorporation":
+        if (value.trim() === "") {
+          error = "country Of Incorporation is required";
+        } else if (value.length < 3) {
+          error = "country Of Incorporation must be at least 3 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "country Of Incorporation can only contain letters";
+        }
+        break;
+
+      case "companyRegistrationNumber":
+        if (value.trim() === "") {
+          error = "company Registration Number is required";
+        } else if (value.length < 5) {
+          error =
+            "company Registration Number must be at least 5 characters long";
+        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+          error =
+            "registeredCompanyName can only contain letters, numbers, and underscores";
+        }
+        break;
+
+      case "TradeLicenseExpiryData":
+        if (value.trim() === "") {
+          error = "Date is Required";
+        }
+        break;
+      case "DateOfIncorporation":
+        if (value.trim() === "") {
+          error = "Date is Required";
+        }
+        break;
+      case "TradeLicenseNumber":
+        if (value.trim() === "") {
+          error = "Trade License Number is required";
+        } else if (value.length < 5) {
+          error = "Trade License Number must be at least 5 characters long";
+        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+          error =
+            "Trade License Number can only contain letters, numbers, and underscores";
+        }
+        break;
+
+      case "VAT":
+        if (value.trim() === "") {
+          error = "VAT is required";
+        } else if (value.length < 5) {
+          error = "VAT must be at least 5 characters long";
+        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+          error =
+            "Trade License Number can only contain letters, numbers, and underscores";
+        }
+        break;
+
+      case "BankName":
+        if (value.trim() === "") {
+          error = "BankName is required";
+        } else if (value.length < 5) {
+          error = "BankName must be at least 5 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "BankName can only contain letters";
+        }
+        break;
+      case "BankBranchAddress":
+        if (value.trim() === "") {
+          error = "BankBranchAddress is required";
+        } else if (value.length < 5) {
+          error = "BankBranchAddress must be at least 5 characters long";
+        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+          error = "BankBranchAddress can only contain letters";
+        }
+        break;
+
+      case "AccountName":
+        if (value.trim() === "") {
+          error = "AccountName is required";
+        } else if (value.length < 5) {
+          error = "AccountName must be at least 5 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "AccountName can only contain letters";
+        }
+        break;
+
+      case "AccountNumber":
+        if (value.trim() === "") {
+          error = "AccountNumber is required";
+        } else if (value.length < 5) {
+          error = "AccountNumber must be at least 5 characters long";
+        }
+        break;
+
+      case "BankAccountMangersName":
+        if (value.trim() === "") {
+          error = "Bank Account Mangers Name is required";
+        } else if (value.length < 5) {
+          error =
+            "Bank Account Mangers Name must be at least 5 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "Bank Account Mangers Name can only contain letters";
+        }
+        break;
+      case "CorrespondentBankName":
+        if (value.trim() === "") {
+          error = "Correspondent Bank Name is required";
+        } else if (value.length < 5) {
+          error = "Correspondent Bank Name must be at least 5 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "Correspondent Bank Name can only contain letters";
+        }
+        break;
+
+      case "BankCountry":
+        if (value.trim() === "") {
+          error = "Bank Country is required";
+        } else if (value.length < 5) {
+          error = "Bank Country must be at least 5 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "Bank Country can only contain letters";
+        }
+        break;
+      case "SwiftCode":
+        if (value.trim() === "") {
+          error = "SwiftCode is required";
+        } else if (value.length < 5) {
+          error = "SwiftCode must be at least 5 characters long";
+        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+          error =
+            "SwiftCode can only contain letters, numbers, and underscores";
+        }
+        break;
+case "AccountCurrency":
+  if (value.trim() === "") {
+    error = "Account Currency is required";
+  } else if (value.length < 5) {
+    error = "Account Currency must be at least 3 characters long";
+  } else if (!/^[a-zA-Z]+$/.test(value)) {
+    error = "Account Currency can only contain letters";
+  }
+  break;
+      case "IBAN":
+        if (value.trim() === "") {
+          error = "IBAN is required";
+        } else if (value.length < 9) {
+          error = "IBAN must be at least 9 characters long";
+        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+          error = "IBAN can only contain letters, numbers, and underscores";
+        }
+        break;
+
+      case "BankAccountManagersContactDetails":
+        if (value.trim() === "") {
+          error = "Bank Account Managers Contact Details is required";
+        } else if (value.length < 10) {
+          error =
+            "Bank Account Managers Contact Details must be at least 10 characters long";
+        }
+        break;
+      case "CorrespondentBankSwiftCode":
+        if (value.trim() === "") {
+          error = "Correspondent Bank SwiftCode is required";
+        } else if (value.length < 8) {
+          error = "IBAN must be at least 8 characters long";
+        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+          error =
+            "Correspondent Bank SwiftCode can only contain letters, numbers, and underscores";
+        }
+        break;
+      case "PrimaryContactName":
+        if (value.trim() === "") {
+          error = "Primary Contact Name is required";
+        } else if (value.length < 3) {
+          error = "Primary Contact Name must be at least 5 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "Primary Contac tName can only contain letters";
+        }
+        break;
+
+      case "PrimaryContactDesignation":
+        if (value.trim() === "") {
+          error = " Designation is required";
+        } else if (value.length < 3) {
+          error = "Designation must be at least 5 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "Designation can only contain letters";
+        }
+        break;
+      case "PrimaryContactEmail":
+        if (value.trim() === "") {
+          error = " email is required";
+        } else if (!/^\S+@\S+\.\S+$/.test(value)) {
+          error = "Invalid email address";
+        }
+        break;
+
+      case "PrimaryContactPhone":
+        if (value.trim() === "") {
+          error = "Invalid";
+        } else if (value.length < 10) {
+          error = "Contact Number must be at least 10 characters long";
+        }
+        break;
+      case "OperationDepartmentName":
+        if (value.trim() === "") {
+          error = "Name is required";
+        } else if (value.length < 5) {
+          error = "Name must be at least 5 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "Name can only contain letters";
+        }
+        break;
+
+      case "OperationDepartMentPhone":
+        if (value.trim() === "") {
+          error = "Invalid";
+        } else if (value.length < 10) {
+          error = "Contact Number must be at least 10 characters long";
+        }
+        break;
+      case "OperationDepartmentEmail":
+        if (value.trim() === "") {
+          error = " email is required";
+        } else if (!/^\S+@\S+\.\S+$/.test(value)) {
+          error = "Invalid email address";
+        }
+        break;
+
+      case "CreditNAME":
+        if (value.trim() === "") {
+          error = "Name is required";
+        } else if (value.length < 5) {
+          error = "Name must be at least 5 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "Name can only contain letters";
+        }
+        break;
+
+      case "CreditDesignation":
+        if (value.trim() === "") {
+          error = "Designation is required";
+        } else if (value.length < 5) {
+          error = "Designation must be at least 5 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "Designation can only contain letters";
+        }
+        break;
+
+      case "CreditPhone":
+        if (value.trim() === "") {
+          error = "Invalid";
+        } else if (value.length < 10) {
+          error = "Contact Number must be at least 10 characters long";
+        }
+        break;
+      case "CreditEmail":
+        if (value.trim() === "") {
+          error = " email is required";
+        } else if (!/^\S+@\S+\.\S+$/.test(value)) {
+          error = "Invalid email address";
+        }
+        break;
+      case "AccountDepartName":
+        if (value.trim() === "") {
+          error = "Name is required";
+        } else if (value.length < 5) {
+          error = "Name must be at least 5 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "Name can only contain letters";
+        }
+
+        break;
+
+      case "AcoountDepartDesignation":
+        if (value.trim() === "") {
+          error = "Designation is required";
+        } else if (value.length < 5) {
+          error = "Designation must be at least 5 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "Designation can only contain letters";
+        }
+        break;
+
+      case "AccountDepartmentPhone":
+        if (value.trim() === "") {
+          error = "Invalid";
+        } else if (value.length < 10) {
+          error = "Contact Number must be at least 10 characters long";
+        }
+        break;
+
+      case "AccountDepartmentEmail":
+        if (value.trim() === "") {
+          error = " email is required";
+        } else if (!/^\S+@\S+\.\S+$/.test(value)) {
+          error = "Invalid email address";
+        }
+        break;
+
+      case "ProposedBusiness":
+        if (value.trim() === "") {
+          error = "Designation is required";
+        } else if (value.length < 5) {
+          error = "Proposed Business must be at least 5 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "Proposed Business can only contain letters";
+        }
+        break;
+      case "ContactPerson":
+        if (value.trim() === "") {
+          error = "Contact Person is required";
+        } else if (value.length < 5) {
+          error = "Contact Person must be at least 5 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "Contact Person  can only contain letters";
         }
         break;
       default:
@@ -129,6 +485,7 @@ const KYC = () => {
 
     // Check for empty fields and add 'required' error
     for (const field in Formvalues) {
+      // console.log(Formvalues)
       if (Formvalues[field].trim() === "" && !newErrors[field]) {
         newErrors[field] = "This field is required";
         hasErrors = true;
@@ -235,7 +592,7 @@ const KYC = () => {
                 <div>
                   <label>Contact Number</label>
                   <input
-                    type="tel"
+                    type="number"
                     name="ContactNumber"
                     value={Formvalues.ContactNumber}
                     onChange={handlChange}
@@ -277,7 +634,7 @@ const KYC = () => {
           </div>
 
           {/* Company Structure */}
-
+ 
           <div className="Infocontainer">
             <h3>COMPANY STRUCTURE</h3>
             <div className="infoFlexContainer">
@@ -308,15 +665,51 @@ const KYC = () => {
                 </div>
                 <div>
                   <label>Country of Incorporation </label>
-                  <input type="email" />
+                  <input
+                    type="text"
+                    name="countryOfIncorporation"
+                    value={Formvalues.countryOfIncorporation}
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("countryOfIncorporation")}
+                  />
+
+                  {formErrors.countryOfIncorporation && (
+                    <div className="error">
+                      {formErrors.countryOfIncorporation}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label>Company Registration No </label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    name="companyRegistrationNumber"
+                    value={Formvalues.companyRegistrationNumber}
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("companyRegistrationNumber")}
+                  />
+
+                  {formErrors.companyRegistrationNumber && (
+                    <div className="error">
+                      {formErrors.companyRegistrationNumber}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label>Trade License Expiry Date</label>
-                  <input type="text" />
+                  <input
+                    type="date"
+                    name="TradeLicenseExpiryData"
+                    value={Formvalues.TradeLicenseExpiryData}
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("TradeLicenseExpiryData")}
+                  />
+
+                  {formErrors.TradeLicenseExpiryData && (
+                    <div className="error">
+                      {formErrors.TradeLicenseExpiryData}
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="flexItem2">
@@ -330,15 +723,47 @@ const KYC = () => {
                 </div>
                 <div>
                   <label>Date of Incorporation</label>
-                  <input type="email" />
+                  <input
+                    type="date"
+                    name="DateOfIncorporation"
+                    value={Formvalues.DateOfIncorporation}
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("DateOfIncorporation")}
+                  />
+
+                  {formErrors.DateOfIncorporation && (
+                    <div className="error">
+                      {formErrors.DateOfIncorporation}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label>Trade License Number</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    name="TradeLicenseNumber"
+                    value={Formvalues.TradeLicenseNumber}
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("TradeLicenseNumber")}
+                  />
+
+                  {formErrors.TradeLicenseNumber && (
+                    <div className="error">{formErrors.TradeLicenseNumber}</div>
+                  )}
                 </div>
                 <div>
                   <label>VAT</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    name="VAT"
+                    value={Formvalues.VAT}
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("VAT")}
+                  />
+
+                  {formErrors.VAT && (
+                    <div className="error">{formErrors.VAT}</div>
+                  )}
                 </div>
               </div>
             </div>
@@ -352,54 +777,173 @@ const KYC = () => {
               <div className="flexItem1">
                 <div>
                   <label>Bank Name</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    name="BankName"
+                    value={Formvalues.BankName}
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("BankName")}
+                  />
+                  {formErrors.BankName && (
+                    <div className="error">{formErrors.BankName}</div>
+                  )}
                 </div>
                 <div>
                   <label>Bank Branch Address</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    value={Formvalues.BankBranchAddress}
+                    name="BankBranchAddress"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("BankBranchAddress")}
+                  />
+                  {formErrors.BankBranchAddress && (
+                    <div className="error">{formErrors.BankBranchAddress}</div>
+                  )}
                 </div>
                 <div>
                   <label>Account Name </label>
-                  <input type="email" />
+                  <input
+                    type="text"
+                    value={Formvalues.AccountName}
+                    name="AccountName"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("AccountName")}
+                  />
+
+                  {formErrors.AccountName && (
+                    <div className="error">{formErrors.AccountName}</div>
+                  )}
                 </div>
                 <div>
                   <label>Account Number </label>
-                  <input type="text" />
+                  <input
+                    type="number"
+                    value={Formvalues.AccountNumber}
+                    name="AccountNumber"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("AccountNumber")}
+                  />
+                  {formErrors.AccountNumber && (
+                    <div className="error">{formErrors.AccountNumber}</div>
+                  )}
                 </div>
                 <div>
                   <label>Bank Account Manager's Name</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    value={Formvalues.BankAccountMangersName}
+                    name="BankAccountMangersName"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("BankAccountMangersName")}
+                  />
+                  {formErrors.BankAccountMangersName && (
+                    <div className="error">
+                      {formErrors.BankAccountMangersName}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label>Correspondent Bank Name</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    value={Formvalues.CorrespondentBankName}
+                    name="CorrespondentBankName"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("CorrespondentBankName")}
+                  />
+
+                  {formErrors.CorrespondentBankName && (
+                    <div className="error">
+                      {formErrors.CorrespondentBankName}
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="flexItem2">
                 <div>
                   <label>Bank Country</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    value={Formvalues.BankCountry}
+                    name="BankCountry"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("BankCountry")}
+                  />
+                  {formErrors.BankCountry && (
+                    <div className="error">{formErrors.BankCountry}</div>
+                  )}
                 </div>
                 <div>
                   <label>Swift Code</label>
-                  <input type="number" />
+                  <input
+                    type="text"
+                    value={Formvalues.SwiftCode}
+                    name="SwiftCode"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("SwiftCode")}
+                  />
+
+                  {formErrors.SwiftCode && (
+                    <div className="error">{formErrors.SwiftCode}</div>
+                  )}
                 </div>
                 <div>
                   <label>Account Currency</label>
-                  <input type="email" />
+                  <input type="text" value={Formvalues.AccountCurrency} name="AccountCurrency" onChange={handlChange} onFocus={() => handleFocus("SwiftCode")}  />
+                  {formErrors.AccountCurrency && (
+                    <div className="error">{formErrors.AccountCurrency}</div>
+                  )}
                 </div>
                 <div>
                   <label>IBAN/ABA</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    name="IBAN"
+                    value={Formvalues.IBAN}
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("IBAN")}
+                  />
+                  {formErrors.IBAN && (
+                    <div className="error">{formErrors.IBAN}</div>
+                  )}
                 </div>
                 <div>
                   <label>Bank Account Manager's Contact Details</label>
-                  <input type="text" />
+                  <input
+                    type="number"
+                    value={Formvalues.BankAccountManagersContactDetails}
+                    onChange={handlChange}
+                    name="BankAccountManagersContactDetails"
+                    onFocus={() =>
+                      handleFocus("BankAccountManagersContactDetails")
+                    }
+                  />
+
+                  {formErrors.BankAccountManagersContactDetails && (
+                    <div className="error">
+                      {formErrors.BankAccountManagersContactDetails}
+                    </div>
+                  )}
                 </div>
 
                 <div>
                   <label> Correspondent Bank SWIFT Code</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    value={Formvalues.CorrespondentBankSwiftCode}
+                    name="CorrespondentBankSwiftCode"
+                    onChange={handlChange}
+                    onFocus={() =>
+                      handleFocus("BankAccountManagersContactDetails")
+                    }
+                  />
+
+                  {formErrors.CorrespondentBankSwiftCode && (
+                    <div className="error">
+                      {formErrors.CorrespondentBankSwiftCode}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -408,7 +952,11 @@ const KYC = () => {
           {/* ShareHolders Section */}
           <div className="Infocontainer">
             <h3>SHAREHOLDERS</h3>
-            <table style={{ width: "100%" }} cellPadding={20} cellSpacing={13}>
+            <table
+              style={{ width: "100%", textAlign: "center" }}
+              cellPadding={20}
+              cellSpacing={13}
+            >
               <thead>
                 <tr>
                   <th>Name</th>
@@ -474,38 +1022,128 @@ const KYC = () => {
                 <h5>Primary Contact Details</h5>
                 <div>
                   <label>Name</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    value={Formvalues.PrimaryContactName}
+                    name="PrimaryContactName"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("PrimaryContactName")}
+                  />
+                  {formErrors.PrimaryContactName && (
+                    <div className="error">{formErrors.PrimaryContactName}</div>
+                  )}
                 </div>
                 <div>
                   <label>Designation</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    value={Formvalues.PrimaryContactDesignation}
+                    name="PrimaryContactDesignation"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("PrimaryContactDesignation")}
+                  />
+                  {formErrors.PrimaryContactDesignation && (
+                    <div className="error">
+                      {formErrors.PrimaryContactDesignation}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label>Phone</label>
-                  <input type="email" />
+                  <input
+                    type="number"
+                    name="PrimaryContactPhone"
+                    value={Formvalues.PrimaryContactPhone}
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("PrimaryContactPhone")}
+                  />
+
+                  {formErrors.PrimaryContactPhone && (
+                    <div className="error">
+                      {formErrors.PrimaryContactPhone}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label>Email Address </label>
-                  <input type="text" />
+                  <input
+                    type="email"
+                    value={Formvalues.PrimaryContactEmail}
+                    name="PrimaryContactEmail"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("PrimaryContactEmail")}
+                  />
+                  {formErrors.PrimaryContactEmail && (
+                    <div className="error">
+                      {formErrors.PrimaryContactEmail}
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="flexItem2">
                 <h5>Operations Department Contact Details</h5>
                 <div>
                   <label>Name</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    value={Formvalues.OperationDepartmentName}
+                    name="OperationDepartmentName"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("OperationDepartmentName")}
+                  />
+                  {formErrors.OperationDepartmentName && (
+                    <div className="error">
+                      {formErrors.OperationDepartmentName}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label>Designation</label>
-                  <input type="number" />
+                  <input
+                    type="text"
+                    value={Formvalues.OperationDepartmentDesignation}
+                    name="OperationDepartmentDesignation"
+                    onChange={handlChange}
+                    onFocus={() =>
+                      handleFocus("OperationDepartmentDesignation")
+                    }
+                  />
+                  {formErrors.OperationDepartmentDesignation && (
+                    <div className="error">
+                      {formErrors.OperationDepartmentDesignation}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label>Phone</label>
-                  <input type="email" />
+                  <input
+                    type="number"
+                    value={Formvalues.OperationDepartMentPhone}
+                    name="OperationDepartMentPhone"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("OperationDepartMentPhone")}
+                  />
+
+                  {formErrors.OperationDepartMentPhone && (
+                    <div className="error">
+                      {formErrors.OperationDepartMentPhone}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label>Email Address</label>
-                  <input type="text" />
+                  <input
+                    type="email"
+                    value={Formvalues.OperationDepartmentEmail}
+                    name="OperationDepartmentEmail"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("OperationDepartmentEmail")}
+                  />
+                  {formErrors.OperationDepartmentEmail && (
+                    <div className="error">
+                      {formErrors.OperationDepartmentEmail}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -515,38 +1153,118 @@ const KYC = () => {
                 <h5>Credit/Finance Contact Details</h5>
                 <div>
                   <label>Name</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    value={Formvalues.CreditNAME}
+                    name="CreditNAME"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("CreditNAME")}
+                  />
+                  {formErrors.CreditNAME && (
+                    <div className="error">{formErrors.CreditNAME}</div>
+                  )}
                 </div>
                 <div>
                   <label>Designation</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    value={Formvalues.CreditDesignation}
+                    name="CreditDesignation"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("CreditDesignation")}
+                  />
+
+                  {formErrors.CreditDesignation && (
+                    <div className="error">{formErrors.CreditDesignation}</div>
+                  )}
                 </div>
                 <div>
                   <label>Phone</label>
-                  <input type="email" />
+                  <input
+                    type="number"
+                    value={Formvalues.CreditPhone}
+                    name="CreditPhone"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("CreditPhone")}
+                  />
+                  {formErrors.CreditPhone && (
+                    <div className="error">{formErrors.CreditPhone}</div>
+                  )}
                 </div>
                 <div>
                   <label>Email Address </label>
-                  <input type="text" />
+                  <input
+                    type="email"
+                    value={Formvalues.CreditEmail}
+                    name="CreditEmail"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("CreditEmail")}
+                  />
+                  {formErrors.CreditEmail && (
+                    <div className="error">{formErrors.CreditEmail}</div>
+                  )}
                 </div>
               </div>
               <div className="flexItem2">
                 <h5>Accounting Department Contact Details</h5>
                 <div>
                   <label>Name</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    value={Formvalues.AccountDepartName}
+                    name="AccountDepartName"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("AccountDepartName")}
+                  />
+                  {formErrors.AccountDepartName && (
+                    <div className="error">{formErrors.AccountDepartName}</div>
+                  )}
                 </div>
                 <div>
                   <label>Designation</label>
-                  <input type="number" />
+                  <input
+                    type="text"
+                    name="AcoountDepartDesignation"
+                    value={Formvalues.AcoountDepartDesignation}
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("AcoountDepartDesignation")}
+                  />
+                  {formErrors.AcoountDepartDesignation && (
+                    <div className="error">
+                      {formErrors.AcoountDepartDesignation}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label>Phone</label>
-                  <input type="email" />
+                  <input
+                    type="number"
+                    value={Formvalues.AccountDepartmentPhone}
+                    name="AccountDepartmentPhone"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("AccountDepartmentPhone")}
+                  />
+
+                  {formErrors.AccountDepartmentPhone && (
+                    <div className="error">
+                      {formErrors.AccountDepartmentPhone}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label>Email Address</label>
-                  <input type="text" />
+                  <input
+                    type="email"
+                    value={Formvalues.AccountDepartmentEmail}
+                    name="AccountDepartmentEmail"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("AccountDepartmentEmail")}
+                  />
+                  {formErrors.AccountDepartmentEmail && (
+                    <div className="error">
+                      {formErrors.AccountDepartmentEmail}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -555,13 +1273,31 @@ const KYC = () => {
               <label style={{ padding: "10px 25px" }}>
                 What is the proposed business with Adam Energy FZE?
               </label>
-              <input />
+              <input
+                type="text"
+                value={Formvalues.ProposedBusiness}
+                name="ProposedBusiness"
+                onChange={handlChange}
+                onFocus={() => handleFocus("ProposedBusiness")}
+              />
+              {formErrors.ProposedBusiness && (
+                <div className="error">{formErrors.ProposedBusiness}</div>
+              )}
             </div>
             <div className="proposedContainer">
               <label style={{ padding: "10px 25px" }}>
-                What is the proposed business with Adam Energy FZE?
+                Who is your Contact Person in Adam Energy FZE?
               </label>
-              <input />
+              <input
+                type="text"
+                value={Formvalues.ContactPerson}
+                name="ContactPerson"
+                onChange={handlChange}
+                onFocus={() => handleFocus("ContactPerson")}
+              />
+              {formErrors.ContactPerson && (
+                <div className="error">{formErrors.ContactPerson}</div>
+              )}
             </div>
           </div>
 
@@ -630,7 +1366,7 @@ const KYC = () => {
                 </tr>
               </tbody>
             </table>
-          </div>
+          </div> 
 
           {/* Upload KYC Documents */}
 
@@ -706,11 +1442,12 @@ const KYC = () => {
               <input type="text" />
             </div>
 
-            <div className="submit-btn">
+           
+        </div>
+        <div className="submit-btn">
               <button>Submit</button>
             </div>
           </div>
-        </div>
       </form>
     </>
   );

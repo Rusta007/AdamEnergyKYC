@@ -104,6 +104,8 @@ h5 {
   color: #fff;
   border: none;
   border-radius: 10px;
+  cursor: pointer;
+
 }
 .error{
   color: red;
@@ -118,10 +120,10 @@ select{
 /* Tab View */
 @media (min-width: 768px) and (max-width: 1900px) {
   .flexItem1 input {
-    width: 500px;
+    width: 450px;
   }
   .flexItem2 input {
-    width: 500px;
+    width: 450px;
   }
   label {
     font-size: 16px;
