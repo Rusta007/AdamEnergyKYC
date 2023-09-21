@@ -64,9 +64,11 @@ const KYC = () => {
           error = "Registered Company Name is required";
         } else if (value.length < 5) {
           error = "Registered Company Name must be at least 5 characters long";
-        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+        } else if (!/[a-zA-Z]/.test(value)) {
+          error = "Registered Company Name must contain at least one letter";
+        } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
           error =
-            "registeredCompanyName can only contain letters, numbers, and underscores";
+            "Registered Company Name can only contain letters, numbers, and underscores";
         }
         break;
       case "emailAddress":
@@ -80,7 +82,7 @@ const KYC = () => {
           error = "corporate DomainName is required";
         } else if (value.length < 5) {
           error = "corporate Domain Name must be at least 5 characters long";
-        } else if (/^[ A-Za-z0-9_@./#&+-]*$/.test(value)) {
+        } else if (/^([a-zA-Z0-9.-]+)$/.test(value)) {
           error =
             "corporate Domain Name can only contain letters, numbers, and special charachters";
         }
@@ -99,11 +101,11 @@ const KYC = () => {
       case "ParentCompany":
         if (value.trim() === "") {
           error = "Parent Company is required";
-        } else if (value.length < 5) {
-          error = "Parent Company Name must be at least 5 characters long";
-        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+        } else if (!/[a-zA-Z]/.test(value)) {
+          error = "ParentCompany must contain at least one letter";
+        } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
           error =
-            "Parent Company can only contain letters, numbers, and underscores";
+            "ParentCompany can only contain letters, numbers, and underscores";
         }
         break;
       case "ContactNumber":
@@ -180,23 +182,28 @@ const KYC = () => {
         break;
 
       case "VAT":
-        if (value.trim() === "") {
-          error = "VAT is required";
-        } else if (value.length < 5) {
-          error = "VAT must be at least 5 characters long";
-        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
-          error =
-            "Trade License Number can only contain letters, numbers, and underscores";
+        if (value.length > 0) {
+          if (value.length < 5) {
+            error =
+              "VAT Registration Number must be at least 5 characters long";
+          } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+            error =
+              "VAT Registration Number can only contain letters, numbers, and underscores";
+          }
         }
+
         break;
 
       case "BankName":
         if (value.trim() === "") {
           error = "BankName is required";
-        } else if (value.length < 5) {
-          error = "BankName must be at least 5 characters long";
-        } else if (!/^[a-zA-Z]+$/.test(value)) {
-          error = "BankName can only contain letters";
+        } else if (value.length < 2) {
+          error = "BankName must be at least 2 characters long";
+        } else if (!/[a-zA-Z]/.test(value)) {
+          error = "BankName must contain at least one letter";
+        } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
+          error =
+            "BankName can only contain letters, numbers, and underscores";
         }
         break;
       case "BankBranchAddress":
@@ -224,27 +231,36 @@ const KYC = () => {
           error = "AccountNumber is required";
         } else if (value.length < 5) {
           error = "AccountNumber must be at least 5 characters long";
+        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+          error =
+            "AccountNumber can only contain letters, numbers, and underscores";
         }
         break;
 
       case "BankAccountMangersName":
-        if (value.trim() === "") {
-          error = "Bank Account Mangers Name is required";
-        } else if (value.length < 5) {
-          error =
-            "Bank Account Mangers Name must be at least 5 characters long";
-        } else if (!/^[a-zA-Z]+$/.test(value)) {
-          error = "Bank Account Mangers Name can only contain letters";
+        if (value.length > 0) {
+          if (value.length < 5) {
+            error =
+              "Bank Account Mangers Name must be at least 5 characters long";
+          } else if (!/^[a-zA-Z]+$/.test(value)) {
+            error = "Bank Account Mangers Name can only contain letters";
+          }
         }
+
         break;
       case "CorrespondentBankName":
-        if (value.trim() === "") {
-          error = "Correspondent Bank Name is required";
-        } else if (value.length < 5) {
-          error = "Correspondent Bank Name must be at least 5 characters long";
-        } else if (!/^[a-zA-Z]+$/.test(value)) {
-          error = "Correspondent Bank Name can only contain letters";
+        if (value.length > 0) {
+          if (value.length < 5) {
+            error =
+              "Correspondent Bank Name must be at least 5 characters long";
+          } else if (!/[a-zA-Z]/.test(value)) {
+            error = "Correspondent Bank Name must contain at least one letter";
+          }  else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
+            error =
+              "Correspondent Bank Name can only contain letters, numbers, and underscores";
+          }
         }
+
         break;
 
       case "BankCountry":
@@ -261,47 +277,64 @@ const KYC = () => {
           error = "SwiftCode is required";
         } else if (value.length < 5) {
           error = "SwiftCode must be at least 5 characters long";
-        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+        } else if (!/[a-zA-Z]/.test(value)) {
+          error = "SwiftCode must contain at least one letter";
+        } else if (!/\d/.test(value)) {
+          error = "SwiftCode must contain at least one number";
+        } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
           error =
             "SwiftCode can only contain letters, numbers, and underscores";
         }
         break;
-case "AccountCurrency":
-  if (value.trim() === "") {
-    error = "Account Currency is required";
-  } else if (value.length < 5) {
-    error = "Account Currency must be at least 3 characters long";
-  } else if (!/^[a-zA-Z]+$/.test(value)) {
-    error = "Account Currency can only contain letters";
-  }
-  break;
+      case "AccountCurrency":
+        if (value.trim() === "") {
+          error = "Account Currency is required";
+        } else if (value.length < 5) {
+          error = "Account Currency must be at least 3 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "Account Currency can only contain letters";
+        }
+        break;
       case "IBAN":
         if (value.trim() === "") {
-          error = "IBAN is required";
+          error = "IBAN/ABA is required";
         } else if (value.length < 9) {
-          error = "IBAN must be at least 9 characters long";
-        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
-          error = "IBAN can only contain letters, numbers, and underscores";
+          error = "IBAN/ABA must be at least 9 characters long";
+        } else if (!/[a-zA-Z]/.test(value)) {
+          error = "IBAN/ABA must contain at least one letter";
+        } else if (!/\d/.test(value)) {
+          error = "IBAN/ABA must contain at least one number";
+        } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
+          error = "IBAN/ABA can only contain letters, numbers, and underscores";
         }
         break;
 
       case "BankAccountManagersContactDetails":
-        if (value.trim() === "") {
-          error = "Bank Account Managers Contact Details is required";
-        } else if (value.length < 10) {
-          error =
-            "Bank Account Managers Contact Details must be at least 10 characters long";
+        if (value.length > 0) {
+          if (value.length < 10) {
+            error =
+              "Bank Account Managers Contact Details must be at least 10 characters long";
+          }
         }
+
         break;
       case "CorrespondentBankSwiftCode":
-        if (value.trim() === "") {
-          error = "Correspondent Bank SwiftCode is required";
-        } else if (value.length < 8) {
-          error = "IBAN must be at least 8 characters long";
-        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
-          error =
-            "Correspondent Bank SwiftCode can only contain letters, numbers, and underscores";
+        if (value.length > 0) {
+          if (value.length < 8) {
+            error =
+              "Correspondent Bank SwiftCode must be at least 8 characters long";
+          } else if (!/[a-zA-Z]/.test(value)) {
+            error =
+              "Correspondent Bank SwiftCode must contain at least one letter";
+          } else if (!/\d/.test(value)) {
+            error =
+              "Correspondent Bank SwiftCode must contain at least one number";
+          } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
+            error =
+              "Correspondent Bank SwiftCode can only contain letters, numbers, and underscores";
+          }
         }
+
         break;
       case "PrimaryContactName":
         if (value.trim() === "") {
@@ -344,6 +377,15 @@ case "AccountCurrency":
           error = "Name must be at least 5 characters long";
         } else if (!/^[a-zA-Z]+$/.test(value)) {
           error = "Name can only contain letters";
+        }
+        break;
+      case "OperationDepartmentDesignation":
+        if (value.trim() === "") {
+          error = " Designation is required";
+        } else if (value.length < 2) {
+          error = "Designation must be at least 2 characters long";
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          error = "Designation can only contain letters";
         }
         break;
 
@@ -484,13 +526,13 @@ case "AccountCurrency":
     }
 
     // Check for empty fields and add 'required' error
-    for (const field in Formvalues) {
-      // console.log(Formvalues)
-      if (Formvalues[field].trim() === "" && !newErrors[field]) {
-        newErrors[field] = "This field is required";
-        hasErrors = true;
-      }
-    }
+    // for (const field in Formvalues) {
+    //   // console.log(Formvalues)
+    //   if ( !newErrors[field]) {
+    //     newErrors[field] = "This field is required";
+    //     hasErrors = true;
+    //   }
+    // }
 
     setFormErrors(newErrors);
 
@@ -634,7 +676,7 @@ case "AccountCurrency":
           </div>
 
           {/* Company Structure */}
- 
+
           <div className="Infocontainer">
             <h3>COMPANY STRUCTURE</h3>
             <div className="infoFlexContainer">
@@ -752,7 +794,7 @@ case "AccountCurrency":
                   )}
                 </div>
                 <div>
-                  <label>VAT</label>
+                  <label>VAT Registration Number</label>
                   <input
                     type="text"
                     name="VAT"
@@ -818,7 +860,7 @@ case "AccountCurrency":
                 <div>
                   <label>Account Number </label>
                   <input
-                    type="number"
+                    type="text"
                     value={Formvalues.AccountNumber}
                     name="AccountNumber"
                     onChange={handlChange}
@@ -890,7 +932,13 @@ case "AccountCurrency":
                 </div>
                 <div>
                   <label>Account Currency</label>
-                  <input type="text" value={Formvalues.AccountCurrency} name="AccountCurrency" onChange={handlChange} onFocus={() => handleFocus("SwiftCode")}  />
+                  <input
+                    type="text"
+                    value={Formvalues.AccountCurrency}
+                    name="AccountCurrency"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("SwiftCode")}
+                  />
                   {formErrors.AccountCurrency && (
                     <div className="error">{formErrors.AccountCurrency}</div>
                   )}
@@ -1366,7 +1414,7 @@ case "AccountCurrency":
                 </tr>
               </tbody>
             </table>
-          </div> 
+          </div>
 
           {/* Upload KYC Documents */}
 
@@ -1441,13 +1489,11 @@ case "AccountCurrency":
               <label>Authorized Signatory Name </label>
               <input type="text" />
             </div>
-
-           
-        </div>
-        <div className="submit-btn">
-              <button>Submit</button>
-            </div>
           </div>
+          <div className="submit-btn">
+            <button>Submit</button>
+          </div>
+        </div>
       </form>
     </>
   );
