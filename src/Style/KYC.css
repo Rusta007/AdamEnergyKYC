@@ -28,13 +28,13 @@ h3 {
   text-transform: uppercase;
 }
 
-.flexItem1{
+.flexItem1 {
   display: flex;
   flex-wrap: wrap;
   /* gap: 30px; */
   justify-content: space-around;
 }
-.flexItem2{
+.flexItem2 {
   display: flex;
   flex-wrap: wrap;
   /* gap: 30px; */
@@ -75,7 +75,7 @@ td input {
   background-color: #f3f3f3;
   padding: 15px 0px;
   border: none;
-  border-radius: 5px ;
+  border-radius: 5px;
   margin: 0px 27px;
 }
 
@@ -113,12 +113,11 @@ h5 {
   border: none;
   border-radius: 10px;
   cursor: pointer;
-
 }
-.error{
+.error {
   color: red;
 }
-select{
+select {
   background-color: #f3f3f3;
   padding: 14px 0px;
   border: none;
@@ -126,15 +125,14 @@ select{
   width: 630px;
 }
 
-
-.CompanyContactDetailContainer{
+.CompanyContactDetailContainer {
   background-color: #fff;
   width: 70%;
   margin: auto;
   border-radius: 10px;
   padding: 0px 0px 9px 0px;
 }
-.CompanyContactFlexContainer{
+.CompanyContactFlexContainer {
   display: flex;
   justify-content: space-between;
   padding: 22px 0px;
@@ -143,14 +141,14 @@ select{
   gap: 25px;
   flex-wrap: wrap;
 }
-.CompanyContactFlexContainer  input{
+.CompanyContactFlexContainer input {
   background-color: #f3f3f3;
   padding: 14px 0px;
   border: none;
   border-radius: 5px;
   width: 630px;
 }
-.CompanyContactDetailContainer  input{
+.CompanyContactDetailContainer input {
   background-color: #f3f3f3;
   padding: 14px 0px;
   border: none;
@@ -175,11 +173,10 @@ select{
   .proposedContainer input {
     width: 92%;
     margin: 0px 22px;
- 
-}
-select{
-  width: 450px;
-}
+  }
+  select {
+    width: 450px;
+  }
 }
 
 /* Mobile View */
@@ -188,7 +185,7 @@ select{
   td input {
     width: 115px;
   }
-  .Infocontainer{
+  .Infocontainer {
     width: 100%;
   }
   .flexItem1 input {
@@ -197,10 +194,10 @@ select{
   .flexItem2 input {
     width: 357px;
   }
-  .proposedContainer{
+  .proposedContainer {
     width: 90%;
   }
-  select{
+  select {
     width: 357px;
   }
 }
