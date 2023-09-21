@@ -7,13 +7,7 @@ label {
   line-height: 28px;
 }
 .infoFlexContainer {
-  display: flex;
-  justify-content: space-between;
-  padding: 22px 0px;
-  margin: auto;
-  padding: 12px 20px;
-  gap: 25px;
-  flex-wrap: wrap;
+  padding: 0px 0px 10px 0px;
 }
 .Infocontainer {
   background-color: #fff;
@@ -33,6 +27,20 @@ h3 {
   font-size: 28px;
   text-transform: uppercase;
 }
+
+.flexItem1{
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 30px; */
+  justify-content: space-around;
+}
+.flexItem2{
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 30px; */
+  justify-content: space-around;
+}
+
 .flexItem1 input {
   background-color: #f3f3f3;
   padding: 14px 0px;
@@ -117,6 +125,39 @@ select{
   border-radius: 5px;
   width: 630px;
 }
+
+
+.CompanyContactDetailContainer{
+  background-color: #fff;
+  width: 70%;
+  margin: auto;
+  border-radius: 10px;
+  padding: 0px 0px 9px 0px;
+}
+.CompanyContactFlexContainer{
+  display: flex;
+  justify-content: space-between;
+  padding: 22px 0px;
+  margin: auto;
+  padding: 12px 20px;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+.CompanyContactFlexContainer  input{
+  background-color: #f3f3f3;
+  padding: 14px 0px;
+  border: none;
+  border-radius: 5px;
+  width: 630px;
+}
+.CompanyContactDetailContainer  input{
+  background-color: #f3f3f3;
+  padding: 14px 0px;
+  border: none;
+  border-radius: 5px;
+  width: 630px;
+}
+
 /* Tab View */
 @media (min-width: 768px) and (max-width: 1900px) {
   .flexItem1 input {
@@ -135,6 +176,9 @@ select{
     width: 92%;
     margin: 0px 22px;
  
+}
+select{
+  width: 450px;
 }
 }
 
@@ -155,5 +199,8 @@ select{
   }
   .proposedContainer{
     width: 90%;
+  }
+  select{
+    width: 357px;
   }
 }

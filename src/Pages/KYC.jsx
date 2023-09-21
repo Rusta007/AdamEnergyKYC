@@ -202,8 +202,7 @@ const KYC = () => {
         } else if (!/[a-zA-Z]/.test(value)) {
           error = "BankName must contain at least one letter";
         } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
-          error =
-            "BankName can only contain letters, numbers, and underscores";
+          error = "BankName can only contain letters, numbers, and underscores";
         }
         break;
       case "BankBranchAddress":
@@ -255,7 +254,7 @@ const KYC = () => {
               "Correspondent Bank Name must be at least 5 characters long";
           } else if (!/[a-zA-Z]/.test(value)) {
             error = "Correspondent Bank Name must contain at least one letter";
-          }  else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
+          } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
             error =
               "Correspondent Bank Name can only contain letters, numbers, and underscores";
           }
@@ -572,6 +571,19 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
+                  <label>Parent Company/Group Company</label>
+                  <input
+                    type="text"
+                    name="ParentCompany"
+                    value={Formvalues.ParentCompany}
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("ParentCompany")}
+                  />
+                  {formErrors.ParentCompany && (
+                    <div className="error">{formErrors.ParentCompany}</div>
+                  )}
+                </div>
+                <div>
                   <label>Company Registered Address</label>
                   <input
                     type="text"
@@ -588,50 +600,6 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Email Address</label>
-                  <input
-                    type="email"
-                    name="emailAddress"
-                    value={Formvalues.emailAddress}
-                    onChange={handlChange}
-                    onFocus={() => handleFocus("emailAddress")}
-                  />
-                  {formErrors.emailAddress && (
-                    <div className="error">{formErrors.emailAddress}</div>
-                  )}
-                </div>
-                <div>
-                  <label>Corporate Domain Name</label>
-                  <input
-                    type="url"
-                    name="corporateDomainName"
-                    value={Formvalues.corporateDomainName}
-                    onChange={handlChange}
-                    onFocus={() => handleFocus("corporateDomainName")}
-                  />
-
-                  {formErrors.corporateDomainName && (
-                    <div className="error">
-                      {formErrors.corporateDomainName}
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className="flexItem2">
-                <div>
-                  <label>Parent Company/Group Company</label>
-                  <input
-                    type="text"
-                    name="ParentCompany"
-                    value={Formvalues.ParentCompany}
-                    onChange={handlChange}
-                    onFocus={() => handleFocus("ParentCompany")}
-                  />
-                  {formErrors.ParentCompany && (
-                    <div className="error">{formErrors.ParentCompany}</div>
-                  )}
-                </div>
-                <div>
                   <label>Contact Number</label>
                   <input
                     type="number"
@@ -642,6 +610,21 @@ const KYC = () => {
                   />
                   {formErrors.ContactNumber && (
                     <div className="error">{formErrors.ContactNumber}</div>
+                  )}
+                </div>
+              </div>
+              <div className="flexItem2">
+                <div>
+                  <label>Email Address</label>
+                  <input
+                    type="email"
+                    name="emailAddress"
+                    value={Formvalues.emailAddress}
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("emailAddress")}
+                  />
+                  {formErrors.emailAddress && (
+                    <div className="error">{formErrors.emailAddress}</div>
                   )}
                 </div>
                 <div>
@@ -656,6 +639,23 @@ const KYC = () => {
 
                   {formErrors.companyWebsite && (
                     <div className="error">{formErrors.companyWebsite}</div>
+                  )}
+                </div>
+
+                <div>
+                  <label>Corporate Domain Name</label>
+                  <input
+                    type="url"
+                    name="corporateDomainName"
+                    value={Formvalues.corporateDomainName}
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("corporateDomainName")}
+                  />
+
+                  {formErrors.corporateDomainName && (
+                    <div className="error">
+                      {formErrors.corporateDomainName}
+                    </div>
                   )}
                 </div>
                 <div>
@@ -693,6 +693,10 @@ const KYC = () => {
                   </select>
                 </div>
                 <div>
+                  <label>If Other Structure (please specify)</label>
+                  <input type="text" />
+                </div>
+                <div>
                   <label>Nature of Business</label>
                   <select>
                     <option>Select</option>
@@ -704,6 +708,10 @@ const KYC = () => {
                     <option>Storage</option>
                     <option>Others</option>
                   </select>
+                </div>
+                <div>
+                  <label>If Other Business (please specify)</label>
+                  <input type="number" />
                 </div>
                 <div>
                   <label>Country of Incorporation </label>
@@ -722,6 +730,24 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
+                  <label>Date of Incorporation</label>
+                  <input
+                    type="date"
+                    name="DateOfIncorporation"
+                    value={Formvalues.DateOfIncorporation}
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("DateOfIncorporation")}
+                  />
+
+                  {formErrors.DateOfIncorporation && (
+                    <div className="error">
+                      {formErrors.DateOfIncorporation}
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="flexItem2">
+                <div>
                   <label>Company Registration No </label>
                   <input
                     type="text"
@@ -738,6 +764,20 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
+                  <label>Trade License Number</label>
+                  <input
+                    type="text"
+                    name="TradeLicenseNumber"
+                    value={Formvalues.TradeLicenseNumber}
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("TradeLicenseNumber")}
+                  />
+
+                  {formErrors.TradeLicenseNumber && (
+                    <div className="error">{formErrors.TradeLicenseNumber}</div>
+                  )}
+                </div>
+                <div>
                   <label>Trade License Expiry Date</label>
                   <input
                     type="date"
@@ -751,46 +791,6 @@ const KYC = () => {
                     <div className="error">
                       {formErrors.TradeLicenseExpiryData}
                     </div>
-                  )}
-                </div>
-              </div>
-              <div className="flexItem2">
-                <div>
-                  <label>If Other Structure (please specify)</label>
-                  <input type="text" />
-                </div>
-                <div>
-                  <label>If Other Business (please specify)</label>
-                  <input type="number" />
-                </div>
-                <div>
-                  <label>Date of Incorporation</label>
-                  <input
-                    type="date"
-                    name="DateOfIncorporation"
-                    value={Formvalues.DateOfIncorporation}
-                    onChange={handlChange}
-                    onFocus={() => handleFocus("DateOfIncorporation")}
-                  />
-
-                  {formErrors.DateOfIncorporation && (
-                    <div className="error">
-                      {formErrors.DateOfIncorporation}
-                    </div>
-                  )}
-                </div>
-                <div>
-                  <label>Trade License Number</label>
-                  <input
-                    type="text"
-                    name="TradeLicenseNumber"
-                    value={Formvalues.TradeLicenseNumber}
-                    onChange={handlChange}
-                    onFocus={() => handleFocus("TradeLicenseNumber")}
-                  />
-
-                  {formErrors.TradeLicenseNumber && (
-                    <div className="error">{formErrors.TradeLicenseNumber}</div>
                   )}
                 </div>
                 <div>
@@ -1063,10 +1063,10 @@ const KYC = () => {
 
           {/* Company Contact Details */}
 
-          <div className="Infocontainer">
+          <div className="CompanyContactDetailContainer">
             <h3>Company Conatact Details </h3>
-            <div className="infoFlexContainer">
-              <div className="flexItem1">
+            <div className="CompanyContactFlexContainer">
+              <div>
                 <h5>Primary Contact Details</h5>
                 <div>
                   <label>Name</label>
@@ -1128,7 +1128,7 @@ const KYC = () => {
                   )}
                 </div>
               </div>
-              <div className="flexItem2">
+              <div>
                 <h5>Operations Department Contact Details</h5>
                 <div>
                   <label>Name</label>
@@ -1196,8 +1196,8 @@ const KYC = () => {
               </div>
             </div>
 
-            <div className="infoFlexContainer">
-              <div className="flexItem1">
+            <div className="CompanyContactFlexContainer">
+              <div>
                 <h5>Credit/Finance Contact Details</h5>
                 <div>
                   <label>Name</label>
@@ -1253,7 +1253,7 @@ const KYC = () => {
                   )}
                 </div>
               </div>
-              <div className="flexItem2">
+              <div>
                 <h5>Accounting Department Contact Details</h5>
                 <div>
                   <label>Name</label>
@@ -1327,6 +1327,7 @@ const KYC = () => {
                 name="ProposedBusiness"
                 onChange={handlChange}
                 onFocus={() => handleFocus("ProposedBusiness")}
+                style={{width:"96%"}}
               />
               {formErrors.ProposedBusiness && (
                 <div className="error">{formErrors.ProposedBusiness}</div>
@@ -1342,6 +1343,7 @@ const KYC = () => {
                 name="ContactPerson"
                 onChange={handlChange}
                 onFocus={() => handleFocus("ContactPerson")}
+                style={{width:"96%"}}
               />
               {formErrors.ContactPerson && (
                 <div className="error">{formErrors.ContactPerson}</div>
@@ -1489,9 +1491,9 @@ const KYC = () => {
               <label>Authorized Signatory Name </label>
               <input type="text" />
             </div>
-          </div>
-          <div className="submit-btn">
-            <button>Submit</button>
+            <div className="submit-btn">
+              <button>Submit</button>
+            </div>
           </div>
         </div>
       </form>
