@@ -412,9 +412,11 @@ const KYC = () => {
         }
         break;
       case "PrimaryContactEmail":
-        if (value.trim() === "") {
-          error = " email is required";
-        } else if (!/^\S+@\S+\.\S+$/.test(value)) {
+        if (
+          !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+            value
+          )
+        ) {
           error = "Invalid email address";
         }
         break;
@@ -453,9 +455,11 @@ const KYC = () => {
         }
         break;
       case "OperationDepartmentEmail":
-        if (value.trim() === "") {
-          error = " email is required";
-        } else if (!/^\S+@\S+\.\S+$/.test(value)) {
+        if (
+          !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+            value
+          )
+        ) {
           error = "Invalid email address";
         }
         break;
@@ -488,9 +492,11 @@ const KYC = () => {
         }
         break;
       case "CreditEmail":
-        if (value.trim() === "") {
-          error = " email is required";
-        } else if (!/^\S+@\S+\.\S+$/.test(value)) {
+        if (
+          !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+            value
+          )
+        ) {
           error = "Invalid email address";
         }
         break;
@@ -524,9 +530,11 @@ const KYC = () => {
         break;
 
       case "AccountDepartmentEmail":
-        if (value.trim() === "") {
-          error = " email is required";
-        } else if (!/^\S+@\S+\.\S+$/.test(value)) {
+        if (
+          !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+            value
+          )
+        ) {
           error = "Invalid email address";
         }
         break;
