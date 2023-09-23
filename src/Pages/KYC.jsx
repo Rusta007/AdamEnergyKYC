@@ -78,7 +78,11 @@ const KYC = () => {
         }
         break;
       case "emailAddress":
-        if (!/^\S+@\S+\.\S+$/.test(value)) {
+        if (
+          !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+            value
+          )
+        ) {
           error = "Invalid email address";
         }
         break;
@@ -87,10 +91,13 @@ const KYC = () => {
         if (value.trim() === "") {
           error = "corporate DomainName is required";
         } else if (value.length < 5) {
-          error = "corporate Domain Name must be at least 5 characters long";
-        } else if (/^([a-zA-Z0-9.-]+)$/.test(value)) {
-          error =
-            "corporate Domain Name can only contain letters, numbers, and special charachters";
+          error = "Domain Name must be at least 5 characters long";
+        } else if (
+          !/^\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+            value
+          )
+        ) {
+          error = "Domain Name Invalid";
         }
         break;
 
@@ -98,20 +105,20 @@ const KYC = () => {
         if (value.trim() === "") {
           error = "company Registered Address is required";
         } else if (value.length < 5) {
-          error =
-            "company Registered Address Name must be at least 5 characters long";
-        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
-          error = "corporate Domain Name can only contain letters";
+          error = "Address Name must be at least 5 characters long";
+        } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
+          error = "Invalid";
         }
         break;
       case "ParentCompany":
         if (value.trim() === "") {
           error = "Parent Company is required";
+        } else if (value.length < 5) {
+          error = "Company Name must be at least 5 characters long";
         } else if (!/[a-zA-Z]/.test(value)) {
-          error = "ParentCompany must contain at least one letter";
+          error = "Parent Company must contain at least one letter";
         } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
-          error =
-            "ParentCompany can only contain letters, numbers, and underscores";
+          error = "Parent Company can only contain letters and numbers";
         }
         break;
       case "ContactNumber":
@@ -126,11 +133,12 @@ const KYC = () => {
       case "companyWebsite":
         if (value.trim() === "") {
           error = "company Website is required";
-        } else if (value.length < 5) {
-          error = "company Website must be at least 5 characters long";
-        } else if (/^[ A-Za-z0-9_@./#&+-]*$/.test(value)) {
-          error =
-            "company Website can only contain letters, numbers, and special charachters";
+        } else if (
+          !/^www\.+[A-Za-z0-9]+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+            value
+          )
+        ) {
+          error = " Invalid";
         }
         break;
       case "NumberOfEmployees":
@@ -203,20 +211,31 @@ const KYC = () => {
         } else if (value.length < 5) {
           error =
             "company Registration Number must be at least 5 characters long";
-        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+        } else if (!/^(?=.*[0-9])[a-zA-Z0-9]+$/.test(value)) {
           error =
             "registeredCompanyName can only contain letters, numbers, and underscores";
         }
         break;
 
       case "TradeLicenseExpiryData":
-        if (value.trim() === "") {
-          error = "Date is Required";
+        const selectedDate = new Date(value);
+        const currentDate = new Date();
+
+        if (value.trim() === "" || selectedDate <= currentDate) {
+          error = "Invalid Date";
         }
+        // else if (selectedDate <= currentDate) {
+        //   error = "Invalid Date";
+        // }
         break;
       case "DateOfIncorporation":
-        if (value.trim() === "") {
-          error = "Date is Required";
+        const DateOfIncorporation = new Date(value);
+        const currentDateOfIncorporation = new Date();
+        if (
+          value.trim() === "" ||
+          DateOfIncorporation >= currentDateOfIncorporation
+        ) {
+          error = "Invalid Date";
         }
         break;
       case "TradeLicenseNumber":
@@ -224,9 +243,8 @@ const KYC = () => {
           error = "Trade License Number is required";
         } else if (value.length < 5) {
           error = "Trade License Number must be at least 5 characters long";
-        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
-          error =
-            "Trade License Number can only contain letters, numbers, and underscores";
+        } else if (!/^(?=.*[0-9])[a-zA-Z0-9]+$/.test(value)) {
+          error = "License Number can only contain letters and numbers";
         }
         break;
 
@@ -235,9 +253,8 @@ const KYC = () => {
           if (value.length < 5) {
             error =
               "VAT Registration Number must be at least 5 characters long";
-          } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
-            error =
-              "VAT Registration Number can only contain letters, numbers, and underscores";
+          } else if (!/^(?=.*[0-9])[a-zA-Z0-9]+$/.test(value)) {
+            error = "VAT Number can only contain letters and numbers";
           }
         }
 
@@ -261,8 +278,8 @@ const KYC = () => {
           error = "BankBranchAddress is required";
         } else if (value.length < 5) {
           error = "BankBranchAddress must be at least 5 characters long";
-        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
-          error = "BankBranchAddress can only contain letters";
+        } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
+          error = "Invalid";
         }
         break;
 
@@ -271,7 +288,7 @@ const KYC = () => {
           error = "AccountName is required";
         } else if (value.length < 5) {
           error = "AccountName must be at least 5 characters long";
-        } else if (!/^[a-zA-Z]+$/.test(value)) {
+        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
           error = "AccountName can only contain letters";
         }
         break;
@@ -281,9 +298,8 @@ const KYC = () => {
           error = "AccountNumber is required";
         } else if (value.length < 5) {
           error = "AccountNumber must be at least 5 characters long";
-        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
-          error =
-            "AccountNumber can only contain letters, numbers, and underscores";
+        } else if (!/^(?=.*[0-9])[a-zA-Z0-9]+$/.test(value)) {
+          error = "AccountNumber can only contain letters and numbers";
         }
         break;
 
@@ -292,7 +308,7 @@ const KYC = () => {
           if (value.length < 5) {
             error =
               "Bank Account Mangers Name must be at least 5 characters long";
-          } else if (!/^[a-zA-Z]+$/.test(value)) {
+          } else if (!/^[a-zA-Z\s]+$/.test(value)) {
             error = "Bank Account Mangers Name can only contain letters";
           }
         }
@@ -307,7 +323,7 @@ const KYC = () => {
             error = "Correspondent Bank Name must contain at least one letter";
           } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
             error =
-              "Correspondent Bank Name can only contain letters, numbers, and underscores";
+              "Correspondent Bank Name can only contain letters and numbers";
           }
         }
 
@@ -323,8 +339,10 @@ const KYC = () => {
           error = "SwiftCode is required";
         } else if (value.length < 8) {
           error = "SwiftCode must be at least 8 characters long";
-        } else if (/^[a-zA-Z]{6}[a-zA-Z0-9]*$/.test(value)) {
+        } else if (!/[a-zA-Z]/.test(value)) {
           error = "SwiftCode must contain at least one letter";
+        } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
+          error = "SwiftCode can only contain letters and numbers";
         }
         break;
       case "AccountCurrency":
@@ -346,7 +364,7 @@ const KYC = () => {
         } else if (!/\d/.test(value)) {
           error = "IBAN/ABA must contain at least one number";
         } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
-          error = "IBAN/ABA can only contain letters, numbers, and underscores";
+          error = "IBAN/ABA can only contain letters and numbers";
         }
         break;
 
@@ -365,14 +383,9 @@ const KYC = () => {
             error =
               "Correspondent Bank SwiftCode must be at least 8 characters long";
           } else if (!/[a-zA-Z]/.test(value)) {
-            error =
-              "Correspondent Bank SwiftCode must contain at least one letter";
-          } else if (!/\d/.test(value)) {
-            error =
-              "Correspondent Bank SwiftCode must contain at least one number";
+            error = "SwiftCode must contain at least one letter";
           } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
-            error =
-              "Correspondent Bank SwiftCode can only contain letters, numbers, and underscores";
+            error = "SwiftCode can only contain letters and numbers";
           }
         }
 
@@ -384,7 +397,7 @@ const KYC = () => {
           error = "Primary Contact Name is required";
         } else if (value.length < 3) {
           error = "Primary Contact Name must be at least 5 characters long";
-        } else if (!/^[a-zA-Z]+$/.test(value)) {
+        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
           error = "Primary Contac tName can only contain letters";
         }
         break;
@@ -394,7 +407,7 @@ const KYC = () => {
           error = " Designation is required";
         } else if (value.length < 3) {
           error = "Designation must be at least 5 characters long";
-        } else if (!/^[a-zA-Z]+$/.test(value)) {
+        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
           error = "Designation can only contain letters";
         }
         break;
@@ -418,7 +431,7 @@ const KYC = () => {
           error = "Name is required";
         } else if (value.length < 5) {
           error = "Name must be at least 5 characters long";
-        } else if (!/^[a-zA-Z]+$/.test(value)) {
+        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
           error = "Name can only contain letters";
         }
         break;
@@ -427,7 +440,7 @@ const KYC = () => {
           error = " Designation is required";
         } else if (value.length < 2) {
           error = "Designation must be at least 2 characters long";
-        } else if (!/^[a-zA-Z]+$/.test(value)) {
+        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
           error = "Designation can only contain letters";
         }
         break;
@@ -452,7 +465,7 @@ const KYC = () => {
           error = "Name is required";
         } else if (value.length < 5) {
           error = "Name must be at least 5 characters long";
-        } else if (!/^[a-zA-Z]+$/.test(value)) {
+        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
           error = "Name can only contain letters";
         }
         break;
@@ -462,7 +475,7 @@ const KYC = () => {
           error = "Designation is required";
         } else if (value.length < 5) {
           error = "Designation must be at least 5 characters long";
-        } else if (!/^[a-zA-Z]+$/.test(value)) {
+        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
           error = "Designation can only contain letters";
         }
         break;
@@ -486,7 +499,7 @@ const KYC = () => {
           error = "Name is required";
         } else if (value.length < 5) {
           error = "Name must be at least 5 characters long";
-        } else if (!/^[a-zA-Z]+$/.test(value)) {
+        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
           error = "Name can only contain letters";
         }
 
@@ -497,7 +510,7 @@ const KYC = () => {
           error = "Designation is required";
         } else if (value.length < 5) {
           error = "Designation must be at least 5 characters long";
-        } else if (!/^[a-zA-Z]+$/.test(value)) {
+        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
           error = "Designation can only contain letters";
         }
         break;
@@ -523,7 +536,7 @@ const KYC = () => {
           error = "Designation is required";
         } else if (value.length < 5) {
           error = "Proposed Business must be at least 5 characters long";
-        } else if (!/^[a-zA-Z]+$/.test(value)) {
+        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
           error = "Proposed Business can only contain letters";
         }
         break;
@@ -532,7 +545,7 @@ const KYC = () => {
           error = "Contact Person is required";
         } else if (value.length < 5) {
           error = "Contact Person must be at least 5 characters long";
-        } else if (!/^[a-zA-Z]+$/.test(value)) {
+        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
           error = "Contact Person  can only contain letters";
         }
         break;
@@ -592,7 +605,7 @@ const KYC = () => {
       setFormValues({
         ...Formvalues,
         otherStructure: "", // Reset inputText
-        error: "",
+        // error: "",
       });
     }
   }, [Formvalues.BusinessStructure]);
@@ -602,7 +615,7 @@ const KYC = () => {
       setFormValues({
         ...Formvalues,
         otherBusiness: "", // Reset inputText
-        error: "",
+        // error: "",
       });
     }
   }, [Formvalues.NatureOfBusiness]);
@@ -627,7 +640,6 @@ const KYC = () => {
                     value={Formvalues.registeredCompanyName}
                     onChange={handlChange}
                     onFocus={() => handleFocus("registeredCompanyName")}
-                    placeholder="Company Name"
                   />
                   {formErrors.registeredCompanyName && (
                     <div className="error">
@@ -643,7 +655,6 @@ const KYC = () => {
                     value={Formvalues.ParentCompany}
                     onChange={handlChange}
                     onFocus={() => handleFocus("ParentCompany")}
-                    placeholder="Parent/Group Company"
                   />
                   {formErrors.ParentCompany && (
                     <div className="error">{formErrors.ParentCompany}</div>
@@ -657,7 +668,6 @@ const KYC = () => {
                     value={Formvalues.companyRegisteredAddress}
                     onChange={handlChange}
                     onFocus={() => handleFocus("companyRegisteredAddress")}
-                    placeholder="Address"
                   />
 
                   {formErrors.companyRegisteredAddress && (
@@ -674,7 +684,6 @@ const KYC = () => {
                     value={Formvalues.ContactNumber}
                     onChange={handlChange}
                     onFocus={() => handleFocus("ContactNumber")}
-                    placeholder="Phone No."
                   />
                   {formErrors.ContactNumber && (
                     <div className="error">{formErrors.ContactNumber}</div>
@@ -690,7 +699,6 @@ const KYC = () => {
                     value={Formvalues.emailAddress}
                     onChange={handlChange}
                     onFocus={() => handleFocus("emailAddress")}
-                    placeholder="Email"
                   />
                   {formErrors.emailAddress && (
                     <div className="error">{formErrors.emailAddress}</div>
@@ -704,7 +712,6 @@ const KYC = () => {
                     value={Formvalues.companyWebsite}
                     onChange={handlChange}
                     onFocus={() => handleFocus("companyWebsite")}
-                    placeholder="Website"
                   />
 
                   {formErrors.companyWebsite && (
@@ -715,12 +722,11 @@ const KYC = () => {
                 <div>
                   <label>Corporate Domain Name</label>
                   <input
-                    type="url"
+                    type="text"
                     name="corporateDomainName"
                     value={Formvalues.corporateDomainName}
                     onChange={handlChange}
                     onFocus={() => handleFocus("corporateDomainName")}
-                    placeholder="Domain"
                   />
 
                   {formErrors.corporateDomainName && (
@@ -737,7 +743,6 @@ const KYC = () => {
                     value={Formvalues.NumberOfEmployees}
                     onChange={handlChange}
                     onFocus={() => handleFocus("NumberOfEmployees")}
-                    placeholder="Number of Employees"
                   />
                   {formErrors.NumberOfEmployees && (
                     <div className="error">{formErrors.NumberOfEmployees}</div>
@@ -817,7 +822,7 @@ const KYC = () => {
                     value={Formvalues.otherBusiness}
                     onChange={handlChange}
                     onFocus={() => handleFocus("otherBusiness")}
-                    disabled={Formvalues.NatureOfBusiness !== "Others"}
+                    disabled={Formvalues.BusinessStructure !== "Others"}
                   />
                   {formErrors.otherBusiness && (
                     <div className="error">{formErrors.otherBusiness}</div>
@@ -1133,7 +1138,6 @@ const KYC = () => {
                     value={Formvalues.companyRegistrationNumber}
                     onChange={handlChange}
                     onFocus={() => handleFocus("companyRegistrationNumber")}
-                    placeholder="Registration Number"
                   />
 
                   {formErrors.companyRegistrationNumber && (
@@ -1150,7 +1154,6 @@ const KYC = () => {
                     value={Formvalues.TradeLicenseNumber}
                     onChange={handlChange}
                     onFocus={() => handleFocus("TradeLicenseNumber")}
-                    placeholder="Trade License Number"
                   />
 
                   {formErrors.TradeLicenseNumber && (
@@ -1181,7 +1184,6 @@ const KYC = () => {
                     value={Formvalues.VAT}
                     onChange={handlChange}
                     onFocus={() => handleFocus("VAT")}
-                    placeholder="VAT Number"
                   />
 
                   {formErrors.VAT && (
@@ -1206,23 +1208,9 @@ const KYC = () => {
                     value={Formvalues.BankName}
                     onChange={handlChange}
                     onFocus={() => handleFocus("BankName")}
-                    placeholder="Bank Name"
                   />
                   {formErrors.BankName && (
                     <div className="error">{formErrors.BankName}</div>
-                  )}
-                </div>
-                <div>
-                  <label>Bank Country</label>
-                  <input
-                    type="text"
-                    value={Formvalues.BankCountry}
-                    name="BankCountry"
-                    onChange={handlChange}
-                    onFocus={() => handleFocus("BankCountry")}
-                  />
-                  {formErrors.BankCountry && (
-                    <div className="error">{formErrors.BankCountry}</div>
                   )}
                 </div>
                 <div>
@@ -1233,27 +1221,11 @@ const KYC = () => {
                     name="BankBranchAddress"
                     onChange={handlChange}
                     onFocus={() => handleFocus("BankBranchAddress")}
-                    placeholder="Address"
                   />
                   {formErrors.BankBranchAddress && (
                     <div className="error">{formErrors.BankBranchAddress}</div>
                   )}
                 </div>
-                <div>
-                  <label>Swift Code</label>
-                  <input
-                    type="text"
-                    value={Formvalues.SwiftCode}
-                    name="SwiftCode"
-                    onChange={handlChange}
-                    onFocus={() => handleFocus("SwiftCode")}
-                    placeholder="Swift Code"
-                  />
-
-                  {formErrors.SwiftCode && (
-                    <div className="error">{formErrors.SwiftCode}</div>
-                  )}
-                </div>              
                 <div>
                   <label>Account Name </label>
                   <input
@@ -1262,7 +1234,6 @@ const KYC = () => {
                     name="AccountName"
                     onChange={handlChange}
                     onFocus={() => handleFocus("AccountName")}
-                    placeholder="Account Name"
                   />
 
                   {formErrors.AccountName && (
@@ -1270,16 +1241,47 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Account Currency</label>
+                  <label>Account Number </label>
                   <input
                     type="text"
-                    value={Formvalues.AccountCurrency}
-                    name="AccountCurrency"
+                    value={Formvalues.AccountNumber}
+                    name="AccountNumber"
                     onChange={handlChange}
-                    onFocus={() => handleFocus("SwiftCode")}
+                    onFocus={() => handleFocus("AccountNumber")}
                   />
-                  {formErrors.AccountCurrency && (
-                    <div className="error">{formErrors.AccountCurrency}</div>
+                  {formErrors.AccountNumber && (
+                    <div className="error">{formErrors.AccountNumber}</div>
+                  )}
+                </div>
+                <div>
+                  <label>Bank Account Manager's Name</label>
+                  <input
+                    type="text"
+                    value={Formvalues.BankAccountMangersName}
+                    name="BankAccountMangersName"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("BankAccountMangersName")}
+                  />
+                  {formErrors.BankAccountMangersName && (
+                    <div className="error">
+                      {formErrors.BankAccountMangersName}
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <label>Correspondent Bank Name</label>
+                  <input
+                    type="text"
+                    value={Formvalues.CorrespondentBankName}
+                    name="CorrespondentBankName"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("CorrespondentBankName")}
+                  />
+
+                  {formErrors.CorrespondentBankName && (
+                    <div className="error">
+                      {formErrors.CorrespondentBankName}
+                    </div>
                   )}
                 </div>
               </div>
@@ -1288,8 +1290,8 @@ const KYC = () => {
                   <label>Bank Country</label>
                   <select
                     type="text"
-                    value={Formvalues.AccountNumber}
-                    name="AccountNumber"
+                    value={Formvalues.BankCountry}
+                    name="BankCountry"
                     onChange={handlChange}
                     onFocus={() => handleFocus("BankCountry")}
                   >
@@ -1567,6 +1569,33 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
+                  <label>Swift Code</label>
+                  <input
+                    type="text"
+                    value={Formvalues.SwiftCode}
+                    name="SwiftCode"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("SwiftCode")}
+                  />
+
+                  {formErrors.SwiftCode && (
+                    <div className="error">{formErrors.SwiftCode}</div>
+                  )}
+                </div>
+                <div>
+                  <label>Account Currency</label>
+                  <input
+                    type="text"
+                    value={Formvalues.AccountCurrency}
+                    name="AccountCurrency"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("SwiftCode")}
+                  />
+                  {formErrors.AccountCurrency && (
+                    <div className="error">{formErrors.AccountCurrency}</div>
+                  )}
+                </div>
+                <div>
                   <label>IBAN/ABA</label>
                   <input
                     type="text"
@@ -1574,26 +1603,9 @@ const KYC = () => {
                     value={Formvalues.IBAN}
                     onChange={handlChange}
                     onFocus={() => handleFocus("IBAN")}
-                    placeholder="IBAN/ABA"
                   />
                   {formErrors.IBAN && (
                     <div className="error">{formErrors.IBAN}</div>
-                  )}
-                </div>
-                <div>
-                  <label>Bank Account Manager's Name</label>
-                  <input
-                    type="text"
-                    value={Formvalues.BankAccountMangersName}
-                    name="BankAccountMangersName"
-                    onChange={handlChange}
-                    onFocus={() => handleFocus("BankAccountMangersName")}
-                    placeholder="Bank Manager's Name"
-                  />
-                  {formErrors.BankAccountMangersName && (
-                    <div className="error">
-                      {formErrors.BankAccountMangersName}
-                    </div>
                   )}
                 </div>
                 <div>
@@ -1606,31 +1618,15 @@ const KYC = () => {
                     onFocus={() =>
                       handleFocus("BankAccountManagersContactDetails")
                     }
-                    placeholder="Bank Manager's Phone No"
                   />
+
                   {formErrors.BankAccountManagersContactDetails && (
                     <div className="error">
                       {formErrors.BankAccountManagersContactDetails}
                     </div>
                   )}
                 </div>
-                <div>
-                  <label>Correspondent Bank Name</label>
-                  <input
-                    type="text"
-                    value={Formvalues.CorrespondentBankName}
-                    name="CorrespondentBankName"
-                    onChange={handlChange}
-                    onFocus={() => handleFocus("CorrespondentBankName")}
-                    placeholder="Correspondent Bank Name"
-                    
-                  />
-                  {formErrors.CorrespondentBankName && (
-                    <div className="error">
-                      {formErrors.CorrespondentBankName}
-                    </div>
-                  )}
-                </div>
+
                 <div>
                   <label> Correspondent Bank SWIFT Code</label>
                   <input
@@ -1641,8 +1637,8 @@ const KYC = () => {
                     onFocus={() =>
                       handleFocus("BankAccountManagersContactDetails")
                     }
-                    placeholder="Correspondent Bank SWIFT Code"
                   />
+
                   {formErrors.CorrespondentBankSwiftCode && (
                     <div className="error">
                       {formErrors.CorrespondentBankSwiftCode}
@@ -1671,10 +1667,10 @@ const KYC = () => {
               <tbody>
                 <tr>
                   <td>
-                    <input type="text" placeholder="Shareholder 1"/>
+                    <input type="text" />
                   </td>
                   <td>
-                    <input type="number" placeholder="Percentage 1" />
+                    <input type="number" />
                   </td>
                   <td>
                     <input type="text" />
@@ -1682,10 +1678,10 @@ const KYC = () => {
                 </tr>
                 <tr>
                   <td>
-                    <input type="text" placeholder="Shareholder 2"/>
+                    <input type="text" />
                   </td>
                   <td>
-                    <input type="number" placeholder="Percentage 2"/>
+                    <input type="number" />
                   </td>
                   <td>
                     <input type="text" />
@@ -1693,10 +1689,10 @@ const KYC = () => {
                 </tr>
                 <tr>
                   <td>
-                    <input type="text" placeholder="Shareholder 3"/>
+                    <input type="text" />
                   </td>
                   <td>
-                    <input type="number" placeholder="Percentage 3" />
+                    <input type="number" />
                   </td>
                   <td>
                     <input type="text" />
@@ -1704,10 +1700,10 @@ const KYC = () => {
                 </tr>
                 <tr>
                   <td>
-                    <input type="text" placeholder="Shareholder 4"/>
+                    <input type="text" />
                   </td>
                   <td>
-                    <input type="number" placeholder="Percentage 4"/>
+                    <input type="number" />
                   </td>
                   <td>
                     <input type="text" />
@@ -1732,7 +1728,6 @@ const KYC = () => {
                     name="PrimaryContactName"
                     onChange={handlChange}
                     onFocus={() => handleFocus("PrimaryContactName")}
-                    placeholder="Name"
                   />
                   {formErrors.PrimaryContactName && (
                     <div className="error">{formErrors.PrimaryContactName}</div>
@@ -1746,7 +1741,6 @@ const KYC = () => {
                     name="PrimaryContactDesignation"
                     onChange={handlChange}
                     onFocus={() => handleFocus("PrimaryContactDesignation")}
-                    placeholder="Designation"
                   />
                   {formErrors.PrimaryContactDesignation && (
                     <div className="error">
@@ -1762,7 +1756,6 @@ const KYC = () => {
                     value={Formvalues.PrimaryContactPhone}
                     onChange={handlChange}
                     onFocus={() => handleFocus("PrimaryContactPhone")}
-                    placeholder="Phone"
                   />
 
                   {formErrors.PrimaryContactPhone && (
@@ -1779,7 +1772,6 @@ const KYC = () => {
                     name="PrimaryContactEmail"
                     onChange={handlChange}
                     onFocus={() => handleFocus("PrimaryContactEmail")}
-                    placeholder="Email"
                   />
                   {formErrors.PrimaryContactEmail && (
                     <div className="error">
@@ -1798,7 +1790,6 @@ const KYC = () => {
                     name="OperationDepartmentName"
                     onChange={handlChange}
                     onFocus={() => handleFocus("OperationDepartmentName")}
-                    placeholder="Name"
                   />
                   {formErrors.OperationDepartmentName && (
                     <div className="error">
@@ -1816,7 +1807,6 @@ const KYC = () => {
                     onFocus={() =>
                       handleFocus("OperationDepartmentDesignation")
                     }
-                    placeholder="Designation"
                   />
                   {formErrors.OperationDepartmentDesignation && (
                     <div className="error">
@@ -1832,7 +1822,6 @@ const KYC = () => {
                     name="OperationDepartMentPhone"
                     onChange={handlChange}
                     onFocus={() => handleFocus("OperationDepartMentPhone")}
-                    placeholder="Phone"
                   />
 
                   {formErrors.OperationDepartMentPhone && (
@@ -1849,7 +1838,6 @@ const KYC = () => {
                     name="OperationDepartmentEmail"
                     onChange={handlChange}
                     onFocus={() => handleFocus("OperationDepartmentEmail")}
-                    placeholder="Email"
                   />
                   {formErrors.OperationDepartmentEmail && (
                     <div className="error">
@@ -1871,7 +1859,6 @@ const KYC = () => {
                     name="CreditNAME"
                     onChange={handlChange}
                     onFocus={() => handleFocus("CreditNAME")}
-                    placeholder="Name"
                   />
                   {formErrors.CreditNAME && (
                     <div className="error">{formErrors.CreditNAME}</div>
@@ -1885,7 +1872,6 @@ const KYC = () => {
                     name="CreditDesignation"
                     onChange={handlChange}
                     onFocus={() => handleFocus("CreditDesignation")}
-                    placeholder="Designation"
                   />
 
                   {formErrors.CreditDesignation && (
@@ -1900,7 +1886,6 @@ const KYC = () => {
                     name="CreditPhone"
                     onChange={handlChange}
                     onFocus={() => handleFocus("CreditPhone")}
-                    placeholder="Phone"
                   />
                   {formErrors.CreditPhone && (
                     <div className="error">{formErrors.CreditPhone}</div>
@@ -1914,7 +1899,6 @@ const KYC = () => {
                     name="CreditEmail"
                     onChange={handlChange}
                     onFocus={() => handleFocus("CreditEmail")}
-                    placeholder="Email"
                   />
                   {formErrors.CreditEmail && (
                     <div className="error">{formErrors.CreditEmail}</div>
@@ -1931,7 +1915,6 @@ const KYC = () => {
                     name="AccountDepartName"
                     onChange={handlChange}
                     onFocus={() => handleFocus("AccountDepartName")}
-                    placeholder="Name"
                   />
                   {formErrors.AccountDepartName && (
                     <div className="error">{formErrors.AccountDepartName}</div>
@@ -1945,7 +1928,6 @@ const KYC = () => {
                     value={Formvalues.AcoountDepartDesignation}
                     onChange={handlChange}
                     onFocus={() => handleFocus("AcoountDepartDesignation")}
-                    placeholder="Designation"
                   />
                   {formErrors.AcoountDepartDesignation && (
                     <div className="error">
@@ -1961,7 +1943,6 @@ const KYC = () => {
                     name="AccountDepartmentPhone"
                     onChange={handlChange}
                     onFocus={() => handleFocus("AccountDepartmentPhone")}
-                    placeholder="Phone"
                   />
 
                   {formErrors.AccountDepartmentPhone && (
@@ -1978,7 +1959,6 @@ const KYC = () => {
                     name="AccountDepartmentEmail"
                     onChange={handlChange}
                     onFocus={() => handleFocus("AccountDepartmentEmail")}
-                    placeholder="Email"
                   />
                   {formErrors.AccountDepartmentEmail && (
                     <div className="error">
@@ -1999,7 +1979,7 @@ const KYC = () => {
                 name="ProposedBusiness"
                 onChange={handlChange}
                 onFocus={() => handleFocus("ProposedBusiness")}
-                style={{width:"96%"}}
+                style={{ width: "96%" }}
               />
               {formErrors.ProposedBusiness && (
                 <div className="error">{formErrors.ProposedBusiness}</div>
@@ -2015,7 +1995,7 @@ const KYC = () => {
                 name="ContactPerson"
                 onChange={handlChange}
                 onFocus={() => handleFocus("ContactPerson")}
-                style={{width:"96%"}}
+                style={{ width: "96%" }}
               />
               {formErrors.ContactPerson && (
                 <div className="error">{formErrors.ContactPerson}</div>
@@ -2044,46 +2024,46 @@ const KYC = () => {
               <tbody>
                 <tr>
                   <td>
-                    <input type="text" placeholder="Name 1"/>
+                    <input type="text" />
                   </td>
                   <td>
-                    <input type="number" placeholder="Phone 1" />
+                    <input type="number" />
                   </td>
                   <td>
-                    <input type="text" placeholder="Email 1"/>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <input type="text" placeholder="Name 2"/>
-                  </td>
-                  <td>
-                    <input type="number" placeholder="Phone 2" />
-                  </td>
-                  <td>
-                    <input type="text" placeholder="Email 2"/>
+                    <input type="text" />
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <input type="text" placeholder="Name 3"/>
+                    <input type="text" />
                   </td>
                   <td>
-                    <input type="number" placeholder="Phone 3" />
+                    <input type="number" />
                   </td>
                   <td>
-                    <input type="text" placeholder="Email 3" />
+                    <input type="text" />
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <input type="text" placeholder="Name 4"/>
+                    <input type="text" />
                   </td>
                   <td>
-                    <input type="number" placeholder="Phone 4"/>
+                    <input type="number" />
                   </td>
                   <td>
-                    <input type="text" placeholder="Email 4"/>
+                    <input type="text" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="text" />
+                  </td>
+                  <td>
+                    <input type="number" />
+                  </td>
+                  <td>
+                    <input type="text" />
                   </td>
                 </tr>
               </tbody>
@@ -2121,7 +2101,7 @@ const KYC = () => {
             </div>
             <div style={{ float: "right" }} className="url">
               <label>6) Website URL</label>
-              <input type="url" placeholder="URL"/>
+              <input type="url" />
             </div>
             <div>
               <label>7) Bank Reference Letter ( Upon Trade or Request) </label>
@@ -2161,7 +2141,7 @@ const KYC = () => {
 
             <div>
               <label>Authorized Signatory Name </label>
-              <input type="text" placeholder="Name"/>
+              <input type="text" />
             </div>
             <div className="submit-btn">
               <button>Submit</button>
