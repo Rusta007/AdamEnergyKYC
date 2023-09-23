@@ -103,12 +103,13 @@ const KYC = () => {
 
       case "companyRegisteredAddress":
         if (value.trim() === "") {
-          error = "company Registered Address is required";
-        } else if (value.length < 5) {
-          error = "Address Name must be at least 5 characters long";
-        } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
-          error = "Invalid";
+          error = "Address is required";
         }
+        else if (value.length < 5) {
+          error = "Address must be at least 5 characters long";
+        } else if (!/[a-zA-Z]/.test(value)) {
+          error = "Invalid";
+        } 
         break;
       case "ParentCompany":
         if (value.trim() === "") {
@@ -125,7 +126,7 @@ const KYC = () => {
         if (value.trim() === "") {
           error = "Contact Number is required";
         } else if (value.length < 10) {
-          error = "Contact Number must be at least 5 characters long";
+          error = "Contact Number must be at least 10 characters long";
         }
 
         break;
@@ -161,7 +162,7 @@ const KYC = () => {
           error = "Business Structure cannnot be less than 5";
         } else if (
           Formvalues.BusinessStructure === "Others" &&
-          !/^[a-zA-Z]+$/.test(value)
+          !/^[a-zA-Z\s]+$/.test(value)
         ) {
           error = "Business Structure contains only letter";
         }
@@ -185,7 +186,7 @@ const KYC = () => {
           error = "Nature Of Business cannnot be less than 5";
         } else if (
           Formvalues.NatureOfBusiness === "Others" &&
-          !/^[a-zA-Z]+$/.test(value)
+          !/^[a-zA-Z\s]+$/.test(value)
         ) {
           error = "Nature Of Business contains only letter";
         }
@@ -207,13 +208,11 @@ const KYC = () => {
 
       case "companyRegistrationNumber":
         if (value.trim() === "") {
-          error = "company Registration Number is required";
+          error = " Registration Number is required";
         } else if (value.length < 5) {
-          error =
-            "company Registration Number must be at least 5 characters long";
+          error = " Registration Number must be at least 5 characters long";
         } else if (!/^(?=.*[0-9])[a-zA-Z0-9]+$/.test(value)) {
-          error =
-            "registeredCompanyName can only contain letters, numbers, and underscores";
+          error = "Registration Number can only contain letters and numbers";
         }
         break;
 
@@ -275,12 +274,13 @@ const KYC = () => {
         break;
       case "BankBranchAddress":
         if (value.trim() === "") {
-          error = "BankBranchAddress is required";
-        } else if (value.length < 5) {
-          error = "BankBranchAddress must be at least 5 characters long";
-        } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
-          error = "Invalid";
+          error = "Address is required";
         }
+        else if (value.length < 5) {
+          error = "Address must be at least 5 characters long";
+        } else if (!/[a-zA-Z]/.test(value)) {
+          error = "Invalid";
+        } 
         break;
 
       case "AccountName":
@@ -371,8 +371,7 @@ const KYC = () => {
       case "BankAccountManagersContactDetails":
         if (value.length > 0) {
           if (value.length < 10) {
-            error =
-              "Bank Account Managers Contact Details must be at least 10 characters long";
+            error = "Contact Details must be at least 10 characters long";
           }
         }
 
@@ -830,7 +829,7 @@ const KYC = () => {
                     value={Formvalues.otherBusiness}
                     onChange={handlChange}
                     onFocus={() => handleFocus("otherBusiness")}
-                    disabled={Formvalues.BusinessStructure !== "Others"}
+                    disabled={Formvalues.NatureOfBusiness !== "Others"}
                   />
                   {formErrors.otherBusiness && (
                     <div className="error">{formErrors.otherBusiness}</div>
