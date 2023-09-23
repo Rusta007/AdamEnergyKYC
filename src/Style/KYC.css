@@ -164,6 +164,12 @@ select {
   .flexItem2 input {
     width: 450px;
   }
+  .CompanyContactFlexContainer input{
+    width: 450px;
+  }
+  .CompanyContactDetailContainer input{
+    width: 450px;
+  }
   label {
     font-size: 16px;
   }

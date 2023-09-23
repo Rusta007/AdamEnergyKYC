@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import KycHeader from "../Components/KycHeader";
 import "../Style/KYC.css";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
 
 const KYC = () => {
   const initialFormData = {
@@ -104,12 +102,11 @@ const KYC = () => {
       case "companyRegisteredAddress":
         if (value.trim() === "") {
           error = "Address is required";
-        }
-        else if (value.length < 5) {
+        } else if (value.length < 5) {
           error = "Address must be at least 5 characters long";
         } else if (!/[a-zA-Z]/.test(value)) {
           error = "Invalid";
-        } 
+        }
         break;
       case "ParentCompany":
         if (value.trim() === "") {
@@ -275,12 +272,11 @@ const KYC = () => {
       case "BankBranchAddress":
         if (value.trim() === "") {
           error = "Address is required";
-        }
-        else if (value.length < 5) {
+        } else if (value.length < 5) {
           error = "Address must be at least 5 characters long";
         } else if (!/[a-zA-Z]/.test(value)) {
           error = "Invalid";
-        } 
+        }
         break;
 
       case "AccountName":
@@ -388,9 +384,10 @@ const KYC = () => {
           }
         }
 
-        // Company Contact Details Error Handling
-
         break;
+
+      // Company Contact Details Error Handling
+
       case "PrimaryContactName":
         if (value.trim() === "") {
           error = "Primary Contact Name is required";
