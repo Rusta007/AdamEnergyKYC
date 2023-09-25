@@ -1087,9 +1087,7 @@ const KYC = () => {
                     <option value="LT">Lithuania</option>
                     <option value="LU">Luxembourg</option>
                     <option value="MO">Macao</option>
-                    <option value="MK">
-                      Macedonia, The Former Yugoslav Republic Of
-                    </option>
+                    <option value="MK">Macedonia</option>
                     <option value="MG">Madagascar</option>
                     <option value="MW">Malawi</option>
                     <option value="MY">Malaysia</option>
@@ -1779,21 +1777,10 @@ const KYC = () => {
               <tbody>
                 <tr>
                   <td>
-                    <input type="text" />
+                    <input type="text" placeholder="Name 1" />
                   </td>
                   <td>
-                    <input type="number" />
-                  </td>
-                  <td>
-                    <input type="text" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <input type="text" />
-                  </td>
-                  <td>
-                    <input type="number" />
+                    <input type="number" placeholder="Percentage 1"/>
                   </td>
                   <td>
                     <input type="text" />
@@ -1801,10 +1788,10 @@ const KYC = () => {
                 </tr>
                 <tr>
                   <td>
-                    <input type="text" />
+                    <input type="text" placeholder="Name 2"/>
                   </td>
                   <td>
-                    <input type="number" />
+                    <input type="number" placeholder="Percentage 2" />
                   </td>
                   <td>
                     <input type="text" />
@@ -1812,13 +1799,24 @@ const KYC = () => {
                 </tr>
                 <tr>
                   <td>
-                    <input type="text" />
+                    <input type="text" placeholder="Name 3"/>
                   </td>
                   <td>
-                    <input type="number" />
+                    <input type="number" placeholder="Percentage 3" />
                   </td>
                   <td>
                     <input type="text" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="text" placeholder="Name 4"/>
+                  </td>
+                  <td>
+                    <input type="number" placeholder="Percentage 4"/>
+                  </td>
+                  <td>
+                    <input type="text"  />
                   </td>
                 </tr>
               </tbody>
@@ -2142,6 +2140,7 @@ const KYC = () => {
                       name="TradeReferenceName1"
                       onChange={handlChange}
                       onFocus={() => handleFocus("TradeReferenceName1")}
+                      placeholder="Name 1"
                     />
                   </td>
 
@@ -2153,6 +2152,7 @@ const KYC = () => {
                       onChange={handlChange}
                       onFocus={() => handleFocus("TradeReferencePhone1")}
                       disabled={!Formvalues.TradeReferenceName1}
+                      placeholder="Phone 1"
                     />
                   </td>
                   <td>
@@ -2163,6 +2163,7 @@ const KYC = () => {
                       onChange={handlChange}
                       onFocus={() => handleFocus("TradeReferenceEmail1")}
                       disabled={!Formvalues.TradeReferenceName1}
+                      placeholder="Email 1"
                     />
                   </td>
                 </tr>
@@ -2177,6 +2178,7 @@ const KYC = () => {
                       name="TradeReferenceName2"
                       onChange={handlChange}
                       onFocus={() => handleFocus("TradeReferenceName2")}
+                      placeholder="Name 2"
                     />
                   </td>
                   <td>
@@ -2187,6 +2189,7 @@ const KYC = () => {
                       onChange={handlChange}
                       onFocus={() => handleFocus("TradeReferencePhone1")}
                       disabled={!Formvalues.TradeReferenceName2}
+                      placeholder="Phone 2"
                     />
                   </td>
                   <td>
@@ -2197,6 +2200,8 @@ const KYC = () => {
                       onChange={handlChange}
                       onFocus={() => handleFocus("TradeReferenceEmail2")}
                       disabled={!Formvalues.TradeReferenceName2}
+                      placeholder="Email 2"
+
                     />
                   </td>
                 </tr>
@@ -2211,6 +2216,7 @@ const KYC = () => {
                       name="TradeReferenceName3"
                       onChange={handlChange}
                       onFocus={() => handleFocus("TradeReferenceName3")}
+                      placeholder="Name 3"
                     />
                   </td>
                   <td>
@@ -2221,6 +2227,7 @@ const KYC = () => {
                       onChange={handlChange}
                       onFocus={() => handleFocus("TradeReferencePhone3")}
                       disabled={!Formvalues.TradeReferenceName3}
+                      placeholder="Phone 3"
                     />
                   </td>
                   <td>
@@ -2231,6 +2238,7 @@ const KYC = () => {
                       onChange={handlChange}
                       onFocus={() => handleFocus("TradeReferenceEmail3")}
                       disabled={!Formvalues.TradeReferenceName3}
+                      placeholder="Email 3"
                     />
                   </td>
                 </tr>
@@ -2246,6 +2254,7 @@ const KYC = () => {
                       name="TradeReferenceName4"
                       onChange={handlChange}
                       onFocus={() => handleFocus("TradeReferenceName4")}
+                      placeholder="Name 4"
                     />
                   </td>
                   <td>
@@ -2256,6 +2265,7 @@ const KYC = () => {
                       onChange={handlChange}
                       onFocus={() => handleFocus("TradeReferencePhone4")}
                       disabled={!Formvalues.TradeReferenceName4}
+                      placeholder="Phone 4"
                     />
                   </td>
                   <td>
@@ -2266,6 +2276,7 @@ const KYC = () => {
                       onChange={handlChange}
                       onFocus={() => handleFocus("TradeReferenceEmail4")}
                       disabled={!Formvalues.TradeReferenceName4}
+                      placeholder="Email 4"
                     />
                   </td>
                 </tr>
