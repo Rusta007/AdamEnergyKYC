@@ -52,6 +52,21 @@ const KYC = () => {
     AccountDepartmentEmail: "",
     ProposedBusiness: "",
     ContactPerson: "",
+
+    TradeReferenceName1: "",
+    TradeReferenceName2: "",
+    TradeReferenceName3: "",
+    TradeReferenceName4: "",
+
+    TradeReferencePhone1: "",
+    TradeReferencePhone2: "",
+    TradeReferencePhone3: "",
+    TradeReferencePhone4: "",
+
+    TradeReferenceEmail1: "",
+    TradeReferenceEmail2: "",
+    TradeReferenceEmail3: "",
+    TradeReferenceEmail4: "",
   };
 
   const [Formvalues, setFormValues] = useState(initialFormData);
@@ -553,6 +568,98 @@ const KYC = () => {
           error = "Contact Person  can only contain letters";
         }
         break;
+
+      case "TradeReferenceEmail1":
+        if (Formvalues.TradeReferenceName1) {
+          if (Formvalues.TradeReferenceName1.length < 5) {
+            error = "Name must be at least 5 characters long ";
+          }
+          if (!/^[a-zA-Z\s]+$/.test(Formvalues.TradeReferenceName1)) {
+            error = "Name can only contain letters";
+          }
+          if (value.trim() === "" && !Formvalues.TradeReferencePhone1) {
+            error = "Email and phone is Required";
+          } else if (
+            !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+              value
+            )
+          ) {
+            error = "Invalid email address";
+          } else if (Formvalues.TradeReferencePhone1.length < 10) {
+            error = "Invalid Phone";
+          }
+        }
+        break;
+
+      case "TradeReferenceEmail2":
+        
+        if (Formvalues.TradeReferenceName2) {
+          if (Formvalues.TradeReferenceName2.length < 5) {
+            error = "Name must be at least 5 characters long ";
+          }
+          if (!/^[a-zA-Z\s]+$/.test(Formvalues.TradeReferenceName2)) {
+            error = "Name can only contain letters";
+          }
+          if (value.trim() === "" && !Formvalues.TradeReferencePhone2) {
+            error = "Email and phone is Required";
+          } else if (
+            !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+              value
+            )
+          ) {
+            error = "Invalid email address";
+          } else if (Formvalues.TradeReferencePhone2.length < 10) {
+            error = "Invalid Phone";
+          }
+        }
+        break;
+
+      case "TradeReferenceEmail3":
+        
+        if (Formvalues.TradeReferenceName3) {
+          if (Formvalues.TradeReferenceName3.length < 5) {
+            error = "Name must be at least 5 characters long ";
+          }
+          if (!/^[a-zA-Z\s]+$/.test(Formvalues.TradeReferenceName3)) {
+            error = "Name can only contain letters";
+          }
+          if (value.trim() === "" && !Formvalues.TradeReferencePhone3) {
+            error = "Email and phone is Required";
+          } else if (
+            !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+              value
+            )
+          ) {
+            error = "Invalid email address";
+          } else if (Formvalues.TradeReferencePhone3.length < 10) {
+            error = "Invalid Phone";
+          }
+        }
+        break;
+
+      case "TradeReferenceEmail4":
+       
+        if (Formvalues.TradeReferenceName4) {
+          if (Formvalues.TradeReferenceName4.length < 5) {
+            error = "Name must be at least 5 characters long ";
+          }
+          if (!/^[a-zA-Z\s]+$/.test(Formvalues.TradeReferenceName4)) {
+            error = "Name can only contain letters";
+          }
+          if (value.trim() === "" && !Formvalues.TradeReferencePhone4) {
+            error = "Email and phone is Required";
+          } else if (
+            !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+              value
+            )
+          ) {
+            error = "Invalid email address";
+          } else if (Formvalues.TradeReferencePhone4.length < 10) {
+            error = "Invalid Phone";
+          }
+        }
+        break;
+
       default:
         break;
     }
@@ -564,6 +671,7 @@ const KYC = () => {
     const { name, value } = e.target;
     setFormValues({ ...Formvalues, [name]: value });
     setFormErrors({ ...formErrors, [name]: validateField(name, value) });
+    console.log(value);
   };
 
   const handleFocus = (fieldName) => {
@@ -2028,48 +2136,142 @@ const KYC = () => {
               <tbody>
                 <tr>
                   <td>
-                    <input type="text" />
+                    <input
+                      type="text"
+                      value={Formvalues.TradeReferenceName1}
+                      name="TradeReferenceName1"
+                      onChange={handlChange}
+                      onFocus={() => handleFocus("TradeReferenceName1")}
+                    />
+                  </td>
+
+                  <td>
+                    <input
+                      type="number"
+                      value={Formvalues.TradeReferencePhone1}
+                      name="TradeReferencePhone1"
+                      onChange={handlChange}
+                      onFocus={() => handleFocus("TradeReferencePhone1")}
+                      disabled={!Formvalues.TradeReferenceName1}
+                    />
                   </td>
                   <td>
-                    <input type="number" />
-                  </td>
-                  <td>
-                    <input type="text" />
+                    <input
+                      type="email"
+                      value={Formvalues.TradeReferenceEmail1}
+                      name="TradeReferenceEmail1"
+                      onChange={handlChange}
+                      onFocus={() => handleFocus("TradeReferenceEmail1")}
+                      disabled={!Formvalues.TradeReferenceName1}
+                    />
                   </td>
                 </tr>
+                {formErrors.TradeReferenceEmail1 && (
+                  <div className="error">{formErrors.TradeReferenceEmail1}</div>
+                )}
                 <tr>
                   <td>
-                    <input type="text" />
+                    <input
+                      type="text"
+                      value={Formvalues.TradeReferenceName2}
+                      name="TradeReferenceName2"
+                      onChange={handlChange}
+                      onFocus={() => handleFocus("TradeReferenceName2")}
+                    />
                   </td>
                   <td>
-                    <input type="number" />
+                    <input
+                      type="number"
+                      value={Formvalues.TradeReferencePhone2}
+                      name="TradeReferencePhone2"
+                      onChange={handlChange}
+                      onFocus={() => handleFocus("TradeReferencePhone1")}
+                      disabled={!Formvalues.TradeReferenceName2}
+                    />
                   </td>
                   <td>
-                    <input type="text" />
+                    <input
+                      type="email"
+                      value={Formvalues.TradeReferenceEmail2}
+                      name="TradeReferenceEmail2"
+                      onChange={handlChange}
+                      onFocus={() => handleFocus("TradeReferenceEmail2")}
+                      disabled={!Formvalues.TradeReferenceName2}
+                    />
                   </td>
                 </tr>
+                {formErrors.TradeReferenceEmail2 && (
+                  <div className="error">{formErrors.TradeReferenceEmail2}</div>
+                )}
                 <tr>
                   <td>
-                    <input type="text" />
+                    <input
+                      type="text"
+                      value={Formvalues.TradeReferenceName3}
+                      name="TradeReferenceName3"
+                      onChange={handlChange}
+                      onFocus={() => handleFocus("TradeReferenceName3")}
+                    />
                   </td>
                   <td>
-                    <input type="number" />
+                    <input
+                      type="number"
+                      value={Formvalues.TradeReferencePhone3}
+                      name="TradeReferencePhone3"
+                      onChange={handlChange}
+                      onFocus={() => handleFocus("TradeReferencePhone3")}
+                      disabled={!Formvalues.TradeReferenceName3}
+                    />
                   </td>
                   <td>
-                    <input type="text" />
+                    <input
+                      type="email"
+                      value={Formvalues.TradeReferenceEmail3}
+                      name="TradeReferenceEmail3"
+                      onChange={handlChange}
+                      onFocus={() => handleFocus("TradeReferenceEmail3")}
+                      disabled={!Formvalues.TradeReferenceName3}
+                    />
                   </td>
                 </tr>
+
+                {formErrors.TradeReferenceEmail3 && (
+                  <div className="error">{formErrors.TradeReferenceEmail3}</div>
+                )}
                 <tr>
                   <td>
-                    <input type="text" />
+                    <input
+                      type="text"
+                      value={Formvalues.TradeReferenceName4}
+                      name="TradeReferenceName4"
+                      onChange={handlChange}
+                      onFocus={() => handleFocus("TradeReferenceName4")}
+                    />
                   </td>
                   <td>
-                    <input type="number" />
+                    <input
+                      type="number"
+                      value={Formvalues.TradeReferencePhone4}
+                      name="TradeReferencePhone4"
+                      onChange={handlChange}
+                      onFocus={() => handleFocus("TradeReferencePhone4")}
+                      disabled={!Formvalues.TradeReferenceName4}
+                    />
                   </td>
                   <td>
-                    <input type="text" />
+                    <input
+                      type="email"
+                      value={Formvalues.TradeReferenceEmail4}
+                      name="TradeReferenceEmail4"
+                      onChange={handlChange}
+                      onFocus={() => handleFocus("TradeReferenceEmail4")}
+                      disabled={!Formvalues.TradeReferenceName4}
+                    />
                   </td>
                 </tr>
+                {formErrors.TradeReferenceEmail4 && (
+                  <div className="error">{formErrors.TradeReferenceEmail4}</div>
+                )}
               </tbody>
             </table>
           </div>
