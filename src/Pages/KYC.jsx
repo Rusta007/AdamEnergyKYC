@@ -52,7 +52,6 @@ const KYC = () => {
     AccountDepartmentEmail: "",
     ProposedBusiness: "",
     ContactPerson: "",
-
     TradeReferenceName1: "",
     TradeReferenceName2: "",
     TradeReferenceName3: "",
@@ -569,6 +568,9 @@ const KYC = () => {
         }
         break;
 
+
+// Trade Reference Error Handling
+
       case "TradeReferenceEmail1":
         if (Formvalues.TradeReferenceName1) {
           if (Formvalues.TradeReferenceName1.length < 5) {
@@ -592,7 +594,6 @@ const KYC = () => {
         break;
 
       case "TradeReferenceEmail2":
-        
         if (Formvalues.TradeReferenceName2) {
           if (Formvalues.TradeReferenceName2.length < 5) {
             error = "Name must be at least 5 characters long ";
@@ -615,7 +616,6 @@ const KYC = () => {
         break;
 
       case "TradeReferenceEmail3":
-        
         if (Formvalues.TradeReferenceName3) {
           if (Formvalues.TradeReferenceName3.length < 5) {
             error = "Name must be at least 5 characters long ";
@@ -638,7 +638,6 @@ const KYC = () => {
         break;
 
       case "TradeReferenceEmail4":
-       
         if (Formvalues.TradeReferenceName4) {
           if (Formvalues.TradeReferenceName4.length < 5) {
             error = "Name must be at least 5 characters long ";
