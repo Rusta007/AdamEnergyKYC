@@ -745,13 +745,14 @@ const KYC = () => {
             <div className="infoFlexContainer">
               <div className="flexItem1">
                 <div>
-                  <label>Registered Company Name</label>
+                  <label>Registered Company Name*</label>
                   <input
                     type="text"
                     name="registeredCompanyName"
                     value={Formvalues.registeredCompanyName}
                     onChange={handlChange}
                     onFocus={() => handleFocus("registeredCompanyName")}
+                    placeholder="Company Name"
                   />
                   {formErrors.registeredCompanyName && (
                     <div className="error">
@@ -760,26 +761,28 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Parent Company/Group Company</label>
+                  <label>Parent Company/Group Company*</label>
                   <input
                     type="text"
                     name="ParentCompany"
                     value={Formvalues.ParentCompany}
                     onChange={handlChange}
                     onFocus={() => handleFocus("ParentCompany")}
+                    placeholder="Parent Company"
                   />
                   {formErrors.ParentCompany && (
                     <div className="error">{formErrors.ParentCompany}</div>
                   )}
                 </div>
                 <div>
-                  <label>Company Registered Address</label>
+                  <label>Company Registered Address*</label>
                   <input
                     type="text"
                     name="companyRegisteredAddress"
                     value={Formvalues.companyRegisteredAddress}
                     onChange={handlChange}
                     onFocus={() => handleFocus("companyRegisteredAddress")}
+                    placeholder="Address"
                   />
 
                   {formErrors.companyRegisteredAddress && (
@@ -789,13 +792,14 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Contact Number</label>
+                  <label>Contact Number*</label>
                   <input
                     type="number"
                     name="ContactNumber"
                     value={Formvalues.ContactNumber}
                     onChange={handlChange}
                     onFocus={() => handleFocus("ContactNumber")}
+                    placeholder="Phone No."
                   />
                   {formErrors.ContactNumber && (
                     <div className="error">{formErrors.ContactNumber}</div>
@@ -804,13 +808,14 @@ const KYC = () => {
               </div>
               <div className="flexItem2">
                 <div>
-                  <label>Email Address</label>
+                  <label>Email Address*</label>
                   <input
                     type="email"
                     name="emailAddress"
                     value={Formvalues.emailAddress}
                     onChange={handlChange}
                     onFocus={() => handleFocus("emailAddress")}
+                    placeholder="Email"
                   />
                   {formErrors.emailAddress && (
                     <div className="error">{formErrors.emailAddress}</div>
@@ -824,6 +829,7 @@ const KYC = () => {
                     value={Formvalues.companyWebsite}
                     onChange={handlChange}
                     onFocus={() => handleFocus("companyWebsite")}
+                    placeholder="Website"
                   />
 
                   {formErrors.companyWebsite && (
@@ -839,6 +845,7 @@ const KYC = () => {
                     value={Formvalues.corporateDomainName}
                     onChange={handlChange}
                     onFocus={() => handleFocus("corporateDomainName")}
+                    placeholder="Domain Name"
                   />
 
                   {formErrors.corporateDomainName && (
@@ -855,6 +862,7 @@ const KYC = () => {
                     value={Formvalues.NumberOfEmployees}
                     onChange={handlChange}
                     onFocus={() => handleFocus("NumberOfEmployees")}
+                    placeholder="Number Of Employees"
                   />
                   {formErrors.NumberOfEmployees && (
                     <div className="error">{formErrors.NumberOfEmployees}</div>
@@ -900,6 +908,7 @@ const KYC = () => {
                     onChange={handlChange}
                     onFocus={() => handleFocus("otherStructure")}
                     disabled={Formvalues.BusinessStructure !== "Others"}
+                    placeholder="Other Structure"
                   />
                   {formErrors.otherStructure && (
                     <div className="error">{formErrors.otherStructure}</div>
@@ -935,6 +944,7 @@ const KYC = () => {
                     onChange={handlChange}
                     onFocus={() => handleFocus("otherBusiness")}
                     disabled={Formvalues.NatureOfBusiness !== "Others"}
+                    placeholder="Other Business"
                   />
                   {formErrors.otherBusiness && (
                     <div className="error">{formErrors.otherBusiness}</div>
@@ -1001,7 +1011,7 @@ const KYC = () => {
                     <option value="KM">Comoros</option>
                     <option value="CG">Congo</option>
                     <option value="CD">
-                      Congo, The Democratic Republic of{" "}
+                      Congo
                     </option>
                     <option value="CK">Cook Islands</option>
                     <option value="CR">Costa Rica</option>
@@ -1055,7 +1065,7 @@ const KYC = () => {
                     <option value="IS">Iceland</option>
                     <option value="IN">India</option>
                     <option value="ID">Indonesia</option>
-                    <option value="IR">Iran, Islamic Republic of</option>
+                    <option value="IR">Iran</option>
                     <option value="IQ">Iraq</option>
                     <option value="IE">Ireland</option>
                     <option value="IM">Isle of Man</option>
@@ -1100,8 +1110,8 @@ const KYC = () => {
                     <option value="MU">Mauritius</option>
                     <option value="YT">Mayotte</option>
                     <option value="MX">Mexico</option>
-                    <option value="FM">Micronesia, Federated States of</option>
-                    <option value="MD">Moldova, Republic of</option>
+                    <option value="FM">Micronesia</option>
+                    <option value="MD">Moldova</option>
                     <option value="MC">Monaco</option>
                     <option value="MN">Mongolia</option>
                     <option value="ME">Montenegro</option>
@@ -1179,7 +1189,7 @@ const KYC = () => {
                     <option value="SY">Syrian Arab Republic</option>
                     <option value="TW">Taiwan, Province of China</option>
                     <option value="TJ">Tajikistan</option>
-                    <option value="TZ">Tanzania, United Republic of</option>
+                    <option value="TZ">Tanzania</option>
                     <option value="TH">Thailand</option>
                     <option value="TL">Timor-Leste</option>
                     <option value="TG">Togo</option>
@@ -1189,7 +1199,7 @@ const KYC = () => {
                     <option value="TN">Tunisia</option>
                     <option value="TR">Turkey</option>
                     <option value="XT">
-                      Turkish Rep N Cyprus (temporary code)
+                      Turkish Rep N Cyprus
                     </option>
                     <option value="TM">Turkmenistan</option>
                     <option value="TC">Turks and Caicos Islands</option>
@@ -1248,6 +1258,7 @@ const KYC = () => {
                     value={Formvalues.companyRegistrationNumber}
                     onChange={handlChange}
                     onFocus={() => handleFocus("companyRegistrationNumber")}
+                    placeholder="Company Registration Number"
                   />
 
                   {formErrors.companyRegistrationNumber && (
@@ -1264,6 +1275,7 @@ const KYC = () => {
                     value={Formvalues.TradeLicenseNumber}
                     onChange={handlChange}
                     onFocus={() => handleFocus("TradeLicenseNumber")}
+                    placeholder="Trade License Number"
                   />
 
                   {formErrors.TradeLicenseNumber && (
@@ -1294,6 +1306,7 @@ const KYC = () => {
                     value={Formvalues.VAT}
                     onChange={handlChange}
                     onFocus={() => handleFocus("VAT")}
+                    placeholder="VAT Registration Number"
                   />
 
                   {formErrors.VAT && (
@@ -1318,6 +1331,7 @@ const KYC = () => {
                     value={Formvalues.BankName}
                     onChange={handlChange}
                     onFocus={() => handleFocus("BankName")}
+                    placeholder="Bank Name"
                   />
                   {formErrors.BankName && (
                     <div className="error">{formErrors.BankName}</div>
@@ -1331,6 +1345,7 @@ const KYC = () => {
                     name="BankBranchAddress"
                     onChange={handlChange}
                     onFocus={() => handleFocus("BankBranchAddress")}
+                    placeholder="Bank Branch Address"
                   />
                   {formErrors.BankBranchAddress && (
                     <div className="error">{formErrors.BankBranchAddress}</div>
@@ -1344,6 +1359,7 @@ const KYC = () => {
                     name="AccountName"
                     onChange={handlChange}
                     onFocus={() => handleFocus("AccountName")}
+                    placeholder="Account Name"
                   />
 
                   {formErrors.AccountName && (
@@ -1358,6 +1374,7 @@ const KYC = () => {
                     name="AccountNumber"
                     onChange={handlChange}
                     onFocus={() => handleFocus("AccountNumber")}
+                    placeholder="Account Number"
                   />
                   {formErrors.AccountNumber && (
                     <div className="error">{formErrors.AccountNumber}</div>
@@ -1371,6 +1388,7 @@ const KYC = () => {
                     name="BankAccountMangersName"
                     onChange={handlChange}
                     onFocus={() => handleFocus("BankAccountMangersName")}
+                    placeholder="Bank Account Mangers Name"
                   />
                   {formErrors.BankAccountMangersName && (
                     <div className="error">
@@ -1386,6 +1404,7 @@ const KYC = () => {
                     name="CorrespondentBankName"
                     onChange={handlChange}
                     onFocus={() => handleFocus("CorrespondentBankName")}
+                    placeholder="Correspondent Bank Name"
                   />
 
                   {formErrors.CorrespondentBankName && (
@@ -1686,6 +1705,7 @@ const KYC = () => {
                     name="SwiftCode"
                     onChange={handlChange}
                     onFocus={() => handleFocus("SwiftCode")}
+                    placeholder="Swift Code"
                   />
 
                   {formErrors.SwiftCode && (
@@ -1713,6 +1733,7 @@ const KYC = () => {
                     value={Formvalues.IBAN}
                     onChange={handlChange}
                     onFocus={() => handleFocus("IBAN")}
+                    placeholder="IBAN/ABA"
                   />
                   {formErrors.IBAN && (
                     <div className="error">{formErrors.IBAN}</div>
@@ -1728,6 +1749,7 @@ const KYC = () => {
                     onFocus={() =>
                       handleFocus("BankAccountManagersContactDetails")
                     }
+                    placeholder="Phone No."
                   />
 
                   {formErrors.BankAccountManagersContactDetails && (
@@ -1738,7 +1760,7 @@ const KYC = () => {
                 </div>
 
                 <div>
-                  <label> Correspondent Bank SWIFT Code</label>
+                  <label>Correspondent Bank SWIFT Code</label>
                   <input
                     type="text"
                     value={Formvalues.CorrespondentBankSwiftCode}
@@ -1747,6 +1769,7 @@ const KYC = () => {
                     onFocus={() =>
                       handleFocus("BankAccountManagersContactDetails")
                     }
+                    placeholder="Correspondent Bank Swift Code"
                   />
 
                   {formErrors.CorrespondentBankSwiftCode && (
@@ -1838,6 +1861,7 @@ const KYC = () => {
                     name="PrimaryContactName"
                     onChange={handlChange}
                     onFocus={() => handleFocus("PrimaryContactName")}
+                    placeholder="Name"
                   />
                   {formErrors.PrimaryContactName && (
                     <div className="error">{formErrors.PrimaryContactName}</div>
@@ -1851,6 +1875,7 @@ const KYC = () => {
                     name="PrimaryContactDesignation"
                     onChange={handlChange}
                     onFocus={() => handleFocus("PrimaryContactDesignation")}
+                    placeholder="Designation"
                   />
                   {formErrors.PrimaryContactDesignation && (
                     <div className="error">
@@ -1866,6 +1891,7 @@ const KYC = () => {
                     value={Formvalues.PrimaryContactPhone}
                     onChange={handlChange}
                     onFocus={() => handleFocus("PrimaryContactPhone")}
+                    placeholder="Phone No."
                   />
 
                   {formErrors.PrimaryContactPhone && (
@@ -1882,6 +1908,7 @@ const KYC = () => {
                     name="PrimaryContactEmail"
                     onChange={handlChange}
                     onFocus={() => handleFocus("PrimaryContactEmail")}
+                    placeholder="Email Address"
                   />
                   {formErrors.PrimaryContactEmail && (
                     <div className="error">
@@ -1900,6 +1927,7 @@ const KYC = () => {
                     name="OperationDepartmentName"
                     onChange={handlChange}
                     onFocus={() => handleFocus("OperationDepartmentName")}
+                    placeholder="Name"
                   />
                   {formErrors.OperationDepartmentName && (
                     <div className="error">
@@ -1915,8 +1943,9 @@ const KYC = () => {
                     name="OperationDepartmentDesignation"
                     onChange={handlChange}
                     onFocus={() =>
-                      handleFocus("OperationDepartmentDesignation")
+                      handleFocus("OperationDepartmentDesignation")                     
                     }
+                    placeholder="Designation"
                   />
                   {formErrors.OperationDepartmentDesignation && (
                     <div className="error">
@@ -1932,6 +1961,7 @@ const KYC = () => {
                     name="OperationDepartMentPhone"
                     onChange={handlChange}
                     onFocus={() => handleFocus("OperationDepartMentPhone")}
+                    placeholder="Phone No."
                   />
 
                   {formErrors.OperationDepartMentPhone && (
@@ -1948,6 +1978,7 @@ const KYC = () => {
                     name="OperationDepartmentEmail"
                     onChange={handlChange}
                     onFocus={() => handleFocus("OperationDepartmentEmail")}
+                    placeholder="Email Address"
                   />
                   {formErrors.OperationDepartmentEmail && (
                     <div className="error">
@@ -1969,6 +2000,7 @@ const KYC = () => {
                     name="CreditNAME"
                     onChange={handlChange}
                     onFocus={() => handleFocus("CreditNAME")}
+                    placeholder="Name"
                   />
                   {formErrors.CreditNAME && (
                     <div className="error">{formErrors.CreditNAME}</div>
@@ -1982,6 +2014,7 @@ const KYC = () => {
                     name="CreditDesignation"
                     onChange={handlChange}
                     onFocus={() => handleFocus("CreditDesignation")}
+                    placeholder="Designation"
                   />
 
                   {formErrors.CreditDesignation && (
@@ -1996,6 +2029,7 @@ const KYC = () => {
                     name="CreditPhone"
                     onChange={handlChange}
                     onFocus={() => handleFocus("CreditPhone")}
+                    placeholder="Phone No."
                   />
                   {formErrors.CreditPhone && (
                     <div className="error">{formErrors.CreditPhone}</div>
@@ -2009,6 +2043,7 @@ const KYC = () => {
                     name="CreditEmail"
                     onChange={handlChange}
                     onFocus={() => handleFocus("CreditEmail")}
+                    placeholder="Email Address"
                   />
                   {formErrors.CreditEmail && (
                     <div className="error">{formErrors.CreditEmail}</div>
@@ -2025,6 +2060,7 @@ const KYC = () => {
                     name="AccountDepartName"
                     onChange={handlChange}
                     onFocus={() => handleFocus("AccountDepartName")}
+                    placeholder="Name"
                   />
                   {formErrors.AccountDepartName && (
                     <div className="error">{formErrors.AccountDepartName}</div>
@@ -2038,6 +2074,7 @@ const KYC = () => {
                     value={Formvalues.AcoountDepartDesignation}
                     onChange={handlChange}
                     onFocus={() => handleFocus("AcoountDepartDesignation")}
+                    placeholder="Designation"
                   />
                   {formErrors.AcoountDepartDesignation && (
                     <div className="error">
@@ -2053,6 +2090,7 @@ const KYC = () => {
                     name="AccountDepartmentPhone"
                     onChange={handlChange}
                     onFocus={() => handleFocus("AccountDepartmentPhone")}
+                    placeholder="Phone No."
                   />
 
                   {formErrors.AccountDepartmentPhone && (
@@ -2069,6 +2107,7 @@ const KYC = () => {
                     name="AccountDepartmentEmail"
                     onChange={handlChange}
                     onFocus={() => handleFocus("AccountDepartmentEmail")}
+                    placeholder="Email Address"
                   />
                   {formErrors.AccountDepartmentEmail && (
                     <div className="error">
@@ -2090,6 +2129,7 @@ const KYC = () => {
                 onChange={handlChange}
                 onFocus={() => handleFocus("ProposedBusiness")}
                 style={{ width: "96%" }}
+                placeholder="Proposed Business"
               />
               {formErrors.ProposedBusiness && (
                 <div className="error">{formErrors.ProposedBusiness}</div>
@@ -2106,6 +2146,7 @@ const KYC = () => {
                 onChange={handlChange}
                 onFocus={() => handleFocus("ContactPerson")}
                 style={{ width: "96%" }}
+                placeholder="Proposed Business"
               />
               {formErrors.ContactPerson && (
                 <div className="error">{formErrors.ContactPerson}</div>
@@ -2318,7 +2359,7 @@ const KYC = () => {
             </div>
             <div style={{ float: "right" }} className="url">
               <label>6) Website URL</label>
-              <input type="url" />
+              <input type="url" placeholder="Website URL"/>
             </div>
             <div>
               <label>7) Bank Reference Letter ( Upon Trade or Request) </label>
@@ -2358,7 +2399,7 @@ const KYC = () => {
 
             <div>
               <label>Authorized Signatory Name </label>
-              <input type="text" />
+              <input type="text" placeholder="Authorized Signatory Name"/>
             </div>
             <div className="submit-btn">
               <button>Submit</button>
