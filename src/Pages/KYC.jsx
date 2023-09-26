@@ -66,6 +66,12 @@ const KYC = () => {
     TradeReferenceEmail2: "",
     TradeReferenceEmail3: "",
     TradeReferenceEmail4: "",
+
+
+    shareHolderName1: "",
+    shareHolderPer1:"",
+    shareHolderCountry1:""
+
   };
 
   const [Formvalues, setFormValues] = useState(initialFormData);
@@ -551,7 +557,7 @@ const KYC = () => {
 
       case "ProposedBusiness":
         if (value.trim() === "") {
-          error = "Designation is required";
+          error = "Required";
         } else if (value.length < 5) {
           error = "Proposed Business must be at least 5 characters long";
         } else if (!/^[a-zA-Z\s]+$/.test(value)) {
@@ -567,6 +573,7 @@ const KYC = () => {
           error = "Contact Person  can only contain letters";
         }
         break;
+
 
 
 // Trade Reference Error Handling
@@ -659,6 +666,32 @@ const KYC = () => {
         }
         break;
 
+
+// ShareHolder section
+case "shareHolderName1":
+  if (value.trim() === "") {
+    error = "Name is required";
+  } else if (value.length < 5) {
+    error = "Name must be at least 5 characters long";
+  } else if (!/^[a-zA-Z\s]+$/.test(value)) {
+    error = "Name can only contain letters";
+  }
+  break;
+
+case  "shareHolderPer1":
+  if (value.trim() === "") {
+    error = "% is required";
+  } else if (value < 1 || value > 100) {
+    error = "% should be between 1 and 100";
+  } 
+  break;
+
+  case "shareHolderCountry1":
+    if (value.trim() === "") {
+      error = "country  is required";
+    }
+    break;
+
       default:
         break;
     }
@@ -711,6 +744,8 @@ const KYC = () => {
     }
   };
 
+
+  // handling Business Structure error to disappear when anyother option is selected except other
   useEffect(() => {
     if (Formvalues.BusinessStructure !== "Others") {
       setFormValues({
@@ -718,9 +753,14 @@ const KYC = () => {
         otherStructure: "", // Reset inputText
         // error: "",
       });
+      setFormErrors({
+        ...formErrors,
+        otherStructure:"",
+      })
     }
   }, [Formvalues.BusinessStructure]);
 
+  // handling nature of business error to disappear when anyother option is selected except other
   useEffect(() => {
     if (Formvalues.NatureOfBusiness !== "Others") {
       setFormValues({
@@ -728,6 +768,10 @@ const KYC = () => {
         otherBusiness: "", // Reset inputText
         // error: "",
       });
+      setFormErrors({
+        ...formErrors,
+        otherBusiness:"",
+      })
     }
   }, [Formvalues.NatureOfBusiness]);
 
@@ -744,7 +788,7 @@ const KYC = () => {
             <div className="infoFlexContainer">
               <div className="flexItem1">
                 <div>
-                  <label>Registered Company Name*</label>
+                  <label>Registered Company Name</label>
                   <input
                     type="text"
                     name="registeredCompanyName"
@@ -760,7 +804,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Parent Company/Group Company*</label>
+                  <label>Parent Company/Group Company</label>
                   <input
                     type="text"
                     name="ParentCompany"
@@ -774,7 +818,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Company Registered Address*</label>
+                  <label>Company Registered Address</label>
                   <input
                     type="text"
                     name="companyRegisteredAddress"
@@ -791,7 +835,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Contact Number*</label>
+                  <label>Contact Number</label>
                   <input
                     type="number"
                     name="ContactNumber"
@@ -1337,84 +1381,6 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Bank Branch Address</label>
-                  <input
-                    type="text"
-                    value={Formvalues.BankBranchAddress}
-                    name="BankBranchAddress"
-                    onChange={handlChange}
-                    onFocus={() => handleFocus("BankBranchAddress")}
-                    placeholder="Bank Branch Address"
-                  />
-                  {formErrors.BankBranchAddress && (
-                    <div className="error">{formErrors.BankBranchAddress}</div>
-                  )}
-                </div>
-                <div>
-                  <label>Account Name </label>
-                  <input
-                    type="text"
-                    value={Formvalues.AccountName}
-                    name="AccountName"
-                    onChange={handlChange}
-                    onFocus={() => handleFocus("AccountName")}
-                    placeholder="Account Name"
-                  />
-
-                  {formErrors.AccountName && (
-                    <div className="error">{formErrors.AccountName}</div>
-                  )}
-                </div>
-                <div>
-                  <label>Account Number </label>
-                  <input
-                    type="text"
-                    value={Formvalues.AccountNumber}
-                    name="AccountNumber"
-                    onChange={handlChange}
-                    onFocus={() => handleFocus("AccountNumber")}
-                    placeholder="Account Number"
-                  />
-                  {formErrors.AccountNumber && (
-                    <div className="error">{formErrors.AccountNumber}</div>
-                  )}
-                </div>
-                <div>
-                  <label>Bank Account Manager's Name</label>
-                  <input
-                    type="text"
-                    value={Formvalues.BankAccountMangersName}
-                    name="BankAccountMangersName"
-                    onChange={handlChange}
-                    onFocus={() => handleFocus("BankAccountMangersName")}
-                    placeholder="Bank Account Mangers Name"
-                  />
-                  {formErrors.BankAccountMangersName && (
-                    <div className="error">
-                      {formErrors.BankAccountMangersName}
-                    </div>
-                  )}
-                </div>
-                <div>
-                  <label>Correspondent Bank Name</label>
-                  <input
-                    type="text"
-                    value={Formvalues.CorrespondentBankName}
-                    name="CorrespondentBankName"
-                    onChange={handlChange}
-                    onFocus={() => handleFocus("CorrespondentBankName")}
-                    placeholder="Correspondent Bank Name"
-                  />
-
-                  {formErrors.CorrespondentBankName && (
-                    <div className="error">
-                      {formErrors.CorrespondentBankName}
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className="flexItem2">
-                <div>
                   <label>Bank Country</label>
                   <select
                     type="text"
@@ -1697,6 +1663,20 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
+                  <label>Bank Branch Address</label>
+                  <input
+                    type="text"
+                    value={Formvalues.BankBranchAddress}
+                    name="BankBranchAddress"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("BankBranchAddress")}
+                    placeholder="Bank Branch Address"
+                  />
+                  {formErrors.BankBranchAddress && (
+                    <div className="error">{formErrors.BankBranchAddress}</div>
+                  )}
+                </div>
+                <div>
                   <label>Swift Code</label>
                   <input
                     type="text"
@@ -1712,6 +1692,21 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
+                  <label>Account Name </label>
+                  <input
+                    type="text"
+                    value={Formvalues.AccountName}
+                    name="AccountName"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("AccountName")}
+                    placeholder="Account Name"
+                  />
+
+                  {formErrors.AccountName && (
+                    <div className="error">{formErrors.AccountName}</div>
+                  )}
+                </div>
+                <div>
                   <label>Account Currency</label>
                   <input
                     type="text"
@@ -1724,7 +1719,24 @@ const KYC = () => {
                     <div className="error">{formErrors.AccountCurrency}</div>
                   )}
                 </div>
-                <div>
+                
+              </div>
+              <div className="flexItem2">
+              <div>
+                  <label>Account Number </label>
+                  <input
+                    type="text"
+                    value={Formvalues.AccountNumber}
+                    name="AccountNumber"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("AccountNumber")}
+                    placeholder="Account Number"
+                  />
+                  {formErrors.AccountNumber && (
+                    <div className="error">{formErrors.AccountNumber}</div>
+                  )}
+                </div>
+              <div>
                   <label>IBAN/ABA</label>
                   <input
                     type="text"
@@ -1736,6 +1748,22 @@ const KYC = () => {
                   />
                   {formErrors.IBAN && (
                     <div className="error">{formErrors.IBAN}</div>
+                  )}
+                </div>
+                <div>
+                  <label>Bank Account Manager's Name</label>
+                  <input
+                    type="text"
+                    value={Formvalues.BankAccountMangersName}
+                    name="BankAccountMangersName"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("BankAccountMangersName")}
+                    placeholder="Bank Account Mangers Name"
+                  />
+                  {formErrors.BankAccountMangersName && (
+                    <div className="error">
+                      {formErrors.BankAccountMangersName}
+                    </div>
                   )}
                 </div>
                 <div>
@@ -1757,6 +1785,24 @@ const KYC = () => {
                     </div>
                   )}
                 </div>
+                <div>
+                  <label>Correspondent Bank Name</label>
+                  <input
+                    type="text"
+                    value={Formvalues.CorrespondentBankName}
+                    name="CorrespondentBankName"
+                    onChange={handlChange}
+                    onFocus={() => handleFocus("CorrespondentBankName")}
+                    placeholder="Correspondent Bank Name"
+                  />
+
+                  {formErrors.CorrespondentBankName && (
+                    <div className="error">
+                      {formErrors.CorrespondentBankName}
+                    </div>
+                  )}
+                </div>
+               
 
                 <div>
                   <label>Correspondent Bank SWIFT Code</label>
@@ -1799,16 +1845,35 @@ const KYC = () => {
               <tbody>
                 <tr>
                   <td>
-                    <input type="text" placeholder="Name 1" />
+                    <input type="text" placeholder="Name 1" name="shareHolderName1" value={Formvalues.shareHolderName1} onChange={handlChange} onFocus={() => handleFocus("shareHolderName1")} /> <span>
+                    {formErrors.shareHolderName1 && (
+                    <div className="error">{formErrors.shareHolderName1}</div>
+                  )}
+                    </span>
+                  </td>
+                  
+                  <td>
+                    <input type="number" placeholder="Percentage 1" value={Formvalues.shareHolderPer1} name="shareHolderPer1" onChange={handlChange} onFocus={() => handleFocus("shareHolderPer1")}/>
+                    <span>
+                    {formErrors.shareHolderPer1 && (
+                    <div className="error">{formErrors.shareHolderPer1}</div>
+                  )}
+
+                    </span>
                   </td>
                   <td>
-                    <input type="number" placeholder="Percentage 1"/>
-                  </td>
-                  <td>
-                    <input type="text" />
+                    <input type="text" value={Formvalues.shareHolderCountry1} name="shareHolderCountry1" onChange={handlChange} onFocus={() => handleFocus("shareHolderCountry1")}  />
+                    <span>
+                    {formErrors.shareHolderCountry1 && (
+                    <div className="error">{formErrors.shareHolderCountry1}</div>
+                  )}
+                    </span>
                   </td>
                 </tr>
-                <tr>
+               
+                
+
+                {/* <tr>
                   <td>
                     <input type="text" placeholder="Name 2"/>
                   </td>
@@ -1840,7 +1905,7 @@ const KYC = () => {
                   <td>
                     <input type="text"  />
                   </td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </div>

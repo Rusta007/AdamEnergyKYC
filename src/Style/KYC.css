@@ -47,6 +47,7 @@ h3 {
   border: none;
   border-radius: 5px;
   width: 630px;
+  padding: 15px 20px;
 }
 
 .flexItem2 input {
@@ -55,6 +56,7 @@ h3 {
   border: none;
   border-radius: 5px;
   width: 630px;
+  padding: 15px 20px;
 }
 td input {
   background-color: #f3f3f3;
@@ -62,6 +64,7 @@ td input {
   border: none;
   border-radius: 5px;
   width: 340px;
+  padding: 15px 20px;
 }
 
 .flexItem1 div {
@@ -77,6 +80,7 @@ td input {
   border: none;
   border-radius: 5px;
   margin: 0px 27px;
+  padding: 15px 20px;
 }
 
 h5 {
@@ -88,6 +92,7 @@ h5 {
   border: none;
   border-radius: 5px;
   width: 300px;
+  padding: 15px 20px;
 }
 .kycDocumentsContainer {
   padding: 4px 19px;
@@ -147,6 +152,7 @@ select {
   border: none;
   border-radius: 5px;
   width: 630px;
+  padding: 15px 20px;
 }
 .CompanyContactDetailContainer input {
   background-color: #f3f3f3;
@@ -154,6 +160,7 @@ select {
   border: none;
   border-radius: 5px;
   width: 630px;
+  padding: 15px 20px;
 }
 
 /* Tab View */
