@@ -1,6 +1,405 @@
 import React, { useEffect, useState } from "react";
 import KycHeader from "../Components/KycHeader";
 import "../Style/KYC.css";
+import ShareHolder from "../Components/ShareHolder";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+
+const countries = [
+  "Select Country",
+  "Afghanistan",
+  "Albania",
+  "Algeria",
+  "Andorra",
+  "Angola",
+  "Antigua and Barbuda",
+  "Argentina",
+  "Armenia",
+  "Australia",
+  "Austria",
+  "Azerbaijan",
+  "Bahamas",
+  "Bahrain",
+  "Bangladesh",
+  "Barbados",
+  "Belarus",
+  "Belgium",
+  "Belize",
+  "Benin",
+  "Bhutan",
+  "Bolivia",
+  "Bosnia and Herzegovina	",
+  "Botswana",
+  "Brazil",
+  "Brunei",
+  "Bulgaria",
+  "Burkina Faso	",
+  "Burundi",
+  "Cabo Verde",
+  "Cambodia",
+  "Cameroon",
+  "Canada",
+  "Central African Republic	",
+  "Chad",
+  "Chile",
+  "China",
+  "Colombia	",
+  "Comoros",
+  "Congo (Congo-Brazzaville)	",
+  "Costa Rica	",
+  "Croatia",
+  "Cuba",
+  "Cyprus",
+  "Denmark	",
+  "Djibouti	",
+  "Dominica",
+  "Dominican Republic	",
+  "Ecuador",
+  "Egypt",
+  "El Salvador",
+  "Equatorial Guinea",
+  "Eritrea	",
+  "Estonia",
+  "Eswatini",
+  "Ethiopia",
+  "Fiji",
+  "Finland",
+  "France",
+  "Gabon",
+  "Gambia",
+  "Georgia",
+  "Germany",
+  "Ghana",
+  "Greece",
+  "Grenada",
+  "Guatemala",
+  "Guinea",
+  "Guinea-Bissau	",
+  "Guyana",
+  "Haiti",
+  "Holy See	",
+  "Honduras",
+  "Hungary",
+  "Iceland",
+  "India",
+  "Indonesia",
+  "Iran",
+  "Iraq",
+  "Ireland",
+  "Israel",
+  "Italy",
+  "Jamaica",
+  "Japan",
+  "Jordan",
+  "Kazakhstan",
+  "Kenya",
+  "Kiribati",
+  "Kuwait",
+  "Kyrgyzstan",
+  "Laos",
+  "Latvia",
+  "Lebanon",
+  "Lesotho",
+  "Liberia",
+  "Libya",
+  "Liechtenstein",
+  "Lithuania",
+  "Luxembourg",
+  "Madagascar",
+  "Malawi",
+  "Malaysia",
+  "Maldives",
+  "Mali",
+  "Malta",
+  "Marshall Islands",
+  "Mauritania",
+  "Mauritius",
+  "Mexico",
+  "Micronesia",
+  "Moldova",
+  "Monaco",
+  "Mongolia",
+  "Montenegro",
+  "Morocco",
+  "Mozambique",
+  "Myanmar ",
+  "Namibia",
+  "Nauru",
+  "Nepal",
+  "Netherlands",
+  "New Zealand	",
+  "Nicaragua",
+  "Niger",
+  "Nigeria",
+  "North Korea	",
+  "North Macedonia	",
+  "Norway",
+  "Oman",
+  "Pakistan",
+  "Palau",
+  "Palestine State	",
+  "Panama	",
+  "Papua New Guinea",
+  "Paraguay",
+  "Peru",
+  "Philippines",
+  "Poland",
+  "Portugal",
+  "Qatar",
+  "Romania",
+  "Russia",
+  "Rwanda",
+  "Saint Kitts and Nevis	",
+  "Saint Lucia	",
+  "Saint Vincent and the Grenadines",
+  "Samoa",
+  "San Marino	",
+  "Sao Tome and Principe	",
+  "Saudi Arabia	",
+  "Senegal",
+  "Serbia	",
+  "Seychelles",
+  "Sierra Leone	",
+  "Singapore",
+  "Slovakia",
+  "Slovenia",
+  "Solomon Islands",
+  "Somalia",
+  "South Africa	",
+  "South Korea",
+  "Spain",
+  "Sri Lanka",
+  "Sudan",
+  "Suriname",
+  "Sweden",
+  "Switzerland",
+  "Syria",
+  "Tajikistan",
+  "Tanzania",
+  "Thailand",
+  "Timor-Leste	",
+  "Togo",
+  "Tonga",
+  "Trinidad and Tobago	",
+  "Tunisia",
+  "Turkey",
+  "Turkmenistan",
+  "Tuvalu",
+  "Uganda",
+  "Ukraine",
+  "United Arab Emirates	",
+  "United Kingdom",
+  "United States of America	",
+  "Uruguay",
+  "Uzbekistan",
+  "Vanuatu",
+  "Venezuela",
+  "Vietnam",
+  "Yemen",
+  "Zambia",
+  "Zimbabwe",
+  // Add more countries here...
+];
+
+const currencies = [
+  
+  "Select Country",
+  "Afghanistan-Afghani",
+"Albania-Lek",
+"Algeria-Dinar",
+"Andorra-Euro",
+"Angola-New Kwanza",
+"Antigua and Barbuda-East Caribbean dollar",
+"Argentina-Peso",
+"Armenia-Dram",
+"Australia-Australian dollar",
+"Austria-Euro ",
+"Azerbaijan-Manat",
+"The Bahamas-Bahamian dollar",
+"Bahrain-Bahrain dinar",
+"Bangladesh-Taka",
+"Barbados-Barbados dollar",
+"Belarus-Belorussian ruble",
+"Belgium-Euro ",
+"Belize-Belize dollar",
+"Benin-CFA Franc",
+"Bhutan-Ngultrum",
+"Bolivia-Boliviano",
+"Bosnia and Herzegovina-Convertible Mark",
+"Botswana-Pula",
+"Brazil-Real",
+"Brunei-Brunei dollar",
+"Bulgaria-Lev",
+"Burkina Faso-CFA Franc",
+"Burundi-Burundi franc",
+"Cambodia-Riel",
+"Cameroon-CFA Franc",
+"Canada-Canadian dollar",
+"Cape Verde-Cape Verdean escudo",
+"Central African Republic-CFA Franc",
+"Chad-CFA Franc",
+"Chile-Chilean Peso",
+"China-Chinese Yuan",
+"Colombia-Colombian Peso",
+"Comoros-Franc",
+"Republic of the Congo-CFA Franc",
+"Zimbabwe-United States dollar",
+"Costa Rica-Colón",
+"Cote d’Ivoire-CFA Franc",
+"Croatia-Croatian",
+"Cuba-Cuban Peso",
+"Cyprus-Euro",
+"Czech Republic-Koruna",
+"Denmark-Danish Krone",
+"Djibouti-Djiboutian franc",
+"Dominica-East Caribbean dollar",
+"Dominican Republic-Dominican Peso",
+"East Timor (Timor-Leste)-U.S. dollar",
+"Ecuador-U.S. dollar",
+"Egypt-Egyptian pound",
+"El Salvador-Colón; U.S. dollar",
+"Equatorial Guinea-CFA Franc",
+"Eritrea-Nakfa",
+"Estonia-Estonia Kroon; Euro",
+"Ethiopia-Birr",
+"Fiji-Fiji dollar",
+"Finland-Euro",
+"France-Euro",
+"Gabon-CFA Franc",
+"The Gambia-Dalasi",
+"Georgia-Lari",
+"Germany-Euro (formerly Deutsche mark)",
+"Ghana-Cedi",
+"Greece-Euro",
+"Grenada-East Caribbean dollar",
+"Guatemala-Quetzal",
+"Guinea-Guinean franc",
+"Guinea-Bissau-CFA Franc",
+"Guyana-Guyanese dollar",
+"Haiti-Gourde",
+"Honduras-Lempira",
+"Hungary-Forint",
+"Iceland-Icelandic króna",
+"India-Indian Rupee",
+"Indonesia-Rupiah",
+"Iran-Rial",
+"Iraq-Iraqi Dinar",
+"Ireland-Euro",
+"Israel-Shekel",
+"Italy-Euro ",
+"Jamaica-Jamaican dollar",
+"Japan-Yen",
+"Jordan-Jordanian dinar",
+"Kazakhstan-Tenge",
+"Kenya-Kenya shilling",
+"Kiribati-Kiribati dollar",
+"North Korea-Won",
+"South Korea-Won",
+"Kuwait-Kuwaiti Dinar",
+"Kyrgyzstan-Som",
+"Laos-New Kip",
+"Latvia-Lats",
+"Lebanon-Lebanese pound",
+"Lesotho-Maluti",
+"Liberia-Liberian dollar",
+"Libya-Libyan dinar",
+"Liechtenstein-Swiss franc",
+"Lithuania-Litas",
+"Luxembourg-Euro",
+"Macedonia-Denar",
+"Madagascar-Malagasy Ariary",
+"Malawi-Kwacha",
+"Malaysia-Ringgit",
+"Maldives-Rufiyaa",
+"Mali-CFA Franc",
+"Malta-Euro",
+"Marshall Islands-U.S. Dollar",
+"Mauritania-Ouguiya",
+"Mauritius-Mauritian rupee",
+"Mexico-Mexican peso",
+"Federated States of Micronesia-U.S. Dollar",
+"Moldova-Leu",
+"Monaco-Euro",
+"Mongolia-Togrog",
+"Montenegro-Euro",
+"Morocco-Dirham",
+"Mozambique-Metical",
+"Myanmar (Burma)-Kyat",
+"Namibia-Namibian dollar",
+"Nauru-Australian dollar",
+"Nepal-Nepalese rupee",
+"Netherlands-Euro",
+"New Zealand-New Zealand dollar",
+"Nicaragua-Gold cordoba",
+"Niger-CFA Franc",
+"Nigeria-Naira",
+"Norway-Norwegian krone",
+"Oman-Omani rial",
+"Pakistan-Pakistani rupee",
+"Palau-U.S. dollar",
+"Palestine-Palestine Pound",
+"Panama-Balboa; U.S. dollar",
+"Papua New Guinea-Kina",
+"Paraguay-Guaraní",
+"Peru-Nuevo sol",
+"Philippines-Peso",
+"Poland-Zloty",
+"Portugal-Euro ",
+"Qatar-Qatari riyal",
+"Romania-Romanian Rupee",
+"Russia-Ruble",
+"Rwanda-Rwandan franc",
+"Saint Kitts and Nevis-East Caribbean dollar",
+"Saint Lucia-East Caribbean dollar",
+"Saint Vincent and the Grenadines-East Caribbean dollar",
+"Samoa-Tala",
+"San Marino-Euro",
+"Sao Tome and Principe-Dobra",
+"Saudi Arabia-Riyal",
+"Senegal-CFA Franc",
+"Serbia-Serbian Dinar",
+"Seychelles-Seychelles rupee",
+"Sierra Leone-Leone",
+"Singapore-Singapore dollar",
+"Slovakia-Euro",
+"Slovenia-Slovenian tolar; euro",
+"Solomon Islands-Solomon Islands dollar",
+"Somalia-Somali shilling",
+"South Africa-Rand",
+"South Sudan-Sudanese Pound",
+"Spain-Euro ",
+"Sri Lanka-Sri Lankan rupee",
+"Sudan-Sudanese Pound",
+"Suriname-Surinamese dollar",
+"Swaziland-Lilangeni",
+"Sweden-Krona",
+"Switzerland-Swiss franc",
+"Syria-Syrian pound",
+"Taiwan-Taiwan dollar",
+"Tajikistan-somoni",
+"Tanzania-Tanzanian shilling",
+"Thailand-Baht",
+"Togo-CFA Franc",
+"Tonga-Pa’anga",
+"Trinidad and Tobago-Trinidad and Tobago dollar",
+"Tunisia-Tunisian dinar",
+"Turkey-Turkish lira (YTL)",
+"Turkmenistan-Manat",
+"Tuvalu-Tuvaluan Dollar",
+"Uganda-Ugandan new shilling",
+"Ukraine-Hryvnia",
+"United Arab Emirates-U.A.E. Dirham",
+"United Kingdom-Pound sterling",
+"United States of America-Dollar",
+"Uruguay-Uruguay peso",
+"Uzbekistan-Uzbekistani sum",
+"Vanuatu-Vatu",
+"Vatican City (Holy See)-Euro",
+"Venezuela-Bolivar",
+"Vietnam-Dong",
+"Yemen-Rial",
+"Zambia-Kwacha"
+]
 
 const KYC = () => {
   const initialFormData = {
@@ -67,11 +466,9 @@ const KYC = () => {
     TradeReferenceEmail3: "",
     TradeReferenceEmail4: "",
 
-
     shareHolderName1: "",
-    shareHolderPer1:"",
-    shareHolderCountry1:""
-
+    shareHolderPer1: "",
+    shareHolderCountry1: "",
   };
 
   const [Formvalues, setFormValues] = useState(initialFormData);
@@ -142,8 +539,6 @@ const KYC = () => {
       case "ContactNumber":
         if (value.trim() === "") {
           error = "Contact Number is required";
-        } else if (value.length < 10) {
-          error = "Contact Number must be at least 10 characters long";
         }
 
         break;
@@ -324,7 +719,7 @@ const KYC = () => {
           if (value.length < 5) {
             error =
               "Bank Account Mangers Name must be at least 5 characters long";
-          } else if (!/^[a-zA-Z\s]+$/.test(value)) {
+          } else if (!/^[a-zA-Z\s.']+$/.test(value)) {
             error = "Bank Account Mangers Name can only contain letters";
           }
         }
@@ -364,11 +759,7 @@ const KYC = () => {
       case "AccountCurrency":
         if (value.trim() === "") {
           error = "Account Currency is required";
-        } else if (value.length < 5) {
-          error = "Account Currency must be at least 3 characters long";
-        } else if (!/^[a-zA-Z]+$/.test(value)) {
-          error = "Account Currency can only contain letters";
-        }
+        } 
         break;
       case "IBAN":
         if (value.trim() === "") {
@@ -413,7 +804,7 @@ const KYC = () => {
           error = "Primary Contact Name is required";
         } else if (value.length < 3) {
           error = "Primary Contact Name must be at least 5 characters long";
-        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
+        } else if (!/^[a-zA-Z\s.']+$/.test(value)) {
           error = "Primary Contac tName can only contain letters";
         }
         break;
@@ -440,8 +831,6 @@ const KYC = () => {
       case "PrimaryContactPhone":
         if (value.trim() === "") {
           error = "Invalid";
-        } else if (value.length < 10) {
-          error = "Contact Number must be at least 10 characters long";
         }
         break;
       case "OperationDepartmentName":
@@ -449,7 +838,7 @@ const KYC = () => {
           error = "Name is required";
         } else if (value.length < 5) {
           error = "Name must be at least 5 characters long";
-        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
+        } else if (!/^[a-zA-Z\s.']+$/.test(value)) {
           error = "Name can only contain letters";
         }
         break;
@@ -466,8 +855,6 @@ const KYC = () => {
       case "OperationDepartMentPhone":
         if (value.trim() === "") {
           error = "Invalid";
-        } else if (value.length < 10) {
-          error = "Contact Number must be at least 10 characters long";
         }
         break;
       case "OperationDepartmentEmail":
@@ -485,7 +872,7 @@ const KYC = () => {
           error = "Name is required";
         } else if (value.length < 5) {
           error = "Name must be at least 5 characters long";
-        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
+        } else if (!/^[a-zA-Z\s.']+$/.test(value)) {
           error = "Name can only contain letters";
         }
         break;
@@ -503,8 +890,6 @@ const KYC = () => {
       case "CreditPhone":
         if (value.trim() === "") {
           error = "Invalid";
-        } else if (value.length < 10) {
-          error = "Contact Number must be at least 10 characters long";
         }
         break;
       case "CreditEmail":
@@ -521,7 +906,7 @@ const KYC = () => {
           error = "Name is required";
         } else if (value.length < 5) {
           error = "Name must be at least 5 characters long";
-        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
+        } else if (!/^[a-zA-Z\s.']+$/.test(value)) {
           error = "Name can only contain letters";
         }
 
@@ -540,8 +925,6 @@ const KYC = () => {
       case "AccountDepartmentPhone":
         if (value.trim() === "") {
           error = "Invalid";
-        } else if (value.length < 10) {
-          error = "Contact Number must be at least 10 characters long";
         }
         break;
 
@@ -569,21 +952,19 @@ const KYC = () => {
           error = "Contact Person is required";
         } else if (value.length < 5) {
           error = "Contact Person must be at least 5 characters long";
-        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
+        } else if (!/^[a-zA-Z\s.']+$/.test(value)) {
           error = "Contact Person  can only contain letters";
         }
         break;
 
-
-
-// Trade Reference Error Handling
+      // Trade Reference Error Handling
 
       case "TradeReferenceEmail1":
         if (Formvalues.TradeReferenceName1) {
           if (Formvalues.TradeReferenceName1.length < 5) {
             error = "Name must be at least 5 characters long ";
           }
-          if (!/^[a-zA-Z\s]+$/.test(Formvalues.TradeReferenceName1)) {
+          if (!/^[a-zA-Z\s.']+$/.test(Formvalues.TradeReferenceName1)) {
             error = "Name can only contain letters";
           }
           if (value.trim() === "" && !Formvalues.TradeReferencePhone1) {
@@ -605,7 +986,7 @@ const KYC = () => {
           if (Formvalues.TradeReferenceName2.length < 5) {
             error = "Name must be at least 5 characters long ";
           }
-          if (!/^[a-zA-Z\s]+$/.test(Formvalues.TradeReferenceName2)) {
+          if (!/^[a-zA-Z\s.']+$/.test(Formvalues.TradeReferenceName2)) {
             error = "Name can only contain letters";
           }
           if (value.trim() === "" && !Formvalues.TradeReferencePhone2) {
@@ -627,7 +1008,7 @@ const KYC = () => {
           if (Formvalues.TradeReferenceName3.length < 5) {
             error = "Name must be at least 5 characters long ";
           }
-          if (!/^[a-zA-Z\s]+$/.test(Formvalues.TradeReferenceName3)) {
+          if (!/^[a-zA-Z\s.']+$/.test(Formvalues.TradeReferenceName3)) {
             error = "Name can only contain letters";
           }
           if (value.trim() === "" && !Formvalues.TradeReferencePhone3) {
@@ -649,7 +1030,7 @@ const KYC = () => {
           if (Formvalues.TradeReferenceName4.length < 5) {
             error = "Name must be at least 5 characters long ";
           }
-          if (!/^[a-zA-Z\s]+$/.test(Formvalues.TradeReferenceName4)) {
+          if (!/^[a-zA-Z\s.']+$/.test(Formvalues.TradeReferenceName4)) {
             error = "Name can only contain letters";
           }
           if (value.trim() === "" && !Formvalues.TradeReferencePhone4) {
@@ -666,31 +1047,7 @@ const KYC = () => {
         }
         break;
 
-
-// ShareHolder section
-case "shareHolderName1":
-  if (value.trim() === "") {
-    error = "Name is required";
-  } else if (value.length < 5) {
-    error = "Name must be at least 5 characters long";
-  } else if (!/^[a-zA-Z\s]+$/.test(value)) {
-    error = "Name can only contain letters";
-  }
-  break;
-
-case  "shareHolderPer1":
-  if (value.trim() === "") {
-    error = "% is required";
-  } else if (value < 1 || value > 100) {
-    error = "% should be between 1 and 100";
-  } 
-  break;
-
-  case "shareHolderCountry1":
-    if (value.trim() === "") {
-      error = "country  is required";
-    }
-    break;
+      // ShareHolder section
 
       default:
         break;
@@ -744,7 +1101,6 @@ case  "shareHolderPer1":
     }
   };
 
-
   // handling Business Structure error to disappear when anyother option is selected except other
   useEffect(() => {
     if (Formvalues.BusinessStructure !== "Others") {
@@ -755,8 +1111,8 @@ case  "shareHolderPer1":
       });
       setFormErrors({
         ...formErrors,
-        otherStructure:"",
-      })
+        otherStructure: "",
+      });
     }
   }, [Formvalues.BusinessStructure]);
 
@@ -770,16 +1126,92 @@ case  "shareHolderPer1":
       });
       setFormErrors({
         ...formErrors,
-        otherBusiness:"",
-      })
+        otherBusiness: "",
+      });
     }
   }, [Formvalues.NatureOfBusiness]);
+
+
+  useEffect(() => {
+    if (Formvalues.TradeReferenceName1 === "") {
+      setFormValues({
+        ...Formvalues,
+        TradeReferenceEmail1: "",
+        TradeReferencePhone1:""
+         // Reset inputText
+        // error: "",
+      });
+      setFormErrors({
+        ...formErrors,
+        TradeReferenceEmail1: "",
+        TradeReferencePhone1:""
+      });
+    }
+  }, [Formvalues.TradeReferenceName1]);
+
+
+
+  useEffect(() => {
+    if (Formvalues.TradeReferenceName2 === "") {
+      setFormValues({
+        ...Formvalues,
+        TradeReferenceEmail2: "",
+        TradeReferencePhone2:""
+         // Reset inputText
+        // error: "",
+      });
+      setFormErrors({
+        ...formErrors,
+        TradeReferenceEmail2: "",
+        TradeReferencePhone2:""
+      });
+    }
+  }, [Formvalues.TradeReferenceName2]);
+
+  useEffect(() => {
+    if (Formvalues.TradeReferenceName3 === "") {
+      setFormValues({
+        ...Formvalues,
+        TradeReferenceEmail3: "",
+        TradeReferencePhone3:""
+         // Reset inputText
+        // error: "",
+      });
+      setFormErrors({
+        ...formErrors,
+        TradeReferenceEmail3: "",
+        TradeReferencePhone3:""
+      });
+    }
+  }, [Formvalues.TradeReferenceName3]);
+
+
+  useEffect(() => {
+    if (Formvalues.TradeReferenceName4 === "") {
+      setFormValues({
+        ...Formvalues,
+        TradeReferenceEmail4: "",
+        TradeReferencePhone4:""
+         // Reset inputText
+        // error: "",
+      });
+      setFormErrors({
+        ...formErrors,
+        TradeReferenceEmail4: "",
+        TradeReferencePhone4:""
+      });
+    }
+  }, [Formvalues.TradeReferenceName4]);
+
+
+
+
 
   return (
     <>
       <KycHeader />
       {/* KYC FORM */}
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="kycContainer">
           {/* Company Information Container */}
 
@@ -834,15 +1266,23 @@ case  "shareHolderPer1":
                     </div>
                   )}
                 </div>
-                <div>
+                <div className="contactNumber-company">
                   <label>Contact Number</label>
-                  <input
-                    type="number"
-                    name="ContactNumber"
+                  <PhoneInput
+                    country={"ae"}
                     value={Formvalues.ContactNumber}
-                    onChange={handlChange}
                     onFocus={() => handleFocus("ContactNumber")}
                     placeholder="Phone No."
+                    onChange={(value) => {
+                      setFormValues({
+                        ...Formvalues,
+                        ContactNumber: value,
+                      });
+                      setFormErrors({
+                        ...formErrors,
+                        ContactNumber: "",
+                      });
+                    }}
                   />
                   {formErrors.ContactNumber && (
                     <div className="error">{formErrors.ContactNumber}</div>
@@ -1001,272 +1441,11 @@ case  "shareHolderPer1":
                     onChange={handlChange}
                     onFocus={() => handleFocus("countryOfIncorporation")}
                   >
-                    <option value="">Select a country</option>
-                    <option value="AF">Afghanistan</option>
-                    <option value="AX">Aland Islands</option>
-                    <option value="AL">Albania</option>
-                    <option value="DZ">Algeria</option>
-                    <option value="AS">American Samoa</option>
-                    <option value="AD">Andorra</option>
-                    <option value="AO">Angola</option>
-                    <option value="AI">Anguilla</option>
-                    <option value="AQ">Antarctica</option>
-                    <option value="AG">Antigua and Barbuda</option>
-                    <option value="AR">Argentina</option>
-                    <option value="AM">Armenia</option>
-                    <option value="AW">Aruba</option>
-                    <option value="AU">Australia</option>
-                    <option value="AT">Austria</option>
-                    <option value="AZ">Azerbaijan</option>
-                    <option value="BS">Bahamas</option>
-                    <option value="BH">Bahrain</option>
-                    <option value="BD">Bangladesh</option>
-                    <option value="BB">Barbados</option>
-                    <option value="BY">Belarus</option>
-                    <option value="BE">Belgium</option>
-                    <option value="BZ">Belize</option>
-                    <option value="BJ">Benin</option>
-                    <option value="BM">Bermuda</option>
-                    <option value="BT">Bhutan</option>
-                    <option value="BO">Bolivia</option>
-                    <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
-                    <option value="BA">Bosnia and Herzegovina</option>
-                    <option value="BW">Botswana</option>
-                    <option value="BV">Bouvet Island</option>
-                    <option value="BR">Brazil</option>
-                    <option value="IO">British Indian Ocean Territory</option>
-                    <option value="BN">Brunei Darussalam</option>
-                    <option value="BG">Bulgaria</option>
-                    <option value="BF">Burkina Faso</option>
-                    <option value="BI">Burundi</option>
-                    <option value="KH">Cambodia</option>
-                    <option value="CM">Cameroon</option>
-                    <option value="CA">Canada</option>
-                    <option value="CV">Cape Verde</option>
-                    <option value="KY">Cayman Islands</option>
-                    <option value="CF">Central African Republic</option>
-                    <option value="TD">Chad</option>
-                    <option value="CL">Chile</option>
-                    <option value="CN">China</option>
-                    <option value="CX">Christmas Island</option>
-                    <option value="CC">Cocos (Keeling) Islands</option>
-                    <option value="CO">Colombia</option>
-                    <option value="KM">Comoros</option>
-                    <option value="CG">Congo</option>
-                    <option value="CD">
-                      Congo
-                    </option>
-                    <option value="CK">Cook Islands</option>
-                    <option value="CR">Costa Rica</option>
-                    <option value="CI">Cote d'Ivoire</option>
-                    <option value="HR">Croatia</option>
-                    <option value="CU">Cuba</option>
-                    <option value="CW">Curaçao</option>
-                    <option value="CY">Cyprus</option>
-                    <option value="CZ">Czechia</option>
-                    <option value="DK">Denmark</option>
-                    <option value="DJ">Djibouti</option>
-                    <option value="DM">Dominica</option>
-                    <option value="DO">Dominican Republic</option>
-                    <option value="EC">Ecuador</option>
-                    <option value="EG">Egypt</option>
-                    <option value="SV">El Salvador</option>
-                    <option value="GQ">Equatorial Guinea</option>
-                    <option value="ER">Eritrea</option>
-                    <option value="EE">Estonia</option>
-                    <option value="ET">Ethiopia</option>
-                    <option value="FK">Falkland Islands (Malvinas)</option>
-                    <option value="FO">Faroe Islands</option>
-                    <option value="FJ">Fiji</option>
-                    <option value="FI">Finland</option>
-                    <option value="FR">France</option>
-                    <option value="GF">French Guiana</option>
-                    <option value="PF">French Polynesia</option>
-                    <option value="TF">French Southern Territories</option>
-                    <option value="GA">Gabon</option>
-                    <option value="GM">Gambia</option>
-                    <option value="GE">Georgia</option>
-                    <option value="DE">Germany</option>
-                    <option value="GH">Ghana</option>
-                    <option value="GI">Gibraltar</option>
-                    <option value="GR">Greece</option>
-                    <option value="GL">Greenland</option>
-                    <option value="GD">Grenada</option>
-                    <option value="GP">Guadeloupe</option>
-                    <option value="GU">Guam</option>
-                    <option value="GT">Guatemala</option>
-                    <option value="GG">Guernsey</option>
-                    <option value="GN">Guinea</option>
-                    <option value="GW">Guinea-Bissau</option>
-                    <option value="GY">Guyana</option>
-                    <option value="HT">Haiti</option>
-                    <option value="HM">Heard and Mc Donald Islands</option>
-                    <option value="VA">Holy See (Vatican City State)</option>
-                    <option value="HN">Honduras</option>
-                    <option value="HK">Hong Kong</option>
-                    <option value="HU">Hungary</option>
-                    <option value="IS">Iceland</option>
-                    <option value="IN">India</option>
-                    <option value="ID">Indonesia</option>
-                    <option value="IR">Iran</option>
-                    <option value="IQ">Iraq</option>
-                    <option value="IE">Ireland</option>
-                    <option value="IM">Isle of Man</option>
-                    <option value="IL">Israel</option>
-                    <option value="IT">Italy</option>
-                    <option value="JM">Jamaica</option>
-                    <option value="JP">Japan</option>
-                    <option value="JE">Jersey</option>
-                    <option value="JO">Jordan</option>
-                    <option value="KZ">Kazakstan</option>
-                    <option value="KE">Kenya</option>
-                    <option value="KI">Kiribati</option>
-                    <option value="KP">
-                      Korea, Democratic People's Republic of
-                    </option>
-                    <option value="KR">Korea, Republic of</option>
-                    <option value="XK">Kosovo (temporary code)</option>
-                    <option value="KW">Kuwait</option>
-                    <option value="KG">Kyrgyzstan</option>
-                    <option value="LA">
-                      Lao, People's Democratic Republic
-                    </option>
-                    <option value="LV">Latvia</option>
-                    <option value="LB">Lebanon</option>
-                    <option value="LS">Lesotho</option>
-                    <option value="LR">Liberia</option>
-                    <option value="LY">Libyan Arab Jamahiriya</option>
-                    <option value="LI">Liechtenstein</option>
-                    <option value="LT">Lithuania</option>
-                    <option value="LU">Luxembourg</option>
-                    <option value="MO">Macao</option>
-                    <option value="MK">Macedonia</option>
-                    <option value="MG">Madagascar</option>
-                    <option value="MW">Malawi</option>
-                    <option value="MY">Malaysia</option>
-                    <option value="MV">Maldives</option>
-                    <option value="ML">Mali</option>
-                    <option value="MT">Malta</option>
-                    <option value="MH">Marshall Islands</option>
-                    <option value="MQ">Martinique</option>
-                    <option value="MR">Mauritania</option>
-                    <option value="MU">Mauritius</option>
-                    <option value="YT">Mayotte</option>
-                    <option value="MX">Mexico</option>
-                    <option value="FM">Micronesia</option>
-                    <option value="MD">Moldova</option>
-                    <option value="MC">Monaco</option>
-                    <option value="MN">Mongolia</option>
-                    <option value="ME">Montenegro</option>
-                    <option value="MS">Montserrat</option>
-                    <option value="MA">Morocco</option>
-                    <option value="MZ">Mozambique</option>
-                    <option value="MM">Myanmar</option>
-                    <option value="NA">Namibia</option>
-                    <option value="NR">Nauru</option>
-                    <option value="NP">Nepal</option>
-                    <option value="NL">Netherlands</option>
-                    <option value="AN">Netherlands Antilles</option>
-                    <option value="NC">New Caledonia</option>
-                    <option value="NZ">New Zealand</option>
-                    <option value="NI">Nicaragua</option>
-                    <option value="NE">Niger</option>
-                    <option value="NG">Nigeria</option>
-                    <option value="NU">Niue</option>
-                    <option value="NF">Norfolk Island</option>
-                    <option value="MP">Northern Mariana Islands</option>
-                    <option value="NO">Norway</option>
-                    <option value="OM">Oman</option>
-                    <option value="PK">Pakistan</option>
-                    <option value="PW">Palau</option>
-                    <option value="PS">Palestinian Territory, Occupied</option>
-                    <option value="PA">Panama</option>
-                    <option value="PG">Papua New Guinea</option>
-                    <option value="PY">Paraguay</option>
-                    <option value="PE">Peru</option>
-                    <option value="PH">Philippines</option>
-                    <option value="PN">Pitcairn</option>
-                    <option value="PL">Poland</option>
-                    <option value="PT">Portugal</option>
-                    <option value="PR">Puerto Rico</option>
-                    <option value="QA">Qatar</option>
-                    <option value="RS">Republic of Serbia</option>
-                    <option value="RE">Reunion</option>
-                    <option value="RO">Romania</option>
-                    <option value="RU">Russia Federation</option>
-                    <option value="RW">Rwanda</option>
-                    <option value="BL">Saint Barthélemy</option>
-                    <option value="SH">Saint Helena</option>
-                    <option value="KN">Saint Kitts & Nevis</option>
-                    <option value="LC">Saint Lucia</option>
-                    <option value="MF">Saint Martin</option>
-                    <option value="PM">Saint Pierre and Miquelon</option>
-                    <option value="VC">Saint Vincent and the Grenadines</option>
-                    <option value="WS">Samoa</option>
-                    <option value="SM">San Marino</option>
-                    <option value="ST">Sao Tome and Principe</option>
-                    <option value="SA">Saudi Arabia</option>
-                    <option value="SN">Senegal</option>
-                    <option value="CS">Serbia and Montenegro</option>
-                    <option value="SC">Seychelles</option>
-                    <option value="SL">Sierra Leone</option>
-                    <option value="SG">Singapore</option>
-                    <option value="SX">Sint Maarten</option>
-                    <option value="SK">Slovakia</option>
-                    <option value="SI">Slovenia</option>
-                    <option value="SB">Solomon Islands</option>
-                    <option value="SO">Somalia</option>
-                    <option value="ZA">South Africa</option>
-                    <option value="GS">
-                      South Georgia & The South Sandwich Islands
-                    </option>
-                    <option value="SS">South Sudan</option>
-                    <option value="ES">Spain</option>
-                    <option value="LK">Sri Lanka</option>
-                    <option value="SD">Sudan</option>
-                    <option value="SR">Suriname</option>
-                    <option value="SJ">Svalbard and Jan Mayen</option>
-                    <option value="SZ">Swaziland</option>
-                    <option value="SE">Sweden</option>
-                    <option value="CH">Switzerland</option>
-                    <option value="SY">Syrian Arab Republic</option>
-                    <option value="TW">Taiwan, Province of China</option>
-                    <option value="TJ">Tajikistan</option>
-                    <option value="TZ">Tanzania</option>
-                    <option value="TH">Thailand</option>
-                    <option value="TL">Timor-Leste</option>
-                    <option value="TG">Togo</option>
-                    <option value="TK">Tokelau</option>
-                    <option value="TO">Tonga</option>
-                    <option value="TT">Trinidad and Tobago</option>
-                    <option value="TN">Tunisia</option>
-                    <option value="TR">Turkey</option>
-                    <option value="XT">
-                      Turkish Rep N Cyprus
-                    </option>
-                    <option value="TM">Turkmenistan</option>
-                    <option value="TC">Turks and Caicos Islands</option>
-                    <option value="TV">Tuvalu</option>
-                    <option value="UG">Uganda</option>
-                    <option value="UA">Ukraine</option>
-                    <option value="AE">United Arab Emirates</option>
-                    <option value="GB">United Kingdom</option>
-                    <option value="US">United States</option>
-                    <option value="UM">
-                      United States Minor Outlying Islands
-                    </option>
-                    <option value="UY">Uruguay</option>
-                    <option value="UZ">Uzbekistan</option>
-                    <option value="VU">Vanuatu</option>
-                    <option value="VE">Venezuela</option>
-                    <option value="VN">Vietnam</option>
-                    <option value="VG">Virgin Islands, British</option>
-                    <option value="VI">Virgin Islands, U.S.</option>
-                    <option value="WF">Wallis and Futuna</option>
-                    <option value="EH">Western Sahara</option>
-                    <option value="YE">Yemen</option>
-                    <option value="ZM">Zambia</option>
-                    <option value="ZW">Zimbabwe</option>
+                    {countries.map((country, i) => (
+                      <option key={i} value={country}>
+                        {country}
+                      </option>
+                    ))}
                   </select>
 
                   {formErrors.countryOfIncorporation && (
@@ -1389,274 +1568,11 @@ case  "shareHolderPer1":
                     onChange={handlChange}
                     onFocus={() => handleFocus("BankCountry")}
                   >
-                    <option value="">Select a country</option>
-                    <option value="AF">Afghanistan</option>
-                    <option value="AX">Aland Islands</option>
-                    <option value="AL">Albania</option>
-                    <option value="DZ">Algeria</option>
-                    <option value="AS">American Samoa</option>
-                    <option value="AD">Andorra</option>
-                    <option value="AO">Angola</option>
-                    <option value="AI">Anguilla</option>
-                    <option value="AQ">Antarctica</option>
-                    <option value="AG">Antigua and Barbuda</option>
-                    <option value="AR">Argentina</option>
-                    <option value="AM">Armenia</option>
-                    <option value="AW">Aruba</option>
-                    <option value="AU">Australia</option>
-                    <option value="AT">Austria</option>
-                    <option value="AZ">Azerbaijan</option>
-                    <option value="BS">Bahamas</option>
-                    <option value="BH">Bahrain</option>
-                    <option value="BD">Bangladesh</option>
-                    <option value="BB">Barbados</option>
-                    <option value="BY">Belarus</option>
-                    <option value="BE">Belgium</option>
-                    <option value="BZ">Belize</option>
-                    <option value="BJ">Benin</option>
-                    <option value="BM">Bermuda</option>
-                    <option value="BT">Bhutan</option>
-                    <option value="BO">Bolivia</option>
-                    <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
-                    <option value="BA">Bosnia and Herzegovina</option>
-                    <option value="BW">Botswana</option>
-                    <option value="BV">Bouvet Island</option>
-                    <option value="BR">Brazil</option>
-                    <option value="IO">British Indian Ocean Territory</option>
-                    <option value="BN">Brunei Darussalam</option>
-                    <option value="BG">Bulgaria</option>
-                    <option value="BF">Burkina Faso</option>
-                    <option value="BI">Burundi</option>
-                    <option value="KH">Cambodia</option>
-                    <option value="CM">Cameroon</option>
-                    <option value="CA">Canada</option>
-                    <option value="CV">Cape Verde</option>
-                    <option value="KY">Cayman Islands</option>
-                    <option value="CF">Central African Republic</option>
-                    <option value="TD">Chad</option>
-                    <option value="CL">Chile</option>
-                    <option value="CN">China</option>
-                    <option value="CX">Christmas Island</option>
-                    <option value="CC">Cocos (Keeling) Islands</option>
-                    <option value="CO">Colombia</option>
-                    <option value="KM">Comoros</option>
-                    <option value="CG">Congo</option>
-                    <option value="CD">
-                      Congo, The Democratic Republic of{" "}
-                    </option>
-                    <option value="CK">Cook Islands</option>
-                    <option value="CR">Costa Rica</option>
-                    <option value="CI">Cote d'Ivoire</option>
-                    <option value="HR">Croatia</option>
-                    <option value="CU">Cuba</option>
-                    <option value="CW">Curaçao</option>
-                    <option value="CY">Cyprus</option>
-                    <option value="CZ">Czechia</option>
-                    <option value="DK">Denmark</option>
-                    <option value="DJ">Djibouti</option>
-                    <option value="DM">Dominica</option>
-                    <option value="DO">Dominican Republic</option>
-                    <option value="EC">Ecuador</option>
-                    <option value="EG">Egypt</option>
-                    <option value="SV">El Salvador</option>
-                    <option value="GQ">Equatorial Guinea</option>
-                    <option value="ER">Eritrea</option>
-                    <option value="EE">Estonia</option>
-                    <option value="ET">Ethiopia</option>
-                    <option value="FK">Falkland Islands (Malvinas)</option>
-                    <option value="FO">Faroe Islands</option>
-                    <option value="FJ">Fiji</option>
-                    <option value="FI">Finland</option>
-                    <option value="FR">France</option>
-                    <option value="GF">French Guiana</option>
-                    <option value="PF">French Polynesia</option>
-                    <option value="TF">French Southern Territories</option>
-                    <option value="GA">Gabon</option>
-                    <option value="GM">Gambia</option>
-                    <option value="GE">Georgia</option>
-                    <option value="DE">Germany</option>
-                    <option value="GH">Ghana</option>
-                    <option value="GI">Gibraltar</option>
-                    <option value="GR">Greece</option>
-                    <option value="GL">Greenland</option>
-                    <option value="GD">Grenada</option>
-                    <option value="GP">Guadeloupe</option>
-                    <option value="GU">Guam</option>
-                    <option value="GT">Guatemala</option>
-                    <option value="GG">Guernsey</option>
-                    <option value="GN">Guinea</option>
-                    <option value="GW">Guinea-Bissau</option>
-                    <option value="GY">Guyana</option>
-                    <option value="HT">Haiti</option>
-                    <option value="HM">Heard and Mc Donald Islands</option>
-                    <option value="VA">Holy See (Vatican City State)</option>
-                    <option value="HN">Honduras</option>
-                    <option value="HK">Hong Kong</option>
-                    <option value="HU">Hungary</option>
-                    <option value="IS">Iceland</option>
-                    <option value="IN">India</option>
-                    <option value="ID">Indonesia</option>
-                    <option value="IR">Iran, Islamic Republic of</option>
-                    <option value="IQ">Iraq</option>
-                    <option value="IE">Ireland</option>
-                    <option value="IM">Isle of Man</option>
-                    <option value="IL">Israel</option>
-                    <option value="IT">Italy</option>
-                    <option value="JM">Jamaica</option>
-                    <option value="JP">Japan</option>
-                    <option value="JE">Jersey</option>
-                    <option value="JO">Jordan</option>
-                    <option value="KZ">Kazakstan</option>
-                    <option value="KE">Kenya</option>
-                    <option value="KI">Kiribati</option>
-                    <option value="KP">
-                      Korea, Democratic People's Republic of
-                    </option>
-                    <option value="KR">Korea, Republic of</option>
-                    <option value="XK">Kosovo (temporary code)</option>
-                    <option value="KW">Kuwait</option>
-                    <option value="KG">Kyrgyzstan</option>
-                    <option value="LA">
-                      Lao, People's Democratic Republic
-                    </option>
-                    <option value="LV">Latvia</option>
-                    <option value="LB">Lebanon</option>
-                    <option value="LS">Lesotho</option>
-                    <option value="LR">Liberia</option>
-                    <option value="LY">Libyan Arab Jamahiriya</option>
-                    <option value="LI">Liechtenstein</option>
-                    <option value="LT">Lithuania</option>
-                    <option value="LU">Luxembourg</option>
-                    <option value="MO">Macao</option>
-                    <option value="MK">
-                      Macedonia, The Former Yugoslav Republic Of
-                    </option>
-                    <option value="MG">Madagascar</option>
-                    <option value="MW">Malawi</option>
-                    <option value="MY">Malaysia</option>
-                    <option value="MV">Maldives</option>
-                    <option value="ML">Mali</option>
-                    <option value="MT">Malta</option>
-                    <option value="MH">Marshall Islands</option>
-                    <option value="MQ">Martinique</option>
-                    <option value="MR">Mauritania</option>
-                    <option value="MU">Mauritius</option>
-                    <option value="YT">Mayotte</option>
-                    <option value="MX">Mexico</option>
-                    <option value="FM">Micronesia, Federated States of</option>
-                    <option value="MD">Moldova, Republic of</option>
-                    <option value="MC">Monaco</option>
-                    <option value="MN">Mongolia</option>
-                    <option value="ME">Montenegro</option>
-                    <option value="MS">Montserrat</option>
-                    <option value="MA">Morocco</option>
-                    <option value="MZ">Mozambique</option>
-                    <option value="MM">Myanmar</option>
-                    <option value="NA">Namibia</option>
-                    <option value="NR">Nauru</option>
-                    <option value="NP">Nepal</option>
-                    <option value="NL">Netherlands</option>
-                    <option value="AN">Netherlands Antilles</option>
-                    <option value="NC">New Caledonia</option>
-                    <option value="NZ">New Zealand</option>
-                    <option value="NI">Nicaragua</option>
-                    <option value="NE">Niger</option>
-                    <option value="NG">Nigeria</option>
-                    <option value="NU">Niue</option>
-                    <option value="NF">Norfolk Island</option>
-                    <option value="MP">Northern Mariana Islands</option>
-                    <option value="NO">Norway</option>
-                    <option value="OM">Oman</option>
-                    <option value="PK">Pakistan</option>
-                    <option value="PW">Palau</option>
-                    <option value="PS">Palestinian Territory, Occupied</option>
-                    <option value="PA">Panama</option>
-                    <option value="PG">Papua New Guinea</option>
-                    <option value="PY">Paraguay</option>
-                    <option value="PE">Peru</option>
-                    <option value="PH">Philippines</option>
-                    <option value="PN">Pitcairn</option>
-                    <option value="PL">Poland</option>
-                    <option value="PT">Portugal</option>
-                    <option value="PR">Puerto Rico</option>
-                    <option value="QA">Qatar</option>
-                    <option value="RS">Republic of Serbia</option>
-                    <option value="RE">Reunion</option>
-                    <option value="RO">Romania</option>
-                    <option value="RU">Russia Federation</option>
-                    <option value="RW">Rwanda</option>
-                    <option value="BL">Saint Barthélemy</option>
-                    <option value="SH">Saint Helena</option>
-                    <option value="KN">Saint Kitts & Nevis</option>
-                    <option value="LC">Saint Lucia</option>
-                    <option value="MF">Saint Martin</option>
-                    <option value="PM">Saint Pierre and Miquelon</option>
-                    <option value="VC">Saint Vincent and the Grenadines</option>
-                    <option value="WS">Samoa</option>
-                    <option value="SM">San Marino</option>
-                    <option value="ST">Sao Tome and Principe</option>
-                    <option value="SA">Saudi Arabia</option>
-                    <option value="SN">Senegal</option>
-                    <option value="CS">Serbia and Montenegro</option>
-                    <option value="SC">Seychelles</option>
-                    <option value="SL">Sierra Leone</option>
-                    <option value="SG">Singapore</option>
-                    <option value="SX">Sint Maarten</option>
-                    <option value="SK">Slovakia</option>
-                    <option value="SI">Slovenia</option>
-                    <option value="SB">Solomon Islands</option>
-                    <option value="SO">Somalia</option>
-                    <option value="ZA">South Africa</option>
-                    <option value="GS">
-                      South Georgia & The South Sandwich Islands
-                    </option>
-                    <option value="SS">South Sudan</option>
-                    <option value="ES">Spain</option>
-                    <option value="LK">Sri Lanka</option>
-                    <option value="SD">Sudan</option>
-                    <option value="SR">Suriname</option>
-                    <option value="SJ">Svalbard and Jan Mayen</option>
-                    <option value="SZ">Swaziland</option>
-                    <option value="SE">Sweden</option>
-                    <option value="CH">Switzerland</option>
-                    <option value="SY">Syrian Arab Republic</option>
-                    <option value="TW">Taiwan, Province of China</option>
-                    <option value="TJ">Tajikistan</option>
-                    <option value="TZ">Tanzania, United Republic of</option>
-                    <option value="TH">Thailand</option>
-                    <option value="TL">Timor-Leste</option>
-                    <option value="TG">Togo</option>
-                    <option value="TK">Tokelau</option>
-                    <option value="TO">Tonga</option>
-                    <option value="TT">Trinidad and Tobago</option>
-                    <option value="TN">Tunisia</option>
-                    <option value="TR">Turkey</option>
-                    <option value="XT">
-                      Turkish Rep N Cyprus (temporary code)
-                    </option>
-                    <option value="TM">Turkmenistan</option>
-                    <option value="TC">Turks and Caicos Islands</option>
-                    <option value="TV">Tuvalu</option>
-                    <option value="UG">Uganda</option>
-                    <option value="UA">Ukraine</option>
-                    <option value="AE">United Arab Emirates</option>
-                    <option value="GB">United Kingdom</option>
-                    <option value="US">United States</option>
-                    <option value="UM">
-                      United States Minor Outlying Islands
-                    </option>
-                    <option value="UY">Uruguay</option>
-                    <option value="UZ">Uzbekistan</option>
-                    <option value="VU">Vanuatu</option>
-                    <option value="VE">Venezuela</option>
-                    <option value="VN">Vietnam</option>
-                    <option value="VG">Virgin Islands, British</option>
-                    <option value="VI">Virgin Islands, U.S.</option>
-                    <option value="WF">Wallis and Futuna</option>
-                    <option value="EH">Western Sahara</option>
-                    <option value="YE">Yemen</option>
-                    <option value="ZM">Zambia</option>
-                    <option value="ZW">Zimbabwe</option>
+                    {countries.map((country, i) => (
+                      <option key={i} value={country}>
+                        {country}
+                      </option>
+                    ))}
                   </select>
                   {formErrors.BankCountry && (
                     <div className="error">{formErrors.BankCountry}</div>
@@ -1708,21 +1624,26 @@ case  "shareHolderPer1":
                 </div>
                 <div>
                   <label>Account Currency</label>
-                  <input
+                  <select
                     type="text"
                     value={Formvalues.AccountCurrency}
                     name="AccountCurrency"
                     onChange={handlChange}
                     onFocus={() => handleFocus("SwiftCode")}
-                  />
+                  >
+                     {currencies.map((currency, i) => (
+                    <option key={i} value={currency}>
+                      {currency}
+                    </option>
+                  ))}
+                  </select>
                   {formErrors.AccountCurrency && (
                     <div className="error">{formErrors.AccountCurrency}</div>
                   )}
                 </div>
-                
               </div>
               <div className="flexItem2">
-              <div>
+                <div>
                   <label>Account Number </label>
                   <input
                     type="text"
@@ -1736,7 +1657,7 @@ case  "shareHolderPer1":
                     <div className="error">{formErrors.AccountNumber}</div>
                   )}
                 </div>
-              <div>
+                <div>
                   <label>IBAN/ABA</label>
                   <input
                     type="text"
@@ -1802,7 +1723,6 @@ case  "shareHolderPer1":
                     </div>
                   )}
                 </div>
-               
 
                 <div>
                   <label>Correspondent Bank SWIFT Code</label>
@@ -1830,84 +1750,7 @@ case  "shareHolderPer1":
           {/* ShareHolders Section */}
           <div className="Infocontainer">
             <h3>SHAREHOLDERS</h3>
-            <table
-              style={{ width: "100%", textAlign: "center" }}
-              cellPadding={20}
-              cellSpacing={13}
-            >
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>%</th>
-                  <th>Country</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <input type="text" placeholder="Name 1" name="shareHolderName1" value={Formvalues.shareHolderName1} onChange={handlChange} onFocus={() => handleFocus("shareHolderName1")} /> <span>
-                    {formErrors.shareHolderName1 && (
-                    <div className="error">{formErrors.shareHolderName1}</div>
-                  )}
-                    </span>
-                  </td>
-                  
-                  <td>
-                    <input type="number" placeholder="Percentage 1" value={Formvalues.shareHolderPer1} name="shareHolderPer1" onChange={handlChange} onFocus={() => handleFocus("shareHolderPer1")}/>
-                    <span>
-                    {formErrors.shareHolderPer1 && (
-                    <div className="error">{formErrors.shareHolderPer1}</div>
-                  )}
-
-                    </span>
-                  </td>
-                  <td>
-                    <input type="text" value={Formvalues.shareHolderCountry1} name="shareHolderCountry1" onChange={handlChange} onFocus={() => handleFocus("shareHolderCountry1")}  />
-                    <span>
-                    {formErrors.shareHolderCountry1 && (
-                    <div className="error">{formErrors.shareHolderCountry1}</div>
-                  )}
-                    </span>
-                  </td>
-                </tr>
-               
-                
-
-                {/* <tr>
-                  <td>
-                    <input type="text" placeholder="Name 2"/>
-                  </td>
-                  <td>
-                    <input type="number" placeholder="Percentage 2" />
-                  </td>
-                  <td>
-                    <input type="text" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <input type="text" placeholder="Name 3"/>
-                  </td>
-                  <td>
-                    <input type="number" placeholder="Percentage 3" />
-                  </td>
-                  <td>
-                    <input type="text" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <input type="text" placeholder="Name 4"/>
-                  </td>
-                  <td>
-                    <input type="number" placeholder="Percentage 4"/>
-                  </td>
-                  <td>
-                    <input type="text"  />
-                  </td>
-                </tr> */}
-              </tbody>
-            </table>
+            <ShareHolder handleSubmit={handleSubmit} formErrors={formErrors} />
           </div>
 
           {/* Company Contact Details */}
@@ -1949,13 +1792,21 @@ case  "shareHolderPer1":
                 </div>
                 <div>
                   <label>Phone</label>
-                  <input
-                    type="number"
-                    name="PrimaryContactPhone"
+                  <PhoneInput
+                    country={"ae"}
                     value={Formvalues.PrimaryContactPhone}
-                    onChange={handlChange}
                     onFocus={() => handleFocus("PrimaryContactPhone")}
                     placeholder="Phone No."
+                    onChange={(value) => {
+                      setFormValues({
+                        ...Formvalues,
+                        PrimaryContactPhone: value,
+                      });
+                      setFormErrors({
+                        ...formErrors,
+                        PrimaryContactPhone: "",
+                      });
+                    }}
                   />
 
                   {formErrors.PrimaryContactPhone && (
@@ -2007,7 +1858,7 @@ case  "shareHolderPer1":
                     name="OperationDepartmentDesignation"
                     onChange={handlChange}
                     onFocus={() =>
-                      handleFocus("OperationDepartmentDesignation")                     
+                      handleFocus("OperationDepartmentDesignation")
                     }
                     placeholder="Designation"
                   />
@@ -2019,13 +1870,22 @@ case  "shareHolderPer1":
                 </div>
                 <div>
                   <label>Phone</label>
-                  <input
-                    type="number"
+                  <PhoneInput
+                    country={"ae"}
                     value={Formvalues.OperationDepartMentPhone}
                     name="OperationDepartMentPhone"
-                    onChange={handlChange}
                     onFocus={() => handleFocus("OperationDepartMentPhone")}
                     placeholder="Phone No."
+                    onChange={(value) => {
+                      setFormValues({
+                        ...Formvalues,
+                        OperationDepartMentPhone: value,
+                      });
+                      setFormErrors({
+                        ...formErrors,
+                        OperationDepartMentPhone: "",
+                      });
+                    }}
                   />
 
                   {formErrors.OperationDepartMentPhone && (
@@ -2087,13 +1947,21 @@ case  "shareHolderPer1":
                 </div>
                 <div>
                   <label>Phone</label>
-                  <input
-                    type="number"
+                  <PhoneInput
+                    country={"ae"}
                     value={Formvalues.CreditPhone}
-                    name="CreditPhone"
-                    onChange={handlChange}
                     onFocus={() => handleFocus("CreditPhone")}
                     placeholder="Phone No."
+                    onChange={(value) => {
+                      setFormValues({
+                        ...Formvalues,
+                        CreditPhone: value,
+                      });
+                      setFormErrors({
+                        ...formErrors,
+                        CreditPhone: "",
+                      });
+                    }}
                   />
                   {formErrors.CreditPhone && (
                     <div className="error">{formErrors.CreditPhone}</div>
@@ -2148,13 +2016,22 @@ case  "shareHolderPer1":
                 </div>
                 <div>
                   <label>Phone</label>
-                  <input
-                    type="number"
+                  <PhoneInput
+                  country={"ae"}
                     value={Formvalues.AccountDepartmentPhone}
                     name="AccountDepartmentPhone"
-                    onChange={handlChange}
                     onFocus={() => handleFocus("AccountDepartmentPhone")}
                     placeholder="Phone No."
+                    onChange={(value) => {
+                      setFormValues({
+                        ...Formvalues,
+                        AccountDepartmentPhone: value,
+                      });
+                      setFormErrors({
+                        ...formErrors,
+                        AccountDepartmentPhone: "",
+                      });
+                    }}
                   />
 
                   {formErrors.AccountDepartmentPhone && (
@@ -2192,7 +2069,7 @@ case  "shareHolderPer1":
                 name="ProposedBusiness"
                 onChange={handlChange}
                 onFocus={() => handleFocus("ProposedBusiness")}
-                style={{ width: "96%" }}
+               
                 placeholder="Proposed Business"
               />
               {formErrors.ProposedBusiness && (
@@ -2209,7 +2086,7 @@ case  "shareHolderPer1":
                 name="ContactPerson"
                 onChange={handlChange}
                 onFocus={() => handleFocus("ContactPerson")}
-                style={{ width: "96%" }}
+               
                 placeholder="Proposed Business"
               />
               {formErrors.ContactPerson && (
@@ -2228,6 +2105,8 @@ case  "shareHolderPer1":
             <table
               style={{ width: "100%", textAlign: "center" }}
               cellSpacing={13}
+
+              className="tradereferenceTable"
             >
               <thead>
                 <tr>
@@ -2250,14 +2129,22 @@ case  "shareHolderPer1":
                   </td>
 
                   <td>
-                    <input
-                      type="number"
+                    <PhoneInput
+                      country={"ae"}
                       value={Formvalues.TradeReferencePhone1}
-                      name="TradeReferencePhone1"
-                      onChange={handlChange}
                       onFocus={() => handleFocus("TradeReferencePhone1")}
                       disabled={!Formvalues.TradeReferenceName1}
                       placeholder="Phone 1"
+                      onChange={(value) => {
+                        setFormValues({
+                          ...Formvalues,
+                          TradeReferencePhone1: value,
+                        });
+                        setFormErrors({
+                          ...formErrors,
+                          TradeReferencePhone1: "",
+                        });
+                      }}
                     />
                   </td>
                   <td>
@@ -2287,14 +2174,22 @@ case  "shareHolderPer1":
                     />
                   </td>
                   <td>
-                    <input
-                      type="number"
+                    <PhoneInput
+                      country={"ae"}
                       value={Formvalues.TradeReferencePhone2}
-                      name="TradeReferencePhone2"
-                      onChange={handlChange}
                       onFocus={() => handleFocus("TradeReferencePhone1")}
                       disabled={!Formvalues.TradeReferenceName2}
                       placeholder="Phone 2"
+                      onChange={(value) => {
+                        setFormValues({
+                          ...Formvalues,
+                          TradeReferencePhone2: value,
+                        });
+                        setFormErrors({
+                          ...formErrors,
+                          TradeReferencePhone2: "",
+                        });
+                      }}
                     />
                   </td>
                   <td>
@@ -2306,7 +2201,6 @@ case  "shareHolderPer1":
                       onFocus={() => handleFocus("TradeReferenceEmail2")}
                       disabled={!Formvalues.TradeReferenceName2}
                       placeholder="Email 2"
-
                     />
                   </td>
                 </tr>
@@ -2325,14 +2219,22 @@ case  "shareHolderPer1":
                     />
                   </td>
                   <td>
-                    <input
-                      type="number"
+                    <PhoneInput
+                      country={"ae"}
                       value={Formvalues.TradeReferencePhone3}
-                      name="TradeReferencePhone3"
-                      onChange={handlChange}
                       onFocus={() => handleFocus("TradeReferencePhone3")}
                       disabled={!Formvalues.TradeReferenceName3}
                       placeholder="Phone 3"
+                      onChange={(value) => {
+                        setFormValues({
+                          ...Formvalues,
+                          TradeReferencePhone3: value,
+                        });
+                        setFormErrors({
+                          ...formErrors,
+                          TradeReferencePhone3: "",
+                        });
+                      }}
                     />
                   </td>
                   <td>
@@ -2363,14 +2265,22 @@ case  "shareHolderPer1":
                     />
                   </td>
                   <td>
-                    <input
-                      type="number"
+                    <PhoneInput
+                      country={"ae"}
                       value={Formvalues.TradeReferencePhone4}
-                      name="TradeReferencePhone4"
-                      onChange={handlChange}
                       onFocus={() => handleFocus("TradeReferencePhone4")}
                       disabled={!Formvalues.TradeReferenceName4}
                       placeholder="Phone 4"
+                      onChange={(value) => {
+                        setFormValues({
+                          ...Formvalues,
+                          TradeReferencePhone4: value,
+                        });
+                        setFormErrors({
+                          ...formErrors,
+                          TradeReferencePhone4: "",
+                        });
+                      }}
                     />
                   </td>
                   <td>
@@ -2423,7 +2333,7 @@ case  "shareHolderPer1":
             </div>
             <div style={{ float: "right" }} className="url">
               <label>6) Website URL</label>
-              <input type="url" placeholder="Website URL"/>
+              <input type="url" placeholder="Website URL" />
             </div>
             <div>
               <label>7) Bank Reference Letter ( Upon Trade or Request) </label>
@@ -2463,10 +2373,12 @@ case  "shareHolderPer1":
 
             <div>
               <label>Authorized Signatory Name </label>
-              <input type="text" placeholder="Authorized Signatory Name"/>
+              <input type="text" placeholder="Authorized Signatory Name" />
             </div>
             <div className="submit-btn">
-              <button>Submit</button>
+              <button type="submit" onClick={handleSubmit}>
+                Submit
+              </button>
             </div>
           </div>
         </div>

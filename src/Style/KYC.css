@@ -41,15 +41,7 @@ h3 {
   justify-content: space-around;
 }
 
-.flexItem1 input {
-  background-color: #f3f3f3;
-  padding: 14px 0px;
-  border: none;
-  border-radius: 5px;
-  width: 630px;
-  padding: 15px 20px;
-}
-
+.flexItem1 input,
 .flexItem2 input {
   background-color: #f3f3f3;
   padding: 14px 0px;
@@ -57,7 +49,9 @@ h3 {
   border-radius: 5px;
   width: 630px;
   padding: 15px 20px;
+  font-size: 18px;
 }
+
 td input {
   background-color: #f3f3f3;
   padding: 14px 0px;
@@ -65,14 +59,11 @@ td input {
   border-radius: 5px;
   width: 340px;
   padding: 15px 20px;
+  font-size: 18px;
+
+ 
 }
 
-.flexItem1 div {
-  padding: 5px 0px;
-}
-.flexItem2 div {
-  padding: 5px 0px;
-}
 .proposedContainer input {
   width: 96%;
   background-color: #f3f3f3;
@@ -81,6 +72,8 @@ td input {
   border-radius: 5px;
   margin: 0px 27px;
   padding: 15px 20px;
+  font-size: 18px;
+
 }
 
 h5 {
@@ -93,6 +86,8 @@ h5 {
   border-radius: 5px;
   width: 300px;
   padding: 15px 20px;
+  font-size: 18px;
+
 }
 .kycDocumentsContainer {
   padding: 4px 19px;
@@ -129,6 +124,9 @@ select {
   border-radius: 5px;
   width: 630px;
 }
+.sharholderCountry {
+  width: 400px;
+}
 
 .CompanyContactDetailContainer {
   background-color: #fff;
@@ -146,14 +144,7 @@ select {
   gap: 25px;
   flex-wrap: wrap;
 }
-.CompanyContactFlexContainer input {
-  background-color: #f3f3f3;
-  padding: 14px 0px;
-  border: none;
-  border-radius: 5px;
-  width: 630px;
-  padding: 15px 20px;
-}
+.CompanyContactFlexContainer input,
 .CompanyContactDetailContainer input {
   background-color: #f3f3f3;
   padding: 14px 0px;
@@ -161,56 +152,90 @@ select {
   border-radius: 5px;
   width: 630px;
   padding: 15px 20px;
+  font-size: 18px;
+
 }
 
-/* Tab View */
-@media (min-width: 768px) and (max-width: 1900px) {
-  .flexItem1 input {
-    width: 450px;
-  }
-  .flexItem2 input {
-    width: 450px;
-  }
-  .CompanyContactFlexContainer input{
-    width: 450px;
-  }
-  .CompanyContactDetailContainer input{
-    width: 450px;
-  }
-  label {
-    font-size: 16px;
-  }
-  td input {
-    width: 160px;
-  }
-  .proposedContainer input {
-    width: 92%;
-    margin: 0px 22px;
-  }
-  select {
-    width: 450px;
-  }
+.addRemoveContainer {
+  text-align: center;
+}
+.addRemoveRowButton {
+  margin: 0px 17px;
+  padding: 10px 13px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.RemoveButton {
+  padding: 10px 13px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.contactNumber-company {
+  width: 47%;
+}
+.proposedContainer input {
+  width: 96%;
+  font-size: 18px;
+
 }
 
-/* Mobile View */
+/* Tablet View */
 
-@media (min-width: 300px) and (max-width: 750px) {
-  td input {
-    width: 115px;
-  }
-  .Infocontainer {
+@media (min-width: 768px) and (max-width: 1024px) {
+  .Infocontainer,
+  .CompanyContactDetailContainer {
     width: 100%;
   }
-  .flexItem1 input {
-    width: 357px;
+  .flexItem1,
+  .flexItem2,
+  .CompanyContactFlexContainer {
+    flex-direction: column;
+    align-items: center;
   }
-  .flexItem2 input {
-    width: 357px;
+  .contactNumber-company {
+    width: 82%;
+  }
+  .sharholderTable td input {
+    width: 200px;
+  }
+  .sharholderTable td select {
+    width: 200px;
+  }
+  .tradereferenceTable td input {
+    width: 200px;
+  }
+  .proposedContainer input {
+    width: 82%;
   }
   .proposedContainer {
-    width: 90%;
+    text-align: center;
   }
-  select {
-    width: 357px;
+}
+@media (min-width: 1024px) and (max-width: 1240px) {
+  .flexItem1,
+  .flexItem2,
+  .CompanyContactFlexContainer {
+    display: initial;
+    padding: 0px 20px;
+  }
+}
+
+/* Mobile view */
+
+@media (max-width: 480px) {
+  body {
+    background-color: red;
+  }
+  .Infocontainer,
+  .CompanyContactDetailContainer {
+    width: 100%;
+  }
+  .flexItem1,
+  .flexItem2,
+  .CompanyContactFlexContainer {
+    flex-direction: column;
+    align-items: center;
   }
 }
