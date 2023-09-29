@@ -1,17 +1,15 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Archivo&display=swap");
 
 select {
-    /* Apply styles to the select box */
-    padding: 13px 10px;
-    border-radius: 5px;
-    color: #333;
-    font-size: 14px;
-    font-family: "Archivo", sans-serif;
+  /* Apply styles to the select box */
+  padding: 13px 10px;
+  border-radius: 5px;
+  color: #333;
+  font-size: 14px;
+  font-family: "Archivo", sans-serif;
+}
 
-  }
-
-  /* Hide the default dropdown arrow */
+/* Hide the default dropdown arrow */
 select::-ms-expand,
 select::-webkit-select-arrow {
   display: none;
@@ -22,7 +20,7 @@ select {
   appearance: none; /* Remove default styles */
 }
 select::after {
-  content: '\25BC'; /* Unicode arrow character */
+  content: "\25BC"; /* Unicode arrow character */
   position: absolute;
   right: 10px;
   top: 50%;
@@ -30,21 +28,21 @@ select::after {
   pointer-events: none; /* Allow interaction with select box beneath */
 }
 select option {
-    /* Apply styles to the options */
-    background-color: #fff;
-    color: #333;
-    font-size: 16px;
-    padding: 5px 10px;
-    
-  }
-  
-  select option:checked {
-    /* Apply styles to the selected option */
-    background-color: #18c981;
-    color: #fff;
-  }
-    .react-tel-input .form-control{
-      background-color: #f3f3f3;
-width: 100%;
-height: 40px;
-    }
+  /* Apply styles to the options */
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+select option:checked {
+  /* Apply styles to the selected option */
+  background-color: #18c981;
+  color: #fff;
+}
+.react-tel-input .form-control {
+  background-color: #f3f3f3;
+  width: 100%;
+  height: 45px;
+  border: none;
+}

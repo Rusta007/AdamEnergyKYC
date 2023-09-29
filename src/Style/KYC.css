@@ -180,6 +180,15 @@ select {
   font-size: 18px;
 
 }
+.authorised-sign input{
+  background-color: #f3f3f3;
+  padding: 14px 0px;
+  border: none;
+  border-radius: 5px;
+  width: 300px;
+  padding: 15px 20px;
+  font-size: 16px;
+}
 
 /* Tablet View */
 

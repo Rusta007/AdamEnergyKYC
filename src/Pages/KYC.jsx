@@ -202,204 +202,203 @@ const countries = [
 ];
 
 const currencies = [
-  
   "Select Country",
   "Afghanistan-Afghani",
-"Albania-Lek",
-"Algeria-Dinar",
-"Andorra-Euro",
-"Angola-New Kwanza",
-"Antigua and Barbuda-East Caribbean dollar",
-"Argentina-Peso",
-"Armenia-Dram",
-"Australia-Australian dollar",
-"Austria-Euro ",
-"Azerbaijan-Manat",
-"The Bahamas-Bahamian dollar",
-"Bahrain-Bahrain dinar",
-"Bangladesh-Taka",
-"Barbados-Barbados dollar",
-"Belarus-Belorussian ruble",
-"Belgium-Euro ",
-"Belize-Belize dollar",
-"Benin-CFA Franc",
-"Bhutan-Ngultrum",
-"Bolivia-Boliviano",
-"Bosnia and Herzegovina-Convertible Mark",
-"Botswana-Pula",
-"Brazil-Real",
-"Brunei-Brunei dollar",
-"Bulgaria-Lev",
-"Burkina Faso-CFA Franc",
-"Burundi-Burundi franc",
-"Cambodia-Riel",
-"Cameroon-CFA Franc",
-"Canada-Canadian dollar",
-"Cape Verde-Cape Verdean escudo",
-"Central African Republic-CFA Franc",
-"Chad-CFA Franc",
-"Chile-Chilean Peso",
-"China-Chinese Yuan",
-"Colombia-Colombian Peso",
-"Comoros-Franc",
-"Republic of the Congo-CFA Franc",
-"Zimbabwe-United States dollar",
-"Costa Rica-Colón",
-"Cote d’Ivoire-CFA Franc",
-"Croatia-Croatian",
-"Cuba-Cuban Peso",
-"Cyprus-Euro",
-"Czech Republic-Koruna",
-"Denmark-Danish Krone",
-"Djibouti-Djiboutian franc",
-"Dominica-East Caribbean dollar",
-"Dominican Republic-Dominican Peso",
-"East Timor (Timor-Leste)-U.S. dollar",
-"Ecuador-U.S. dollar",
-"Egypt-Egyptian pound",
-"El Salvador-Colón; U.S. dollar",
-"Equatorial Guinea-CFA Franc",
-"Eritrea-Nakfa",
-"Estonia-Estonia Kroon; Euro",
-"Ethiopia-Birr",
-"Fiji-Fiji dollar",
-"Finland-Euro",
-"France-Euro",
-"Gabon-CFA Franc",
-"The Gambia-Dalasi",
-"Georgia-Lari",
-"Germany-Euro (formerly Deutsche mark)",
-"Ghana-Cedi",
-"Greece-Euro",
-"Grenada-East Caribbean dollar",
-"Guatemala-Quetzal",
-"Guinea-Guinean franc",
-"Guinea-Bissau-CFA Franc",
-"Guyana-Guyanese dollar",
-"Haiti-Gourde",
-"Honduras-Lempira",
-"Hungary-Forint",
-"Iceland-Icelandic króna",
-"India-Indian Rupee",
-"Indonesia-Rupiah",
-"Iran-Rial",
-"Iraq-Iraqi Dinar",
-"Ireland-Euro",
-"Israel-Shekel",
-"Italy-Euro ",
-"Jamaica-Jamaican dollar",
-"Japan-Yen",
-"Jordan-Jordanian dinar",
-"Kazakhstan-Tenge",
-"Kenya-Kenya shilling",
-"Kiribati-Kiribati dollar",
-"North Korea-Won",
-"South Korea-Won",
-"Kuwait-Kuwaiti Dinar",
-"Kyrgyzstan-Som",
-"Laos-New Kip",
-"Latvia-Lats",
-"Lebanon-Lebanese pound",
-"Lesotho-Maluti",
-"Liberia-Liberian dollar",
-"Libya-Libyan dinar",
-"Liechtenstein-Swiss franc",
-"Lithuania-Litas",
-"Luxembourg-Euro",
-"Macedonia-Denar",
-"Madagascar-Malagasy Ariary",
-"Malawi-Kwacha",
-"Malaysia-Ringgit",
-"Maldives-Rufiyaa",
-"Mali-CFA Franc",
-"Malta-Euro",
-"Marshall Islands-U.S. Dollar",
-"Mauritania-Ouguiya",
-"Mauritius-Mauritian rupee",
-"Mexico-Mexican peso",
-"Federated States of Micronesia-U.S. Dollar",
-"Moldova-Leu",
-"Monaco-Euro",
-"Mongolia-Togrog",
-"Montenegro-Euro",
-"Morocco-Dirham",
-"Mozambique-Metical",
-"Myanmar (Burma)-Kyat",
-"Namibia-Namibian dollar",
-"Nauru-Australian dollar",
-"Nepal-Nepalese rupee",
-"Netherlands-Euro",
-"New Zealand-New Zealand dollar",
-"Nicaragua-Gold cordoba",
-"Niger-CFA Franc",
-"Nigeria-Naira",
-"Norway-Norwegian krone",
-"Oman-Omani rial",
-"Pakistan-Pakistani rupee",
-"Palau-U.S. dollar",
-"Palestine-Palestine Pound",
-"Panama-Balboa; U.S. dollar",
-"Papua New Guinea-Kina",
-"Paraguay-Guaraní",
-"Peru-Nuevo sol",
-"Philippines-Peso",
-"Poland-Zloty",
-"Portugal-Euro ",
-"Qatar-Qatari riyal",
-"Romania-Romanian Rupee",
-"Russia-Ruble",
-"Rwanda-Rwandan franc",
-"Saint Kitts and Nevis-East Caribbean dollar",
-"Saint Lucia-East Caribbean dollar",
-"Saint Vincent and the Grenadines-East Caribbean dollar",
-"Samoa-Tala",
-"San Marino-Euro",
-"Sao Tome and Principe-Dobra",
-"Saudi Arabia-Riyal",
-"Senegal-CFA Franc",
-"Serbia-Serbian Dinar",
-"Seychelles-Seychelles rupee",
-"Sierra Leone-Leone",
-"Singapore-Singapore dollar",
-"Slovakia-Euro",
-"Slovenia-Slovenian tolar; euro",
-"Solomon Islands-Solomon Islands dollar",
-"Somalia-Somali shilling",
-"South Africa-Rand",
-"South Sudan-Sudanese Pound",
-"Spain-Euro ",
-"Sri Lanka-Sri Lankan rupee",
-"Sudan-Sudanese Pound",
-"Suriname-Surinamese dollar",
-"Swaziland-Lilangeni",
-"Sweden-Krona",
-"Switzerland-Swiss franc",
-"Syria-Syrian pound",
-"Taiwan-Taiwan dollar",
-"Tajikistan-somoni",
-"Tanzania-Tanzanian shilling",
-"Thailand-Baht",
-"Togo-CFA Franc",
-"Tonga-Pa’anga",
-"Trinidad and Tobago-Trinidad and Tobago dollar",
-"Tunisia-Tunisian dinar",
-"Turkey-Turkish lira (YTL)",
-"Turkmenistan-Manat",
-"Tuvalu-Tuvaluan Dollar",
-"Uganda-Ugandan new shilling",
-"Ukraine-Hryvnia",
-"United Arab Emirates-U.A.E. Dirham",
-"United Kingdom-Pound sterling",
-"United States of America-Dollar",
-"Uruguay-Uruguay peso",
-"Uzbekistan-Uzbekistani sum",
-"Vanuatu-Vatu",
-"Vatican City (Holy See)-Euro",
-"Venezuela-Bolivar",
-"Vietnam-Dong",
-"Yemen-Rial",
-"Zambia-Kwacha"
-]
+  "Albania-Lek",
+  "Algeria-Dinar",
+  "Andorra-Euro",
+  "Angola-New Kwanza",
+  "Antigua and Barbuda-East Caribbean dollar",
+  "Argentina-Peso",
+  "Armenia-Dram",
+  "Australia-Australian dollar",
+  "Austria-Euro ",
+  "Azerbaijan-Manat",
+  "The Bahamas-Bahamian dollar",
+  "Bahrain-Bahrain dinar",
+  "Bangladesh-Taka",
+  "Barbados-Barbados dollar",
+  "Belarus-Belorussian ruble",
+  "Belgium-Euro ",
+  "Belize-Belize dollar",
+  "Benin-CFA Franc",
+  "Bhutan-Ngultrum",
+  "Bolivia-Boliviano",
+  "Bosnia and Herzegovina-Convertible Mark",
+  "Botswana-Pula",
+  "Brazil-Real",
+  "Brunei-Brunei dollar",
+  "Bulgaria-Lev",
+  "Burkina Faso-CFA Franc",
+  "Burundi-Burundi franc",
+  "Cambodia-Riel",
+  "Cameroon-CFA Franc",
+  "Canada-Canadian dollar",
+  "Cape Verde-Cape Verdean escudo",
+  "Central African Republic-CFA Franc",
+  "Chad-CFA Franc",
+  "Chile-Chilean Peso",
+  "China-Chinese Yuan",
+  "Colombia-Colombian Peso",
+  "Comoros-Franc",
+  "Republic of the Congo-CFA Franc",
+  "Zimbabwe-United States dollar",
+  "Costa Rica-Colón",
+  "Cote d’Ivoire-CFA Franc",
+  "Croatia-Croatian",
+  "Cuba-Cuban Peso",
+  "Cyprus-Euro",
+  "Czech Republic-Koruna",
+  "Denmark-Danish Krone",
+  "Djibouti-Djiboutian franc",
+  "Dominica-East Caribbean dollar",
+  "Dominican Republic-Dominican Peso",
+  "East Timor (Timor-Leste)-U.S. dollar",
+  "Ecuador-U.S. dollar",
+  "Egypt-Egyptian pound",
+  "El Salvador-Colón; U.S. dollar",
+  "Equatorial Guinea-CFA Franc",
+  "Eritrea-Nakfa",
+  "Estonia-Estonia Kroon; Euro",
+  "Ethiopia-Birr",
+  "Fiji-Fiji dollar",
+  "Finland-Euro",
+  "France-Euro",
+  "Gabon-CFA Franc",
+  "The Gambia-Dalasi",
+  "Georgia-Lari",
+  "Germany-Euro (formerly Deutsche mark)",
+  "Ghana-Cedi",
+  "Greece-Euro",
+  "Grenada-East Caribbean dollar",
+  "Guatemala-Quetzal",
+  "Guinea-Guinean franc",
+  "Guinea-Bissau-CFA Franc",
+  "Guyana-Guyanese dollar",
+  "Haiti-Gourde",
+  "Honduras-Lempira",
+  "Hungary-Forint",
+  "Iceland-Icelandic króna",
+  "India-Indian Rupee",
+  "Indonesia-Rupiah",
+  "Iran-Rial",
+  "Iraq-Iraqi Dinar",
+  "Ireland-Euro",
+  "Israel-Shekel",
+  "Italy-Euro ",
+  "Jamaica-Jamaican dollar",
+  "Japan-Yen",
+  "Jordan-Jordanian dinar",
+  "Kazakhstan-Tenge",
+  "Kenya-Kenya shilling",
+  "Kiribati-Kiribati dollar",
+  "North Korea-Won",
+  "South Korea-Won",
+  "Kuwait-Kuwaiti Dinar",
+  "Kyrgyzstan-Som",
+  "Laos-New Kip",
+  "Latvia-Lats",
+  "Lebanon-Lebanese pound",
+  "Lesotho-Maluti",
+  "Liberia-Liberian dollar",
+  "Libya-Libyan dinar",
+  "Liechtenstein-Swiss franc",
+  "Lithuania-Litas",
+  "Luxembourg-Euro",
+  "Macedonia-Denar",
+  "Madagascar-Malagasy Ariary",
+  "Malawi-Kwacha",
+  "Malaysia-Ringgit",
+  "Maldives-Rufiyaa",
+  "Mali-CFA Franc",
+  "Malta-Euro",
+  "Marshall Islands-U.S. Dollar",
+  "Mauritania-Ouguiya",
+  "Mauritius-Mauritian rupee",
+  "Mexico-Mexican peso",
+  "Federated States of Micronesia-U.S. Dollar",
+  "Moldova-Leu",
+  "Monaco-Euro",
+  "Mongolia-Togrog",
+  "Montenegro-Euro",
+  "Morocco-Dirham",
+  "Mozambique-Metical",
+  "Myanmar (Burma)-Kyat",
+  "Namibia-Namibian dollar",
+  "Nauru-Australian dollar",
+  "Nepal-Nepalese rupee",
+  "Netherlands-Euro",
+  "New Zealand-New Zealand dollar",
+  "Nicaragua-Gold cordoba",
+  "Niger-CFA Franc",
+  "Nigeria-Naira",
+  "Norway-Norwegian krone",
+  "Oman-Omani rial",
+  "Pakistan-Pakistani rupee",
+  "Palau-U.S. dollar",
+  "Palestine-Palestine Pound",
+  "Panama-Balboa; U.S. dollar",
+  "Papua New Guinea-Kina",
+  "Paraguay-Guaraní",
+  "Peru-Nuevo sol",
+  "Philippines-Peso",
+  "Poland-Zloty",
+  "Portugal-Euro ",
+  "Qatar-Qatari riyal",
+  "Romania-Romanian Rupee",
+  "Russia-Ruble",
+  "Rwanda-Rwandan franc",
+  "Saint Kitts and Nevis-East Caribbean dollar",
+  "Saint Lucia-East Caribbean dollar",
+  "Saint Vincent and the Grenadines-East Caribbean dollar",
+  "Samoa-Tala",
+  "San Marino-Euro",
+  "Sao Tome and Principe-Dobra",
+  "Saudi Arabia-Riyal",
+  "Senegal-CFA Franc",
+  "Serbia-Serbian Dinar",
+  "Seychelles-Seychelles rupee",
+  "Sierra Leone-Leone",
+  "Singapore-Singapore dollar",
+  "Slovakia-Euro",
+  "Slovenia-Slovenian tolar; euro",
+  "Solomon Islands-Solomon Islands dollar",
+  "Somalia-Somali shilling",
+  "South Africa-Rand",
+  "South Sudan-Sudanese Pound",
+  "Spain-Euro ",
+  "Sri Lanka-Sri Lankan rupee",
+  "Sudan-Sudanese Pound",
+  "Suriname-Surinamese dollar",
+  "Swaziland-Lilangeni",
+  "Sweden-Krona",
+  "Switzerland-Swiss franc",
+  "Syria-Syrian pound",
+  "Taiwan-Taiwan dollar",
+  "Tajikistan-somoni",
+  "Tanzania-Tanzanian shilling",
+  "Thailand-Baht",
+  "Togo-CFA Franc",
+  "Tonga-Pa’anga",
+  "Trinidad and Tobago-Trinidad and Tobago dollar",
+  "Tunisia-Tunisian dinar",
+  "Turkey-Turkish lira (YTL)",
+  "Turkmenistan-Manat",
+  "Tuvalu-Tuvaluan Dollar",
+  "Uganda-Ugandan new shilling",
+  "Ukraine-Hryvnia",
+  "United Arab Emirates-U.A.E. Dirham",
+  "United Kingdom-Pound sterling",
+  "United States of America-Dollar",
+  "Uruguay-Uruguay peso",
+  "Uzbekistan-Uzbekistani sum",
+  "Vanuatu-Vatu",
+  "Vatican City (Holy See)-Euro",
+  "Venezuela-Bolivar",
+  "Vietnam-Dong",
+  "Yemen-Rial",
+  "Zambia-Kwacha",
+];
 
 const KYC = () => {
   const initialFormData = {
@@ -469,6 +468,8 @@ const KYC = () => {
     shareHolderName1: "",
     shareHolderPer1: "",
     shareHolderCountry1: "",
+
+    AuthorisedSignature: "",
   };
 
   const [Formvalues, setFormValues] = useState(initialFormData);
@@ -559,6 +560,9 @@ const KYC = () => {
           error = "Number of employees is required";
         } else if (value < 1) {
           error = "Number of employee cannnot be less than 1";
+        }
+        if (!/^\d*$/.test(value)) {
+          error = "Invalid";
         }
         break;
 
@@ -759,7 +763,7 @@ const KYC = () => {
       case "AccountCurrency":
         if (value.trim() === "") {
           error = "Account Currency is required";
-        } 
+        }
         break;
       case "IBAN":
         if (value.trim() === "") {
@@ -1047,6 +1051,15 @@ const KYC = () => {
         }
         break;
 
+      case "AuthorisedSignature":
+        if (value.trim() === "") {
+          error = "Authorised Signature is required";
+        } else if (value.length < 3) {
+          error = "Authorised Signature must be at least 5 characters long";
+        } else if (!/^[a-zA-Z\s.']+$/.test(value)) {
+          error = "Authorised Signature can only contain letters";
+        }
+        break;
       // ShareHolder section
 
       default:
@@ -1131,39 +1144,36 @@ const KYC = () => {
     }
   }, [Formvalues.NatureOfBusiness]);
 
-
   useEffect(() => {
     if (Formvalues.TradeReferenceName1 === "") {
       setFormValues({
         ...Formvalues,
         TradeReferenceEmail1: "",
-        TradeReferencePhone1:""
-         // Reset inputText
+        TradeReferencePhone1: "",
+        // Reset inputText
         // error: "",
       });
       setFormErrors({
         ...formErrors,
         TradeReferenceEmail1: "",
-        TradeReferencePhone1:""
+        TradeReferencePhone1: "",
       });
     }
   }, [Formvalues.TradeReferenceName1]);
-
-
 
   useEffect(() => {
     if (Formvalues.TradeReferenceName2 === "") {
       setFormValues({
         ...Formvalues,
         TradeReferenceEmail2: "",
-        TradeReferencePhone2:""
-         // Reset inputText
+        TradeReferencePhone2: "",
+        // Reset inputText
         // error: "",
       });
       setFormErrors({
         ...formErrors,
         TradeReferenceEmail2: "",
-        TradeReferencePhone2:""
+        TradeReferencePhone2: "",
       });
     }
   }, [Formvalues.TradeReferenceName2]);
@@ -1173,39 +1183,34 @@ const KYC = () => {
       setFormValues({
         ...Formvalues,
         TradeReferenceEmail3: "",
-        TradeReferencePhone3:""
-         // Reset inputText
+        TradeReferencePhone3: "",
+        // Reset inputText
         // error: "",
       });
       setFormErrors({
         ...formErrors,
         TradeReferenceEmail3: "",
-        TradeReferencePhone3:""
+        TradeReferencePhone3: "",
       });
     }
   }, [Formvalues.TradeReferenceName3]);
-
 
   useEffect(() => {
     if (Formvalues.TradeReferenceName4 === "") {
       setFormValues({
         ...Formvalues,
         TradeReferenceEmail4: "",
-        TradeReferencePhone4:""
-         // Reset inputText
+        TradeReferencePhone4: "",
+        // Reset inputText
         // error: "",
       });
       setFormErrors({
         ...formErrors,
         TradeReferenceEmail4: "",
-        TradeReferencePhone4:""
+        TradeReferencePhone4: "",
       });
     }
   }, [Formvalues.TradeReferenceName4]);
-
-
-
-
 
   return (
     <>
@@ -1631,11 +1636,11 @@ const KYC = () => {
                     onChange={handlChange}
                     onFocus={() => handleFocus("SwiftCode")}
                   >
-                     {currencies.map((currency, i) => (
-                    <option key={i} value={currency}>
-                      {currency}
-                    </option>
-                  ))}
+                    {currencies.map((currency, i) => (
+                      <option key={i} value={currency}>
+                        {currency}
+                      </option>
+                    ))}
                   </select>
                   {formErrors.AccountCurrency && (
                     <div className="error">{formErrors.AccountCurrency}</div>
@@ -2017,7 +2022,7 @@ const KYC = () => {
                 <div>
                   <label>Phone</label>
                   <PhoneInput
-                  country={"ae"}
+                    country={"ae"}
                     value={Formvalues.AccountDepartmentPhone}
                     name="AccountDepartmentPhone"
                     onFocus={() => handleFocus("AccountDepartmentPhone")}
@@ -2069,7 +2074,6 @@ const KYC = () => {
                 name="ProposedBusiness"
                 onChange={handlChange}
                 onFocus={() => handleFocus("ProposedBusiness")}
-               
                 placeholder="Proposed Business"
               />
               {formErrors.ProposedBusiness && (
@@ -2086,7 +2090,6 @@ const KYC = () => {
                 name="ContactPerson"
                 onChange={handlChange}
                 onFocus={() => handleFocus("ContactPerson")}
-               
                 placeholder="Proposed Business"
               />
               {formErrors.ContactPerson && (
@@ -2105,7 +2108,6 @@ const KYC = () => {
             <table
               style={{ width: "100%", textAlign: "center" }}
               cellSpacing={13}
-
               className="tradereferenceTable"
             >
               <thead>
@@ -2369,12 +2371,26 @@ const KYC = () => {
             <div>
               <label>Authorized Signatory * </label>
               <input type="file" />
+              <p style={{ margin: "8px 0px" }}>
+                Please upload your signature Image
+              </p>
             </div>
 
-            <div>
+            <div className="authorised-sign">
               <label>Authorized Signatory Name </label>
-              <input type="text" placeholder="Authorized Signatory Name" />
+              <input
+                type="text"
+                placeholder="Authorized Signatory Name"
+                value={Formvalues.AuthorisedSignature}
+                name="AuthorisedSignature"
+                onChange={handlChange}
+                onFocus={() => handleFocus("AuthorisedSignature")}
+              />
+              {formErrors.AuthorisedSignature && (
+                <div className="error">{formErrors.AuthorisedSignature}</div>
+              )}
             </div>
+
             <div className="submit-btn">
               <button type="submit" onClick={handleSubmit}>
                 Submit
