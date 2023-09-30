@@ -119,7 +119,7 @@ h5 {
 }
 select {
   background-color: #f3f3f3;
-  padding: 16px 0px;
+  padding: 17px 0px;
   border: none;
   border-radius: 5px;
   width: 630px;
@@ -195,6 +195,12 @@ select {
 .error2{
   padding: 5px 34px;
 }
+.signMsg{
+  color: #18c981;
+}
+.url{
+  float: right;
+}
 /* Tablet View */
 
 @media (min-width: 768px) and (max-width: 1300px) {
@@ -234,7 +240,19 @@ select {
   .CompanyContactFlexContainer input{
     width: 100%;
   }
-
+  .url input {
+    padding: 8px 12px;
+    font-size: 18px;
+}
+.url{
+  float: none;
+}
+label {
+ 
+  padding: 10px 0px;
+  font-size: 15px;
+  line-height: 24px;
+}
 }
 @media (min-width: 1300px) and (max-width: 1880px) {
   .Infocontainer,
@@ -323,5 +341,20 @@ select {
   label{
     font-size: 17px;
   }
-
+  .url input {
+    padding: 8px 12px;
+    font-size: 18px;
+}
+.url{
+  float: none;
+}
+label {
+ 
+  padding: 10px 0px;
+  font-size: 17spx;
+  line-height: 24px;
+}
+.textCertficate-container{
+  float: none;
+}
 }

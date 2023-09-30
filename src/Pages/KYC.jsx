@@ -471,6 +471,14 @@ const KYC = () => {
 
     AuthorisedSignature: "",
     WebsiteURL: "",
+    certificateOfIncorporation: "",
+    memorandum: "",
+    tradeLicenseCertificate: "",
+    taxRegCertificate: "",
+    companyProfile: "",
+    BankRefLetter: "",
+    PassPortCopy: "",
+    AuthorisedSignatureImage:""
   };
 
   const [Formvalues, setFormValues] = useState(initialFormData);
@@ -495,7 +503,7 @@ const KYC = () => {
         break;
       case "emailAddress":
         if (
-          !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+          !/^[A-Za-z0-9_*&^~!$%=+}{'?\.-]+@[A-Za-z]+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae|.co.in)$/.test(
             value
           )
         ) {
@@ -509,7 +517,7 @@ const KYC = () => {
         } else if (value.length < 5) {
           error = "Domain Name must be at least 5 characters long";
         } else if (
-          !/^\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+          !/^[A-Za-z0-9\.-]+[A-Za-z0-9]+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae|.co.in)$/.test(
             value
           )
         ) {
@@ -813,7 +821,7 @@ const KYC = () => {
         break;
       case "PrimaryContactEmail":
         if (
-          !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+          !/^[A-Za-z0-9_*&^~!$%=+}{'?\.-]+@[A-Za-z]+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae|.co.in)$/.test(
             value
           )
         ) {
@@ -852,7 +860,7 @@ const KYC = () => {
         break;
       case "OperationDepartmentEmail":
         if (
-          !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+          !/^[A-Za-z0-9_*&^~!$%=+}{'?\.-]+@[A-Za-z]+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae|.co.in)$/.test(
             value
           )
         ) {
@@ -887,7 +895,7 @@ const KYC = () => {
         break;
       case "CreditEmail":
         if (
-          !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+          !/^[A-Za-z0-9_*&^~!$%=+}{'?\.-]+@[A-Za-z]+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae|.co.in)$/.test(
             value
           )
         ) {
@@ -923,7 +931,7 @@ const KYC = () => {
 
       case "AccountDepartmentEmail":
         if (
-          !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+          !/^[A-Za-z0-9_*&^~!$%=+}{'?\.-]+@[A-Za-z]+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae|.co.in)$/.test(
             value
           )
         ) {
@@ -963,7 +971,7 @@ const KYC = () => {
           if (value.trim() === "" && !Formvalues.TradeReferencePhone1) {
             error = "Email and phone is Required";
           } else if (
-            !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+            !/^[A-Za-z0-9_*&^~!$%=+}{'?\.-]+@[A-Za-z]+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae|.co.in)$/.test(
               value
             )
           ) {
@@ -985,7 +993,7 @@ const KYC = () => {
           if (value.trim() === "" && !Formvalues.TradeReferencePhone2) {
             error = "Email and phone is Required";
           } else if (
-            !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+            !/^[A-Za-z0-9_*&^~!$%=+}{'?\.-]+@[A-Za-z]+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae|.co.in)$/.test(
               value
             )
           ) {
@@ -1007,7 +1015,7 @@ const KYC = () => {
           if (value.trim() === "" && !Formvalues.TradeReferencePhone3) {
             error = "Email and phone is Required";
           } else if (
-            !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+            !/^[A-Za-z0-9_*&^~!$%=+}{'?\.-]+@[A-Za-z]+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae|.co.in)$/.test(
               value
             )
           ) {
@@ -1029,7 +1037,7 @@ const KYC = () => {
           if (value.trim() === "" && !Formvalues.TradeReferencePhone4) {
             error = "Email and phone is Required";
           } else if (
-            !/^\S+@\S+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+            !/^[A-Za-z0-9_*&^~!$%=+}{'?\.-]+@[A-Za-z]+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae|.co.in)$/.test(
               value
             )
           ) {
@@ -1062,6 +1070,54 @@ const KYC = () => {
         }
         break;
       // ShareHolder section
+
+      case "certificateOfIncorporation":
+        if (value.trim() === "") {
+          error = "Required";
+        }
+        break;
+
+      case "memorandum":
+        if (value.trim() === "") {
+          error = "Required";
+        }
+        break;
+      case "tradeLicenseCertificate":
+        if (value.trim() === "") {
+          error = "Required";
+        }
+        break;
+      case "taxRegCertificate":
+        if (value.trim() === "") {
+          error = "Required";
+        }
+
+        break;
+
+      case "companyProfile":
+        if (value.trim() === "") {
+          error = "Required";
+        }
+
+        break;
+      case "BankRefLetter":
+        if (value.trim() === "") {
+          error = "Required";
+        }
+
+        break;
+      case "PassPortCopy":
+        if (value.trim() === "") {
+          error = "Required";
+        }
+
+        break;
+        case "AuthorisedSignatureImage":
+          if (value.trim() === "") {
+            error = "Required";
+          }
+  
+          break;
 
       default:
         break;
@@ -2146,7 +2202,6 @@ const KYC = () => {
                     onChange={handlChange}
                     onFocus={() => handleFocus("AccountDepartmentEmail")}
                     placeholder="Email Address"
-                    
                   />
                   {formErrors.AccountDepartmentEmail && (
                     <div className="error">
@@ -2171,7 +2226,9 @@ const KYC = () => {
                 placeholder="Proposed Business"
               />
               {formErrors.ProposedBusiness && (
-                <div className="error error2">{formErrors.ProposedBusiness}</div>
+                <div className="error error2">
+                  {formErrors.ProposedBusiness}
+                </div>
               )}
             </div>
             <div className="proposedContainer">
@@ -2407,7 +2464,19 @@ const KYC = () => {
               <label>
                 1) Certificate of Incorporation <span className="star">*</span>{" "}
               </label>
-              <input type="file" />
+              <input
+                type="file"
+                onChange={handlChange}
+                name="certificateOfIncorporation"
+                value={Formvalues.certificateOfIncorporation}
+                onFocus={() => handleFocus("TradeReferenceEmail4")}
+              />
+
+              {formErrors.certificateOfIncorporation && (
+                <div className="error">
+                  {formErrors.certificateOfIncorporation}
+                </div>
+              )}
             </div>
             <div>
               <label>
@@ -2416,26 +2485,55 @@ const KYC = () => {
                 authorized signatory, stamped. and documents supporting UBO's.{" "}
                 <span className="star">*</span>
               </label>
-              <input type="file" />
+              <input
+                type="file"
+                onChange={handlChange}
+                value={Formvalues.memorandum}
+                name="memorandum"
+                onFocus={() => handleFocus("memorandum")}
+              />
+
+              {formErrors.memorandum && (
+                <div className="error">{formErrors.memorandum}</div>
+              )}
             </div>
             <div style={{ display: "inline-block" }}>
               <label>
                 3) Trade License <span className="star">*</span>{" "}
               </label>
-              <input type="file" />
+              <input
+                type="file"
+                onChange={handlChange}
+                name="tradeLicenseCertificate"
+                value={Formvalues.tradeLicenseCertificate}
+                onFocus={() => handleFocus("tradeLicenseCertificate")}
+              />
+
+              {formErrors.tradeLicenseCertificate && (
+                <div className="error">
+                  {formErrors.tradeLicenseCertificate}
+                </div>
+              )}
             </div>
-            <div style={{ float: "right" }}>
+            <div  className="textCertficate-container" >
               <label>
                 4) Tax Registration Certificate <span className="star">*</span>
               </label>
-              <input type="file" />
+              <input type="file" onChange={handlChange} name="taxRegCertificate" value={Formvalues.taxRegCertificate} onFocus={() => handleFocus("tradeLicenseCertificate")}  />
+
+              {formErrors.tradeLicenseCertificate && (
+                <div className="error">
+                  {formErrors.tradeLicenseCertificate}
+                </div>
+              )}
+
             </div>
 
             <div>
               <label>5) Company Profile ( If Available) </label>
-              <input type="file" />
+              <input type="file" onChange={handlChange} />
             </div>
-            <div style={{ float: "right" }} className="url">
+            <div  className="url">
               <label>
                 6) Website URL <span className="star">*</span>
               </label>
@@ -2453,14 +2551,18 @@ const KYC = () => {
             </div>
             <div>
               <label>7) Bank Reference Letter ( Upon Trade or Request) </label>
-              <input type="file" />
+              <input type="file" onChange={handlChange} />
             </div>
             <div>
               <label>
                 8) Passport Copies of the Ultimate Beneficial Owners and
                 Authorized Signatory <span className="star">*</span>
               </label>
-              <input type="file" />
+              <input type="file" onChange={handlChange} name="PassPortCopy" value={Formvalues.PassPortCopy}  onFocus={() => handleFocus("PassPortCopy")} />
+
+              {formErrors.PassPortCopy && (
+                <div className="error">{formErrors.PassPortCopy}</div>
+              )}
             </div>
 
             <div className="declarationContainer">
@@ -2488,10 +2590,13 @@ const KYC = () => {
               <label>
                 Authorized Signatory <span className="star">*</span>
               </label>
-              <input type="file" />
-              <p className="error" style={{ margin: "8px 0px" }}>
+              <input type="file" name="AuthorisedSignatureImage" value={Formvalues.AuthorisedSignatureImage} onChange={handlChange} onFocus={() => handleFocus("AuthorisedSignatureImage")}  />
+              <p className="signMsg" style={{ margin: "8px 0px" }}>
                 Please upload your signature Image
               </p>
+              {formErrors.AuthorisedSignatureImage && (
+                <div className="error">{formErrors.AuthorisedSignatureImage}</div>
+              )}
             </div>
 
             <div className="authorised-sign">
