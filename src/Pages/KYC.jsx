@@ -214,7 +214,6 @@ const currencies = [
   "Australia-Australian dollar",
   "Austria-Euro ",
   "Azerbaijan-Manat",
-  "The Bahamas-Bahamian dollar",
   "Bahrain-Bahrain dinar",
   "Bangladesh-Taka",
   "Barbados-Barbados dollar",
@@ -241,8 +240,6 @@ const currencies = [
   "China-Chinese Yuan",
   "Colombia-Colombian Peso",
   "Comoros-Franc",
-  "Republic of the Congo-CFA Franc",
-  "Zimbabwe-United States dollar",
   "Costa Rica-Colón",
   "Cote d’Ivoire-CFA Franc",
   "Croatia-Croatian",
@@ -261,11 +258,11 @@ const currencies = [
   "Eritrea-Nakfa",
   "Estonia-Estonia Kroon; Euro",
   "Ethiopia-Birr",
+  "Federated States of Micronesia-U.S. Dollar",
   "Fiji-Fiji dollar",
   "Finland-Euro",
   "France-Euro",
   "Gabon-CFA Franc",
-  "The Gambia-Dalasi",
   "Georgia-Lari",
   "Germany-Euro (formerly Deutsche mark)",
   "Ghana-Cedi",
@@ -292,8 +289,6 @@ const currencies = [
   "Kazakhstan-Tenge",
   "Kenya-Kenya shilling",
   "Kiribati-Kiribati dollar",
-  "North Korea-Won",
-  "South Korea-Won",
   "Kuwait-Kuwaiti Dinar",
   "Kyrgyzstan-Som",
   "Laos-New Kip",
@@ -316,7 +311,6 @@ const currencies = [
   "Mauritania-Ouguiya",
   "Mauritius-Mauritian rupee",
   "Mexico-Mexican peso",
-  "Federated States of Micronesia-U.S. Dollar",
   "Moldova-Leu",
   "Monaco-Euro",
   "Mongolia-Togrog",
@@ -332,6 +326,7 @@ const currencies = [
   "Nicaragua-Gold cordoba",
   "Niger-CFA Franc",
   "Nigeria-Naira",
+  "North Korea-Won",
   "Norway-Norwegian krone",
   "Oman-Omani rial",
   "Pakistan-Pakistani rupee",
@@ -345,6 +340,7 @@ const currencies = [
   "Poland-Zloty",
   "Portugal-Euro ",
   "Qatar-Qatari riyal",
+  "Republic of the Congo-CFA Franc",
   "Romania-Romanian Rupee",
   "Russia-Ruble",
   "Rwanda-Rwandan franc",
@@ -365,6 +361,7 @@ const currencies = [
   "Solomon Islands-Solomon Islands dollar",
   "Somalia-Somali shilling",
   "South Africa-Rand",
+  "South Korea-Won",
   "South Sudan-Sudanese Pound",
   "Spain-Euro ",
   "Sri Lanka-Sri Lankan rupee",
@@ -378,6 +375,8 @@ const currencies = [
   "Tajikistan-somoni",
   "Tanzania-Tanzanian shilling",
   "Thailand-Baht",
+  "The Bahamas-Bahamian dollar",
+  "The Gambia-Dalasi",
   "Togo-CFA Franc",
   "Tonga-Pa’anga",
   "Trinidad and Tobago-Trinidad and Tobago dollar",
@@ -398,6 +397,7 @@ const currencies = [
   "Vietnam-Dong",
   "Yemen-Rial",
   "Zambia-Kwacha",
+  "Zimbabwe-United States dollar",
 ];
 
 const KYC = () => {
@@ -470,6 +470,8 @@ const KYC = () => {
     shareHolderCountry1: "",
 
     AuthorisedSignature: "",
+    WebsiteURL:"",
+
   };
 
   const [Formvalues, setFormValues] = useState(initialFormData);
@@ -483,14 +485,14 @@ const KYC = () => {
 
       case "registeredCompanyName":
         if (value.trim() === "") {
-          error = "Registered Company Name is required";
+          error = " Company Name is required";
         } else if (value.length < 5) {
-          error = "Registered Company Name must be at least 5 characters long";
+          error = "Company Name must be at least 5 characters long";
         } else if (!/[a-zA-Z]/.test(value)) {
-          error = "Registered Company Name must contain at least one letter";
-        } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
+          error = " Company Name must contain at least one letter";
+        } else if (!/^[a-zA-Z0-9\s]+$/.test(value)) {
           error =
-            "Registered Company Name can only contain letters, numbers, and underscores";
+            "Company Name can only contain letters, numbers";
         }
         break;
       case "emailAddress":
@@ -505,7 +507,7 @@ const KYC = () => {
 
       case "corporateDomainName":
         if (value.trim() === "") {
-          error = "corporate DomainName is required";
+          error = " Domain Name is required";
         } else if (value.length < 5) {
           error = "Domain Name must be at least 5 characters long";
         } else if (
@@ -530,10 +532,10 @@ const KYC = () => {
         if (value.trim() === "") {
           error = "Parent Company is required";
         } else if (value.length < 5) {
-          error = "Company Name must be at least 5 characters long";
+          error = " Parent Company Name must be at least 5 characters long";
         } else if (!/[a-zA-Z]/.test(value)) {
           error = "Parent Company must contain at least one letter";
-        } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
+        } else if (!/^[a-zA-Z0-9\s]+$/.test(value)) {
           error = "Parent Company can only contain letters and numbers";
         }
         break;
@@ -546,7 +548,7 @@ const KYC = () => {
 
       case "companyWebsite":
         if (value.trim() === "") {
-          error = "company Website is required";
+          error = " Website is required";
         } else if (
           !/^www\.+[A-Za-z0-9]+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
             value
@@ -655,9 +657,9 @@ const KYC = () => {
         break;
       case "TradeLicenseNumber":
         if (value.trim() === "") {
-          error = "Trade License Number is required";
+          error = " License Number is required";
         } else if (value.length < 5) {
-          error = "Trade License Number must be at least 5 characters long";
+          error = " License Number must be at least 5 characters long";
         } else if (!/^(?=.*[0-9])[a-zA-Z0-9]+$/.test(value)) {
           error = "License Number can only contain letters and numbers";
         }
@@ -667,9 +669,9 @@ const KYC = () => {
         if (value.length > 0) {
           if (value.length < 5) {
             error =
-              "VAT Registration Number must be at least 5 characters long";
+              "VAT number must be at least 5 characters long";
           } else if (!/^(?=.*[0-9])[a-zA-Z0-9]+$/.test(value)) {
-            error = "VAT Number can only contain letters and numbers";
+            error = "VAT number can only contain letters and numbers";
           }
         }
 
@@ -679,13 +681,13 @@ const KYC = () => {
 
       case "BankName":
         if (value.trim() === "") {
-          error = "BankName is required";
+          error = "Bank Name is required";
         } else if (value.length < 2) {
-          error = "BankName must be at least 2 characters long";
+          error = "Bank Name must be at least 2 characters long";
         } else if (!/[a-zA-Z]/.test(value)) {
-          error = "BankName must contain at least one letter";
-        } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
-          error = "BankName can only contain letters, numbers, and underscores";
+          error = "Bank Name must contain at least one letter";
+        } else if (!/^[a-zA-Z0-9\s]+$/.test(value)) {
+          error = "Bank Name can only contain letters and numbers";
         }
         break;
       case "BankBranchAddress":
@@ -700,21 +702,21 @@ const KYC = () => {
 
       case "AccountName":
         if (value.trim() === "") {
-          error = "AccountName is required";
+          error = "Account Name is required";
         } else if (value.length < 5) {
-          error = "AccountName must be at least 5 characters long";
+          error = "Account Name must be at least 5 characters long";
         } else if (!/^[a-zA-Z\s]+$/.test(value)) {
-          error = "AccountName can only contain letters";
+          error = "Account Name can only contain letters";
         }
         break;
 
       case "AccountNumber":
         if (value.trim() === "") {
-          error = "AccountNumber is required";
+          error = "Account Number is required";
         } else if (value.length < 5) {
-          error = "AccountNumber must be at least 5 characters long";
+          error = "Account Number must be at least 5 characters long";
         } else if (!/^(?=.*[0-9])[a-zA-Z0-9]+$/.test(value)) {
-          error = "AccountNumber can only contain letters and numbers";
+          error = "Account Number can only contain letters and numbers";
         }
         break;
 
@@ -722,9 +724,9 @@ const KYC = () => {
         if (value.length > 0) {
           if (value.length < 5) {
             error =
-              "Bank Account Mangers Name must be at least 5 characters long";
+              " Mangers Name must be at least 5 characters long";
           } else if (!/^[a-zA-Z\s.']+$/.test(value)) {
-            error = "Bank Account Mangers Name can only contain letters";
+            error = " Mangers Name can only contain letters";
           }
         }
 
@@ -733,12 +735,12 @@ const KYC = () => {
         if (value.length > 0) {
           if (value.length < 5) {
             error =
-              "Correspondent Bank Name must be at least 5 characters long";
+              " Bank Name must be at least 5 characters long";
           } else if (!/[a-zA-Z]/.test(value)) {
-            error = "Correspondent Bank Name must contain at least one letter";
+            error = " Bank Name must contain at least one letter";
           } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
             error =
-              "Correspondent Bank Name can only contain letters and numbers";
+              "Bank Name can only contain letters and numbers";
           }
         }
 
@@ -751,18 +753,18 @@ const KYC = () => {
         break;
       case "SwiftCode":
         if (value.trim() === "") {
-          error = "SwiftCode is required";
+          error = "Swift Code is required";
         } else if (value.length < 8) {
-          error = "SwiftCode must be at least 8 characters long";
+          error = "Swift Code must be at least 8 characters long";
         } else if (!/[a-zA-Z]/.test(value)) {
-          error = "SwiftCode must contain at least one letter";
-        } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
-          error = "SwiftCode can only contain letters and numbers";
+          error = "Swift Code must contain at least one letter";
+        } else if (!/^[a-zA-Z0-9\s]+$/.test(value)) {
+          error = "Swift Code can only contain letters and numbers";
         }
         break;
       case "AccountCurrency":
         if (value.trim() === "") {
-          error = "Account Currency is required";
+          error = "Currency is required";
         }
         break;
       case "IBAN":
@@ -774,28 +776,24 @@ const KYC = () => {
           error = "IBAN/ABA must contain at least one letter";
         } else if (!/\d/.test(value)) {
           error = "IBAN/ABA must contain at least one number";
-        } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
+        } else if (!/^[a-zA-Z0-9\s]+$/.test(value)) {
           error = "IBAN/ABA can only contain letters and numbers";
         }
         break;
 
       case "BankAccountManagersContactDetails":
-        if (value.length > 0) {
-          if (value.length < 10) {
-            error = "Contact Details must be at least 10 characters long";
-          }
-        }
+       
 
         break;
       case "CorrespondentBankSwiftCode":
         if (value.length > 0) {
           if (value.length < 8) {
             error =
-              "Correspondent Bank SwiftCode must be at least 8 characters long";
+              " Swift Code must be at least 8 characters long";
           } else if (!/[a-zA-Z]/.test(value)) {
-            error = "SwiftCode must contain at least one letter";
-          } else if (!/^[a-zA-Z0-9_\s]+$/.test(value)) {
-            error = "SwiftCode can only contain letters and numbers";
+            error = "Swift Code must contain at least one letter";
+          } else if (!/^[a-zA-Z0-9\s]+$/.test(value)) {
+            error = "Swift Code can only contain letters and numbers";
           }
         }
 
@@ -805,11 +803,11 @@ const KYC = () => {
 
       case "PrimaryContactName":
         if (value.trim() === "") {
-          error = "Primary Contact Name is required";
+          error = " Name is required";
         } else if (value.length < 3) {
-          error = "Primary Contact Name must be at least 5 characters long";
+          error = " Name must be at least 5 characters long";
         } else if (!/^[a-zA-Z\s.']+$/.test(value)) {
-          error = "Primary Contac tName can only contain letters";
+          error = "Name can only contain letters";
         }
         break;
 
@@ -1060,6 +1058,20 @@ const KYC = () => {
           error = "Authorised Signature can only contain letters";
         }
         break;
+
+
+
+         case "WebsiteURL":
+          if (value.trim() === "") {
+            error = "URL is required";
+          } else if (
+            !/^www\.+[A-Za-z0-9]+(\.com|\.net|\.org|\.info|\.biz|\.edu|\.gov|\.mil|\.int|\.us|\.uk|\.ca|\.au|\.de|\.jp|\.fr|\.in|\.cn|\.br|\.ae)$/.test(
+              value
+            )
+          ) {
+            error = " Invalid";
+          }
+          break;
       // ShareHolder section
 
       default:
@@ -1225,7 +1237,7 @@ const KYC = () => {
             <div className="infoFlexContainer">
               <div className="flexItem1">
                 <div>
-                  <label>Registered Company Name</label>
+                  <label>Registered Company Name  <span className="star">*</span></label>
                   <input
                     type="text"
                     name="registeredCompanyName"
@@ -1241,7 +1253,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Parent Company/Group Company</label>
+                  <label>Parent Company/Group Company <span className="star">*</span></label>
                   <input
                     type="text"
                     name="ParentCompany"
@@ -1255,7 +1267,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Company Registered Address</label>
+                  <label>Company Registered Address <span className="star">*</span></label>
                   <input
                     type="text"
                     name="companyRegisteredAddress"
@@ -1272,7 +1284,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div className="contactNumber-company">
-                  <label>Contact Number</label>
+                  <label>Contact Number <span className="star">*</span></label>
                   <PhoneInput
                     country={"ae"}
                     value={Formvalues.ContactNumber}
@@ -1310,14 +1322,14 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Company Website</label>
+                  <label>Company Website <span className="star">*</span></label>
                   <input
                     type="text"
                     name="companyWebsite"
                     value={Formvalues.companyWebsite}
                     onChange={handlChange}
                     onFocus={() => handleFocus("companyWebsite")}
-                    placeholder="Website"
+                    placeholder="www.example.com"
                   />
 
                   {formErrors.companyWebsite && (
@@ -1326,14 +1338,14 @@ const KYC = () => {
                 </div>
 
                 <div>
-                  <label>Corporate Domain Name</label>
+                  <label>Corporate Domain Name <span className="star">*</span></label>
                   <input
                     type="text"
                     name="corporateDomainName"
                     value={Formvalues.corporateDomainName}
                     onChange={handlChange}
                     onFocus={() => handleFocus("corporateDomainName")}
-                    placeholder="Domain Name"
+                    placeholder="example.com"
                   />
 
                   {formErrors.corporateDomainName && (
@@ -1343,7 +1355,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Number of Employees</label>
+                  <label>Number of Employees <span className="star">*</span></label>
                   <input
                     type="number"
                     name="NumberOfEmployees"
@@ -1363,11 +1375,11 @@ const KYC = () => {
           {/* Company Structure */}
 
           <div className="Infocontainer">
-            <h3>COMPANY STRUCTURE</h3>
+            <h3>COMPANY STRUCTURE <span className="star">*</span></h3>
             <div className="infoFlexContainer">
               <div className="flexItem1">
                 <div>
-                  <label>Business Structure</label>
+                  <label>Business Structure <span className="star">*</span></label>
                   <select
                     name="BusinessStructure"
                     value={Formvalues.BusinessStructure}
@@ -1403,7 +1415,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Nature of Business</label>
+                  <label>Nature of Business <span className="star">*</span></label>
                   <select
                     name="NatureOfBusiness"
                     value={Formvalues.NatureOfBusiness}
@@ -1439,7 +1451,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Country of Incorporation </label>
+                  <label>Country of Incorporation <span className="star">*</span></label>
                   <select
                     name="countryOfIncorporation"
                     value={Formvalues.countryOfIncorporation}
@@ -1460,7 +1472,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Date of Incorporation</label>
+                  <label>Date of Incorporation <span className="star">*</span></label>
                   <input
                     type="date"
                     name="DateOfIncorporation"
@@ -1478,7 +1490,7 @@ const KYC = () => {
               </div>
               <div className="flexItem2">
                 <div>
-                  <label>Company Registration No </label>
+                  <label>Company Registration No <span className="star">*</span> </label>
                   <input
                     type="text"
                     name="companyRegistrationNumber"
@@ -1495,7 +1507,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Trade License Number</label>
+                  <label>Trade License Number <span className="star">*</span></label>
                   <input
                     type="text"
                     name="TradeLicenseNumber"
@@ -1510,7 +1522,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Trade License Expiry Date</label>
+                  <label>Trade License Expiry Date <span className="star">*</span></label>
                   <input
                     type="date"
                     name="TradeLicenseExpiryData"
@@ -1547,11 +1559,11 @@ const KYC = () => {
           {/* Bank Details */}
 
           <div className="Infocontainer">
-            <h3>Bank Details</h3>
+            <h3>Bank Details <span className="star">*</span></h3>
             <div className="infoFlexContainer">
               <div className="flexItem1">
                 <div>
-                  <label>Bank Name</label>
+                  <label>Bank Name <span className="star">*</span></label>
                   <input
                     type="text"
                     name="BankName"
@@ -1565,7 +1577,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Bank Country</label>
+                  <label>Bank Country <span className="star">*</span></label>
                   <select
                     type="text"
                     value={Formvalues.BankCountry}
@@ -1584,7 +1596,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Bank Branch Address</label>
+                  <label>Bank Branch Address <span className="star">*</span></label>
                   <input
                     type="text"
                     value={Formvalues.BankBranchAddress}
@@ -1598,7 +1610,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Swift Code</label>
+                  <label>Swift Code <span className="star">*</span></label>
                   <input
                     type="text"
                     value={Formvalues.SwiftCode}
@@ -1613,7 +1625,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Account Name </label>
+                  <label>Account Name <span className="star">*</span></label>
                   <input
                     type="text"
                     value={Formvalues.AccountName}
@@ -1628,7 +1640,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Account Currency</label>
+                  <label>Account Currency <span className="star">*</span></label>
                   <select
                     type="text"
                     value={Formvalues.AccountCurrency}
@@ -1649,7 +1661,7 @@ const KYC = () => {
               </div>
               <div className="flexItem2">
                 <div>
-                  <label>Account Number </label>
+                  <label>Account Number <span className="star">*</span></label>
                   <input
                     type="text"
                     value={Formvalues.AccountNumber}
@@ -1663,7 +1675,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>IBAN/ABA</label>
+                  <label>IBAN/ABA <span className="star">*</span></label>
                   <input
                     type="text"
                     name="IBAN"
@@ -1677,7 +1689,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Bank Account Manager's Name</label>
+                  <label>Bank Account Manager's Name </label>
                   <input
                     type="text"
                     value={Formvalues.BankAccountMangersName}
@@ -1692,17 +1704,26 @@ const KYC = () => {
                     </div>
                   )}
                 </div>
-                <div>
+                <div className="contactNumber-company">
                   <label>Bank Account Manager's Contact Details</label>
-                  <input
-                    type="number"
+                  <PhoneInput
+                    country={"ae"}
                     value={Formvalues.BankAccountManagersContactDetails}
-                    onChange={handlChange}
-                    name="BankAccountManagersContactDetails"
+        
                     onFocus={() =>
                       handleFocus("BankAccountManagersContactDetails")
                     }
                     placeholder="Phone No."
+                    onChange={(value) => {
+                      setFormValues({
+                        ...Formvalues,
+                        BankAccountManagersContactDetails: value,
+                      });
+                      setFormErrors({
+                        ...formErrors,
+                        BankAccountManagersContactDetails: "",
+                      });
+                    }}
                   />
 
                   {formErrors.BankAccountManagersContactDetails && (
@@ -1712,7 +1733,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Correspondent Bank Name</label>
+                  <label>Correspondent Bank Name </label>
                   <input
                     type="text"
                     value={Formvalues.CorrespondentBankName}
@@ -1761,12 +1782,12 @@ const KYC = () => {
           {/* Company Contact Details */}
 
           <div className="CompanyContactDetailContainer">
-            <h3>Company Conatact Details </h3>
+            <h3>Company Conatact Details <span className="star">*</span> </h3>
             <div className="CompanyContactFlexContainer">
               <div>
-                <h5>Primary Contact Details</h5>
+                <h5>Primary Contact Details <span className="star">*</span></h5>
                 <div>
-                  <label>Name</label>
+                  <label>Name <span className="star">*</span></label>
                   <input
                     type="text"
                     value={Formvalues.PrimaryContactName}
@@ -1780,7 +1801,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Designation</label>
+                  <label>Designation <span className="star">*</span></label>
                   <input
                     type="text"
                     value={Formvalues.PrimaryContactDesignation}
@@ -1796,7 +1817,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Phone</label>
+                  <label>Phone <span className="star">*</span></label>
                   <PhoneInput
                     country={"ae"}
                     value={Formvalues.PrimaryContactPhone}
@@ -1821,7 +1842,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Email Address </label>
+                  <label>Email Address <span className="star">*</span></label>
                   <input
                     type="email"
                     value={Formvalues.PrimaryContactEmail}
@@ -1840,7 +1861,7 @@ const KYC = () => {
               <div>
                 <h5>Operations Department Contact Details</h5>
                 <div>
-                  <label>Name</label>
+                  <label>Name <span className="star">*</span></label>
                   <input
                     type="text"
                     value={Formvalues.OperationDepartmentName}
@@ -1856,7 +1877,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Designation</label>
+                  <label>Designation <span className="star">*</span></label>
                   <input
                     type="text"
                     value={Formvalues.OperationDepartmentDesignation}
@@ -1874,7 +1895,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Phone</label>
+                  <label>Phone <span className="star">*</span></label>
                   <PhoneInput
                     country={"ae"}
                     value={Formvalues.OperationDepartMentPhone}
@@ -1900,7 +1921,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Email Address</label>
+                  <label>Email Address <span className="star">*</span></label>
                   <input
                     type="email"
                     value={Formvalues.OperationDepartmentEmail}
@@ -1920,9 +1941,9 @@ const KYC = () => {
 
             <div className="CompanyContactFlexContainer">
               <div>
-                <h5>Credit/Finance Contact Details</h5>
+                <h5>Credit/Finance Contact Details <span className="star">*</span></h5>
                 <div>
-                  <label>Name</label>
+                  <label>Name <span className="star">*</span></label>
                   <input
                     type="text"
                     value={Formvalues.CreditNAME}
@@ -1936,7 +1957,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Designation</label>
+                  <label>Designation <span className="star">*</span></label>
                   <input
                     type="text"
                     value={Formvalues.CreditDesignation}
@@ -1951,7 +1972,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Phone</label>
+                  <label>Phone <span className="star">*</span></label>
                   <PhoneInput
                     country={"ae"}
                     value={Formvalues.CreditPhone}
@@ -1973,7 +1994,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Email Address </label>
+                  <label>Email Address <span className="star">*</span> </label>
                   <input
                     type="email"
                     value={Formvalues.CreditEmail}
@@ -1988,9 +2009,9 @@ const KYC = () => {
                 </div>
               </div>
               <div>
-                <h5>Accounting Department Contact Details</h5>
+                <h5>Accounting Department Contact Details <span className="star">*</span></h5>
                 <div>
-                  <label>Name</label>
+                  <label>Name <span className="star">*</span></label>
                   <input
                     type="text"
                     value={Formvalues.AccountDepartName}
@@ -2004,7 +2025,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Designation</label>
+                  <label>Designation <span className="star">*</span></label>
                   <input
                     type="text"
                     name="AcoountDepartDesignation"
@@ -2020,7 +2041,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Phone</label>
+                  <label>Phone <span className="star">*</span></label>
                   <PhoneInput
                     country={"ae"}
                     value={Formvalues.AccountDepartmentPhone}
@@ -2046,7 +2067,7 @@ const KYC = () => {
                   )}
                 </div>
                 <div>
-                  <label>Email Address</label>
+                  <label>Email Address <span className="star">*</span></label>
                   <input
                     type="email"
                     value={Formvalues.AccountDepartmentEmail}
@@ -2066,7 +2087,7 @@ const KYC = () => {
 
             <div className="proposedContainer">
               <label style={{ padding: "10px 25px" }}>
-                What is the proposed business with Adam Energy FZE?
+                What is the proposed business with Adam Energy FZE? <span className="star">*</span>
               </label>
               <input
                 type="text"
@@ -2082,7 +2103,7 @@ const KYC = () => {
             </div>
             <div className="proposedContainer">
               <label style={{ padding: "10px 25px" }}>
-                Who is your Contact Person in Adam Energy FZE?
+                Who is your Contact Person in Adam Energy FZE?<span className="star">*</span>
               </label>
               <input
                 type="text"
@@ -2101,7 +2122,7 @@ const KYC = () => {
           {/* Trade Reference */}
 
           <div className="Infocontainer">
-            <h3>Trade Reference</h3>
+            <h3>Trade Reference </h3>
             <p style={{ color: "#666666", padding: "9px 25px" }}>
               Please provide Trade Reference details:
             </p>
@@ -2309,23 +2330,23 @@ const KYC = () => {
           <div className="Infocontainer kycDocumentsContainer">
             <h3>UPLOAD KYC DOCUMENTS</h3>
             <div>
-              <label>1) Certificate of Incorporation </label>
+              <label>1) Certificate of Incorporation <span className="star">*</span> </label>
               <input type="file" />
             </div>
             <div>
               <label>
                 2) Memorandum/Article of Association and Shareholding Structure
                 (Evidencing Ultimate Business Owners) signed by company
-                authorized signatory, stamped. and documents supporting UBO's.{" "}
+                authorized signatory, stamped. and documents supporting UBO's.{" "} <span className="star">*</span>
               </label>
               <input type="file" />
             </div>
             <div style={{ display: "inline-block" }}>
-              <label>3) Trade License </label>
+              <label>3) Trade License <span className="star">*</span> </label>
               <input type="file" />
             </div>
             <div style={{ float: "right" }}>
-              <label>4) Tax Registration Certificate</label>
+              <label>4) Tax Registration Certificate <span className="star">*</span></label>
               <input type="file" />
             </div>
 
@@ -2334,23 +2355,26 @@ const KYC = () => {
               <input type="file" />
             </div>
             <div style={{ float: "right" }} className="url">
-              <label>6) Website URL</label>
-              <input type="url" placeholder="Website URL" />
+              <label>6) Website URL <span className="star">*</span></label>
+              <input type="text" placeholder="Website URL" value={Formvalues.WebsiteURL} name="WebsiteURL" onChange={handlChange}    onFocus={() => handleFocus("WebsiteURL")}  />
+              {formErrors.WebsiteURL && (
+                    <div className="error">{formErrors.WebsiteURL}</div>
+                  )}
             </div>
             <div>
               <label>7) Bank Reference Letter ( Upon Trade or Request) </label>
-              <input type="file" />
+              <input type="file" /> 
             </div>
             <div>
               <label>
                 8) Passport Copies of the Ultimate Beneficial Owners and
-                Authorized Signatory{" "}
+                Authorized Signatory{" "} <span className="star">*</span>
               </label>
               <input type="file" />
             </div>
 
             <div className="declarationContainer">
-              <h4>Declaration</h4>
+              <h4>Declaration <span className="star">*</span></h4>
               <p>
                 {" "}
                 <span>
@@ -2369,15 +2393,15 @@ const KYC = () => {
             </div>
 
             <div>
-              <label>Authorized Signatory * </label>
+              <label>Authorized Signatory <span className="star">*</span></label>
               <input type="file" />
-              <p style={{ margin: "8px 0px" }}>
+              <p className= 'error'style={{ margin: "8px 0px" }}>
                 Please upload your signature Image
               </p>
             </div>
 
             <div className="authorised-sign">
-              <label>Authorized Signatory Name </label>
+              <label>Authorized Signatory Name <span className="star">*</span></label>
               <input
                 type="text"
                 placeholder="Authorized Signatory Name"

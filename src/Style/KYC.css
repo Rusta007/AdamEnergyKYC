@@ -189,7 +189,9 @@ select {
   padding: 15px 20px;
   font-size: 16px;
 }
-
+.star{
+  color: red;
+}
 /* Tablet View */
 
 @media (min-width: 768px) and (max-width: 1024px) {
