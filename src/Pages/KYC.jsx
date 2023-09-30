@@ -1144,6 +1144,7 @@ const KYC = () => {
     const newErrors = {};
 
     for (const field in Formvalues) {
+      console.log(Formvalues)
       const value = Formvalues[field];
       const error = validateField(field, value);
       if (error) {
@@ -1864,13 +1865,13 @@ const KYC = () => {
           {/* ShareHolders Section */}
           <div className="Infocontainer">
             <h3>SHAREHOLDERS</h3>
-            <ShareHolder handleSubmit={handleSubmit} formErrors={formErrors} />
+            <ShareHolder handleSubmit={handleSubmit}  />
           </div>
 
           {/* Company Contact Details */}
 
           <div className="CompanyContactDetailContainer">
-            <h3>Company Conatact Details </h3>
+            <h3>Company Contact Details </h3>
             <div className="CompanyContactFlexContainer">
               <div>
                 <h5>
@@ -2528,14 +2529,9 @@ const KYC = () => {
               )}
 
             </div>
-
-            <div>
-              <label>5) Company Profile ( If Available) </label>
-              <input type="file" onChange={handlChange} />
-            </div>
             <div  className="url">
               <label>
-                7) Website URL <span className="star">*</span>
+                6) Website URL <span className="star">*</span>
               </label>
               <input
                 type="text"
@@ -2550,8 +2546,13 @@ const KYC = () => {
               )}
             </div>
             <div>
-              <label>6) Bank Reference Letter ( Upon Trade or Request) </label>
-              <input type="file" onChange={handlChange} />
+              <label>5) Company Profile ( If Available) </label>
+              <input type="file"  />
+            </div>
+           
+            <div>
+              <label>7) Bank Reference Letter ( Upon Trade or Request) </label>
+              <input type="file"  />
             </div>
             <div>
               <label>

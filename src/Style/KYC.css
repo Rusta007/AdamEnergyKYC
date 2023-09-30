@@ -201,6 +201,7 @@ select {
 .url{
   float: right;
 }
+
 /* Tablet View */
 
 @media (min-width: 768px) and (max-width: 1300px) {
@@ -252,6 +253,9 @@ label {
   padding: 10px 0px;
   font-size: 15px;
   line-height: 24px;
+}
+.textCertficate-container{
+  float: none;
 }
 }
 @media (min-width: 1300px) and (max-width: 1880px) {
@@ -353,6 +357,9 @@ label {
   padding: 10px 0px;
   font-size: 17px;
   line-height: 24px;
+}
+.textCertficate-container{
+  float: none;
 }
 .textCertficate-container{
   float: none;
