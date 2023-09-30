@@ -2535,7 +2535,7 @@ const KYC = () => {
             </div>
             <div  className="url">
               <label>
-                6) Website URL <span className="star">*</span>
+                7) Website URL <span className="star">*</span>
               </label>
               <input
                 type="text"
@@ -2550,7 +2550,7 @@ const KYC = () => {
               )}
             </div>
             <div>
-              <label>7) Bank Reference Letter ( Upon Trade or Request) </label>
+              <label>6) Bank Reference Letter ( Upon Trade or Request) </label>
               <input type="file" onChange={handlChange} />
             </div>
             <div>
