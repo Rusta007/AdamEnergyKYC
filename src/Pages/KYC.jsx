@@ -2171,7 +2171,7 @@ const KYC = () => {
                 placeholder="Proposed Business"
               />
               {formErrors.ProposedBusiness && (
-                <div className="error">{formErrors.ProposedBusiness}</div>
+                <div className="error error2">{formErrors.ProposedBusiness}</div>
               )}
             </div>
             <div className="proposedContainer">
@@ -2188,7 +2188,7 @@ const KYC = () => {
                 placeholder="Proposed Business"
               />
               {formErrors.ContactPerson && (
-                <div className="error">{formErrors.ContactPerson}</div>
+                <div className="error error2">{formErrors.ContactPerson}</div>
               )}
             </div>
           </div>
