@@ -1308,7 +1308,7 @@ const KYC = () => {
               </div>
               <div className="flexItem2">
                 <div>
-                  <label>Email Address*</label>
+                  <label>Email Address <span className="star">*</span></label>
                   <input
                     type="email"
                     name="emailAddress"
@@ -1782,7 +1782,7 @@ const KYC = () => {
           {/* Company Contact Details */}
 
           <div className="CompanyContactDetailContainer">
-            <h3>Company Conatact Details <span className="star">*</span> </h3>
+            <h3>Company Conatact Details  </h3>
             <div className="CompanyContactFlexContainer">
               <div>
                 <h5>Primary Contact Details <span className="star">*</span></h5>
