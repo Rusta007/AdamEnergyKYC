@@ -1,13 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo&display=swap");
 
-select {
-  /* Apply styles to the select box */
-  padding: 13px 10px;
-  border-radius: 5px;
-  color: #333;
-  font-size: 14px;
-  font-family: "Archivo", sans-serif;
-}
+
 
 /* Hide the default dropdown arrow */
 select::-ms-expand,
