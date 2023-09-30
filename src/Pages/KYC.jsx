@@ -1375,11 +1375,11 @@ const KYC = () => {
           {/* Company Structure */}
 
           <div className="Infocontainer">
-            <h3>COMPANY STRUCTURE <span className="star">*</span></h3>
+            <h3>COMPANY STRUCTURE </h3>
             <div className="infoFlexContainer">
               <div className="flexItem1">
                 <div>
-                  <label>Business Structure <span className="star">*</span></label>
+                  <label>Business Structure </label>
                   <select
                     name="BusinessStructure"
                     value={Formvalues.BusinessStructure}
@@ -1559,7 +1559,7 @@ const KYC = () => {
           {/* Bank Details */}
 
           <div className="Infocontainer">
-            <h3>Bank Details <span className="star">*</span></h3>
+            <h3>Bank Details</h3>
             <div className="infoFlexContainer">
               <div className="flexItem1">
                 <div>
