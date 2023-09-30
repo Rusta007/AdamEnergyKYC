@@ -194,7 +194,7 @@ select {
 }
 /* Tablet View */
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1300px) {
   .Infocontainer,
   .CompanyContactDetailContainer {
     min-width: 100%;
@@ -233,7 +233,7 @@ select {
   }
 
 }
-@media (min-width: 1024px) and (max-width: 1480px) {
+@media (min-width: 1300px) and (max-width: 1880px) {
   .Infocontainer,
   .CompanyContactDetailContainer {
     min-width: 100%;
@@ -241,33 +241,34 @@ select {
   .flexItem1,
   .flexItem2,
   .CompanyContactFlexContainer {
-    flex-direction: column;
+    flex-direction: row;
     /* align-items: center; */
     padding: 5px 20px;
   }
   .flexItem1 input,.flexItem2 input{
-    min-width: 100%;
+    min-width: 40%;
   }
   .contactNumber-company {
-    width: 100%;
+    min-width: 35%;
+
   }
   .sharholderTable td input {
-    width: 200px;
+    width: 300px;
   }
   .sharholderTable td select {
-    width: 200px;
+    width: 300px;
   }
   .tradereferenceTable td input {
-    width: 200px;
+    width: 300px;
   }
   .proposedContainer input {
     width: 93%;
   }
   
   select{
-    width: 100%;
+    min-width: 40%;
   }
   .CompanyContactFlexContainer input{
-    width: 100%;
+    min-width: 450px;
   }
 }
