@@ -119,7 +119,7 @@ h5 {
 }
 select {
   background-color: #f3f3f3;
-  padding: 14px 0px;
+  padding: 16px 0px;
   border: none;
   border-radius: 5px;
   width: 630px;
@@ -249,14 +249,14 @@ select {
     min-width: 40%;
   }
   .contactNumber-company {
-    min-width: 35%;
+    width: 624px;
 
   }
   .sharholderTable td input {
-    width: 300px;
+    width: 330px;
   }
   .sharholderTable td select {
-    width: 300px;
+    width: 330px;
   }
   .tradereferenceTable td input {
     width: 300px;
@@ -269,6 +269,56 @@ select {
     min-width: 40%;
   }
   .CompanyContactFlexContainer input{
-    min-width: 450px;
+  width: 618px;
   }
+}
+
+@media (min-width: 350px) and (max-width: 767px) {
+  .Infocontainer,
+  .CompanyContactDetailContainer {
+    min-width: 100%;
+  }
+  .flexItem1,
+  .flexItem2,
+  .CompanyContactFlexContainer {
+    flex-direction: column;
+    /* align-items: center; */
+    padding: 5px 20px;
+  }
+  .flexItem1 input,.flexItem2 input{
+    width: 354px;
+  }
+  h3{
+    font-size: 22px;
+  }
+  .contactNumber-company {
+    width: 100%;
+  }
+  .sharholderTable td input {
+    width: 89px;
+    padding: 9px 0px;
+  }
+  .sharholderTable td select {
+    width: 50px;
+  }
+  .RemoveButton{
+    padding: 10px 7px;
+  }
+  .tradereferenceTable td input {
+    width: 200px;
+  }
+  .proposedContainer input {
+    width: 88%;
+  }
+  
+  select{
+    width: 100%;
+  }
+  .CompanyContactFlexContainer input{
+    width: 100%;
+  }
+  label{
+    font-size: 17px;
+  }
+
 }
